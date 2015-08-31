@@ -1,39 +1,109 @@
 <?php 
-       $sistemas = "active";
-       $cardapio = "active";
-       $ramais = "active";
-       $outros = "active";
+       $index = "index.php";
+       $cardapio = "cardapio.php";
+       $ramais = "ramais.php";
+       $outros = "outros.php";
    function menu($opcao){
-       global $sistemas, $cardapio, $ramais, $outros;
+       
        switch ($opcao){
            case 1:
-              $sistemas = "";
+               sistemas();            
                break;
            case 2:
-               $cardapio = "";
+               cardapio();
+              
                break;
            case 3:
-               $ramais = "";
-               
+               ramais();
                break;
            case 4:
-               $outros = "";
+               outros();
                break;
        }  
   }
-  
-?>
- <!-- Colete as ligações nav, formulários e outros conteúdos para alternar -->
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+ 
+ 
+ 
+ function sistemas(){
+     global $index;
+     global $cardapio;
+     global $ramais;
+     global $outros;
+     ?>
+ 
+     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 
-      <ul class="nav navbar-nav navbar-right">
-        <!-- <li><a class="menu active" href="#home" >Início</a></li> -->
-        <?php echo "Ramais: ".$ramais; ?>
-        <li><a class="menu <?php  echo $sistemas; ?>" href="index.html">Sistemas</a></li>
-        <li><a class="menu <?php  $cardapio; ?>" href="cardap.html">Cardápio </a></li>
-        <li><a class="menu <?php echo $ramais; ?>" href="ramais.php">Ramais</a></li>
-        <li><a class="menu <?php  $outros; ?>" href="#contact">Outros</a></li>
-      </ul>
-    </div><!-- /navbar-collapse -->
+                    <ul class="nav navbar-nav navbar-right">                      
+                   <li><a class="menu active" href="<?php echo $index; ?> ">Sistemas</a></li>
+                     <li><a class="menu " href="<?php echo $cardapio; ?> ">Cardápio</a></li>
+                          <li><a class="menu " href="<?php echo $ramais; ?> ">Ramais</a></li>
+                      <li><a class="menu " href="<?php echo $outros; ?> ">Outros</a></li>
+                    </ul>
+                  </div><!-- /navbar-collapse -->
+     <?php             
+ }
+ ?>
+ 
+<?php
+function cardapio(){
+    global $index;
+     global $cardapio;
+     global $ramais;
+     global $outros;
+    ?>
+ 
+     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+ <ul class="nav navbar-nav navbar-right">                      
+                   <li><a class="menu " href="<?php echo $index; ?> ">Sistemas</a></li>
+                     <li><a class="menu active" href="<?php echo $cardapio; ?> ">Cardápio</a></li>
+                          <li><a class="menu " href="<?php echo $ramais; ?> ">Ramais</a></li>
+                      <li><a class="menu " href="<?php echo $outros; ?> ">Outros</a></li>
+                    </ul>
+                  </div><!-- /navbar-collapse -->
+     <?php             
+ }
+ ?>
+ 
+                  
+                  
+<?php
+function ramais(){
+    global $index;
+     global $cardapio;
+     global $ramais;
+     global $outros;
+     ?>
+ 
+     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+ <ul class="nav navbar-nav navbar-right">                      
+                   <li><a class="menu " href="<?php echo $index; ?> ">Sistemas</a></li>
+                     <li><a class="menu " href="<?php echo $cardapio; ?> ">Cardápio</a></li>
+                          <li><a class="menu active" href="<?php echo $ramais; ?> ">Ramais</a></li>
+                      <li><a class="menu " href="<?php echo $outros; ?> ">Outros</a></li>
+                    </ul>
+                  </div><!-- /navbar-collapse -->
+     <?php             
+ }
+ ?>
+
+                  <?php
+function outros(){
+    global $index;
+     global $cardapio;
+     global $ramais;
+     global $outros;
+     ?>
+ 
+     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+ <ul class="nav navbar-nav navbar-right">                      
+                   <li><a class="menu " href="<?php echo $index; ?> ">Sistemas</a></li>
+                     <li><a class="menu " href="<?php echo $cardapio; ?> ">Cardápio</a></li>
+                          <li><a class="menu " href="<?php echo $ramais; ?> ">Ramais</a></li>
+                      <li><a class="menu active" href="<?php echo $outros; ?> ">Outros</a></li>
+                    </ul>
+                  </div><!-- /navbar-collapse -->
+     <?php             
+ }
+ ?>
     
-    
+   

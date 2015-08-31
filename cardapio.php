@@ -29,7 +29,7 @@
 					    <!-- Colete as ligações nav, formulários e outros conteúdos para alternar -->
 					      <?php 
                                                 include ('include/menu.php');
-                                                menu('1');
+                                                menu('2');
                                                // echo "Ramais: ".$ramais;
                                              ?><!-- /navbar-collapse -->
 					  </div><!-- / .container-fluid -->

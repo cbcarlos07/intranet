@@ -2,16 +2,7 @@
 
 
 <html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title>Cardápio</title>
-	<link rel="stylesheet" href="css/font-awesome.min.css">
-	<link rel="stylesheet" href="css/bootstrap.min.css">
-	<link rel="stylesheet" href="css/style.css">
-	<link href='http://fonts.googleapis.com/css?family=Open+Sans:600italic,400,800,700,300' rel='stylesheet' type='text/css'>
-	<link href='http://fonts.googleapis.com/css?family=BenchNine:300,400,700' rel='stylesheet' type='text/css'>
-
-</head>
+<?php include 'include/head.php'; ?>
 <body>
 	
 	<!-- ====================================================
@@ -40,8 +31,8 @@
 					    <!-- Colete as ligações nav, formulários e outros conteúdos para alternar -->
 					      <?php 
                                                 include ('include/menu.php');
-                                                menu(3);
-                                               // echo "Ramais: ".$ramais;
+                                                menu('3');
+                                                
                                              ?>
                                                 
                                             <!-- /navbar-collapse -->
