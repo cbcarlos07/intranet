@@ -1,8 +1,10 @@
 <!DOCTYPE html>
+
+
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>MV Links</title>
+	<title>Cardápio</title>
 	<link rel="stylesheet" href="css/font-awesome.min.css">
 	<link rel="stylesheet" href="css/bootstrap.min.css">
 	<link rel="stylesheet" href="css/style.css">
@@ -36,16 +38,13 @@
 					    </div>
 
 					    <!-- Colete as ligações nav, formulários e outros conteúdos para alternar -->
-					    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-					      
-					      <ul class="nav navbar-nav navbar-right">
-					        <!-- <li><a class="menu active" href="#home" >Início</a></li> -->
-					        <li><a class="menu active" href="index.html">Sistemas</a></li>
-					        <li><a class="menu" href="cardap.html">Cardápio </a></li>
-					        <li><a class="menu" href="ramais.php">Ramais</a></li>
-					        <li><a class="menu" href="#contact">Outros</a></li>
-					      </ul>
-					    </div><!-- /navbar-collapse -->
+					      <?php 
+                                                include ('include/menu.php');
+                                                menu(3);
+                                               // echo "Ramais: ".$ramais;
+                                             ?>
+                                                
+                                            <!-- /navbar-collapse -->
 					  </div><!-- / .container-fluid -->
 					</nav>
 				</div>
@@ -54,11 +53,14 @@
 	</header> <!-- fim do header area -->
 
 			<!--  seçao sistemas -->
-                        
 			<section class="about text-center" id="about">
 				<div class="container">
-                                   
+                                    
+                                    
+                                           
+                                     <!--
 					<div class="row">
+                                        
 						<h2>SISTEMAS DE GESTÃO HOSPITALAR</h2>
 						<h4>Departamento de Tecnologia da Informação</h4>
 
@@ -135,7 +137,7 @@
                         
 
 					</div>
-                                    -
+                                    -->
 				</div>
 			</section><!-- end of about section -->
 
