@@ -130,10 +130,13 @@
 
 	<!-- script tags
 	============================================================= -->
-	<script src="js/jquery-2.1.1.js"></script>
+	<!--<script src="js/jquery-2.1.1.js"></script>-->
+    
 	<script src="js/smoothscroll.js"></script>
 	<script src="js/bootstrap.min.js"></script>
+    
 	<script src="js/custom.js"></script>
+    <script src="jquery-1.11.3.min.js"></script>
 	
 </body>
 </html>

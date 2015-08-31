@@ -1,5 +1,8 @@
 jQuery(document).ready(function() {
-  
+	
+	//$(".active").click(function(){
+	//$(this).attr(""
+  	//});
 
    $('#carouselHacked').carousel();
   

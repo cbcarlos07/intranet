@@ -21,9 +21,7 @@
                break;
        }  
   }
- 
- 
- 
+  
  function sistemas(){
      global $index;
      global $cardapio;
@@ -55,7 +53,7 @@ function cardapio(){
      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
  <ul class="nav navbar-nav navbar-right">                      
                    <li><a class="menu " href="<?php echo $index; ?> ">Sistemas</a></li>
-                     <li><a class="menu active" href="<?php echo $cardapio; ?> ">Cardápio</a></li>
+                     <li><a class="menu active disable" href="<?php echo $cardapio; ?> ">Cardápio</a></li>
                           <li><a class="menu " href="<?php echo $ramais; ?> ">Ramais</a></li>
                       <li><a class="menu " href="<?php echo $outros; ?> ">Outros</a></li>
                     </ul>
