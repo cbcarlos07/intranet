@@ -1,9 +1,13 @@
+<?php 
+  $ip = $_SERVER['SERVER_ADDR'];
+  $add = 'http://'.$ip.'/intranet/';
+?>
 <header class="top-header">
 		<div class="container">
 			<div class="row">
 				<div class="col-xs-5 header-logo">
 					<br>
-					<a href="index.html"><img src="img/logo1.png" alt="" class="img-responsive logo"></a>
+					<a href="<?php echo $add; ?>"><img src="img/LOGOHAM.png" alt="" class="img-responsive logo" width="25%"></a>
 				</div>
 
 				<div class="col-md-7">
