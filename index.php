@@ -30,7 +30,7 @@
 						<h2>SISTEMAS DE GESTÃO HOSPITALAR</h2>
 						<h4>Departamento de Tecnologia da Informação</h4>
 
-						<div class="col-md-4 col-sm-6">
+						<div class="col-md-4 col-sm-6 largura">
 							<a href="links/mv"><div class="single-about-detail clearfix" style="border:1px solid black;border-radius:10px">
 								<div class="about-img" align="center">
 									<img class="img-responsive" src="img/MVG.png" alt="">
@@ -44,7 +44,7 @@
                             </a>
 						</div>
 
-						<div class="col-md-4 col-sm-6">
+						<div class="col-md-4 col-sm-6 largura">
 							<a href="links/mvpep"><div class="single-about-detail clearfix" style="border:1px solid black;border-radius:10px">
 								<div class="about-img" align="center">
 									<img class="img-responsive" src="img/PEP.png" alt="" style="width:76.5%">
@@ -59,7 +59,7 @@
 						</div>
 
 
-						<div class="col-md-4 col-sm-6">
+						<div class="col-md-4 col-sm-6 largura">
 							<a href="links/portal"><div class="single-about-detail" style="border:1px solid black;border-radius:10px">
 								<div class="about-img" align="center">
 									<img class="img-responsive" src="img/MVPORTAL.png" alt="" style="width:78.5%">
@@ -73,7 +73,7 @@
                             </a>
 						</div>
                         
-                      <div class="col-md-4 col-sm-6">
+                      <div class="col-md-4 col-sm-6 largura">
 							<a href="links/dinamus"><div class="single-about-detail clearfix" style="border:1px solid black;border-radius:10px">
 								<div class="about-img" align="center">
 									<img class="img-responsive" src="img/DYNAMUS.png" alt="" style="width:76%">
@@ -87,7 +87,7 @@
                    		  </a>
 						</div>
                         
-                        <div class="col-md-4 col-sm-6">
+                        <div class="col-md-4 col-sm-6 largura">
 							<a href="links/mixweb"><div class="single-about-detail clearfix" style="border:1px solid black;border-radius:10px">
 								<div class="about-img" align="center">
 									<img class="img-responsive" src="img/MIX WEB.png" alt="" style="width:75.5%">
