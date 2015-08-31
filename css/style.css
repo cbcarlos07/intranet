@@ -71,13 +71,13 @@ ul.nav{
 	font-weight: bold;
 }
 .navbar-default .navbar-nav>li>a:hover{
-	color: #fff;
+	color: #fff600;
 }
 .navbar-default .navbar-toggle .icon-bar {
   background-color: #000;
 }
 li a.active{
-	color: #fff600 !important;
+	color: #fff !important;
 }
 .navbar-default .navbar-toggle {
   border-color: #fff;
