@@ -18,7 +18,7 @@ h1, h2{
 /*header area*/
 .top-header{
 	background: #42b3e5 !important;
-	position: ;
+	
 	width: 100%;
 	z-index: 99999;
 }
@@ -60,7 +60,7 @@ ul.nav{
 }
 .navbar-default .navbar-nav>li>a {
  	font-size: 24px;
-	color: #737373;
+	color: #000;
 	text-transform: uppercase;
 	transition: all .7s ease 0s;
 	-webkit-transition: all .7s ease 0s;
@@ -71,7 +71,7 @@ ul.nav{
 	font-weight: bold;
 }
 .navbar-default .navbar-nav>li>a:hover{
-	color: #42b3e5;
+	color: #fff;
 }
 .navbar-default .navbar-toggle .icon-bar {
   background-color: #000;
@@ -190,7 +190,15 @@ li a.active{
 .single-about-detail{
 	position: relative;
 }
-
+.pep-details{
+	background: #2a2a2a;
+	border-top: 2px solid #fff;
+	transition: all .7s ease 0s;
+	-webkit-transition: all .7s ease 0s;
+	-moz-transition: all .7s ease 0s;
+	-o-transition: all .7s ease 0s;
+	-ms-transition: all .7s ease 0s;
+}
 
 
 .about-details{
@@ -202,6 +210,7 @@ li a.active{
 	-o-transition: all .7s ease 0s;
 	-ms-transition: all .7s ease 0s;
 }
+
 .about-details h3{
 	font-size: 36px;
 	color: #fff;
@@ -214,6 +223,18 @@ li a.active{
 	padding: 0 25px;
 	padding-bottom: 30px;
 }
+
+.about-details h5{
+	font-size: 13px;
+	color: #fff;
+	font-family: 'Open Sans', sans-serif;
+	padding: 0 25px;
+	padding-bottom: 20px;
+}
+
+
+
+
 .single-about-detail:hover .about-details{
 	background: #3a9dca;
 }
