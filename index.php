@@ -106,7 +106,7 @@
 						</div>
                         
                         <div class="col-md-4 col-sm-6">
-							<a href="mixweb"><div class="single-about-detail clearfix" style="border:1px solid black;border-radius:10px">
+							<a href="links/mixweb"><div class="single-about-detail clearfix" style="border:1px solid black;border-radius:10px">
 								<div class="about-img" align="center">
 									<img class="img-responsive" src="img/MIX WEB.png" alt="" style="width:75.5%">
 								</div>
