@@ -22,9 +22,12 @@
 
 			<!--  seçao sistemas -->
                         
+                                    
+                        
 			<section class="about text-center" id="about">
 				<div class="container">
-                                   
+                                    <H2>EM CONSTRUÇÃO</H2>
+                                   <!--
 					<div class="row">
 						<h2>SISTEMAS DE GESTÃO HOSPITALAR</h2>
 						<h4>Departamento de Tecnologia da Informação</h4>
@@ -102,8 +105,9 @@
                         
 
 					</div>
-                                    -
+                                          -->
 				</div>
+                
 			</section><!-- end of about section -->
 
 

@@ -36,9 +36,9 @@
 
                     <ul class="nav navbar-nav navbar-right">                      
                    <li><a class="menu active" href="<?php echo $index; ?> ">Sistemas</a></li>
-                     <li><a class="menu " href="<?php echo $cardapio; ?> ">Cardápio</a></li>
-                          <li><a class="menu " href="<?php echo $ramais; ?> ">Ramais</a></li>
-                      <li><a class="menu " href="<?php echo $outros; ?> ">Outros</a></li>
+                   <li><a class="menu " href="<?php echo $ramais; ?> ">Ramais</a></li>  
+                   <li><a class="menu " href="<?php echo $cardapio; ?> ">Cardápio</a></li>
+                   <li><a class="menu " href="<?php echo $outros; ?> ">Outros</a></li>
                     </ul>
                   </div><!-- /navbar-collapse -->
      <?php             
@@ -56,8 +56,9 @@ function cardapio(){
      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
  <ul class="nav navbar-nav navbar-right">                      
                    <li><a class="menu " href="<?php echo $index; ?> ">Sistemas</a></li>
+                   <li><a class="menu " href="<?php echo $ramais; ?> ">Ramais</a></li>
                      <li><a class="menu active" href="<?php echo $cardapio; ?> ">Cardápio</a></li>
-                          <li><a class="menu " href="<?php echo $ramais; ?> ">Ramais</a></li>
+                          
                       <li><a class="menu " href="<?php echo $outros; ?> ">Outros</a></li>
                     </ul>
                   </div><!-- /navbar-collapse -->
@@ -78,8 +79,9 @@ function ramais(){
      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
  <ul class="nav navbar-nav navbar-right">                      
                    <li><a class="menu " href="<?php echo $index; ?> ">Sistemas</a></li>
+                   <li><a class="menu active" href="<?php echo $ramais; ?> ">Ramais</a></li>
                      <li><a class="menu " href="<?php echo $cardapio; ?> ">Cardápio</a></li>
-                          <li><a class="menu active" href="<?php echo $ramais; ?> ">Ramais</a></li>
+                          
                       <li><a class="menu " href="<?php echo $outros; ?> ">Outros</a></li>
                     </ul>
                   </div><!-- /navbar-collapse -->
@@ -98,8 +100,9 @@ function outros(){
      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
  <ul class="nav navbar-nav navbar-right">                      
                    <li><a class="menu " href="<?php echo $index; ?> ">Sistemas</a></li>
+                   <li><a class="menu " href="<?php echo $ramais; ?> ">Ramais</a></li>
                      <li><a class="menu " href="<?php echo $cardapio; ?> ">Cardápio</a></li>
-                          <li><a class="menu " href="<?php echo $ramais; ?> ">Ramais</a></li>
+                          
                       <li><a class="menu active" href="<?php echo $outros; ?> ">Outros</a></li>
                     </ul>
                   </div><!-- /navbar-collapse -->
