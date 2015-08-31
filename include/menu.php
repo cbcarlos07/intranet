@@ -1,5 +1,6 @@
 <?php 
-       $index = "index.php";
+       $ip = $_SERVER['SERVER_ADDR'];
+       $index = 'http://'.$ip.'/intranet/';
        $cardapio = "cardapio.php";
        $ramais = "ramais.php";
        $outros = "outros.php";
