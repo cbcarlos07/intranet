@@ -33,7 +33,7 @@ function insertRamais(Ramal $ramal ){
 							
 							
 							$teste = true;
-							oci_close($ora_conexao);
+							$conn->closeConnection($connection);
 				} catch (PDOException $ex) {
 				//    echo "<script>  alert('Erro: ".$ex->getMessage()."')</script>";
 			  }
@@ -64,7 +64,7 @@ function insertRamais(Ramal $ramal ){
 							
 							
 							$teste = true;
-							oci_close($ora_conexao);
+							$conn->closeConnection($connection);
 				} catch (PDOException $ex) {
 				//    echo "<script>  alert('Erro: ".$ex->getMessage()."')</script>";
                                     echo " Erro: ".$ex->getMessage();
@@ -123,7 +123,7 @@ function insertRamais(Ramal $ramal ){
                                               if ($row = oci_fetch_array($stmt, OCI_ASSOC)){
                                                  $i = $row["CODIGO"]; 
                                               }
-                             
+                             $conn->closeConnection($connection);
 				} catch (PDOException $ex) {
 				//    echo "<script>  alert('Erro: ".$ex->getMessage()."')</script>";
                                     echo " Erro: ".$ex->getMessage();
@@ -150,7 +150,7 @@ function insertRamais(Ramal $ramal ){
                                                  $setorList->addSetor($setor);
                                                  
                                               }
-                             
+                                $conn->closeConnection($connection);
 				} catch (PDOException $ex) {
 				//    echo "<script>  alert('Erro: ".$ex->getMessage()."')</script>";
                                     echo " Erro: ".$ex->getMessage();
@@ -158,6 +158,44 @@ function insertRamais(Ramal $ramal ){
             
         		return $i;
 	}
-        
+      function pesquisa_ramal($set){
+                 $conn = new ConnectionFactory();   
+                 $conexao = $conn->getConnection();                 
+                 $ramal = null;
+                 $ramalList = new RamalList();       
+		    $sql_text = "SELECT R.*, S.CD_SETOR, S.NM_SETOR FROM DBAADV.INTRA_RAMAL R 
+						,DBAMV.SETOR S  
+						WHERE (R.DS_DESCRICAO LIKE :setor
+                                                      OR R.NR_RAMAL LIKE :setor
+                                                      OR R.DS_APELIDO LIKE :setor)
+						 AND S.CD_SETOR = R.CD_SETOR";		   
+              try {
+             $statement = oci_parse($connection, $sql_text);
+             $parametro = "%".$set."%";
+             
+             oci_bind_by_name($statement, ":setor", $parametro, -1);
+             
+             oci_execute($statement);
+             
+            while($row = oci_fetch_array($statement, OCI_ASSOC)){
+                $ramal = new Ramal();
+                $setor = new Setor();
+                $ramal->setCodigo($row["CD_RAMAL"]);
+                $ramal->setDescricao($row["DS_DESCRICAO"]);
+                $ramal->setNrRamal($row["DS_RAMAL"]);
+                $setor->setCodigo($row["CD_SETOR"]);
+                $setor->setNome($row["NM_SETOR"]);
+                $ramal->setSetor($setor);
+                $ramal->setSnVisutaliza($row["SN_VISUALIZA"]);
+                $ramal->setDsApelido($row["DS_APELIDO"]);
+                $ramalList->addRamal($ramal);
+                
+            }
+            $conn->closeConnection($connection);
+        } catch (PDOException $ex) {
+            echo "Erro: ".$ex->getMessage();
+        }
+       return $entrevista;
+	}   
         
 }
