@@ -73,7 +73,7 @@ function insertRamais(Ramal $ramal ){
         		return $teste;
 	}
         
-        public function deleteSetor($code){
+        public function deleteRamal($code){
         
         $conn = new ConnectionFactory();
         $connection = $conn->getConnection();
