@@ -103,7 +103,7 @@
                         
 
 					</div>
-                                    -
+                                    
 				</div>
 			</section><!-- end of about section -->
 
