@@ -57,6 +57,29 @@ function insertRamais(Ramal $ramal ){
                              
 				} catch (PDOException $ex) {
 				//    echo "<script>  alert('Erro: ".$ex->getMessage()."')</script>";
+                                    echo " Erro: ".$ex->getMessage();
+			  }
+            
+        		return $i;
+	}
+        
+        function getSetor(){
+                 $conn = new ConnectionFactory();   
+                 $conexao = $conn->getConnection();                 
+		 $sql_text = "select s.cd_setor, s.nm_setor from dbamv.setor s";
+				
+					try {
+						
+                                            $stmt = oci_parse($conexao, $sql_text);
+                                            oci_execute($stmt);
+                                              while ($row = oci_fetch_array($stmt, OCI_ASSOC)){
+                                                 $codigo = $row["s.cd_setor"]; 
+                                                 $setor  = $row["s.nm_setor"]; 
+                                              }
+                             
+				} catch (PDOException $ex) {
+				//    echo "<script>  alert('Erro: ".$ex->getMessage()."')</script>";
+                                    echo " Erro: ".$ex->getMessage();
 			  }
             
         		return $i;
