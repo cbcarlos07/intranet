@@ -1,12 +1,6 @@
-    <?php
+<?php
+include 'model/Ramal_DAO.class.php';
 
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-    
-    
 class Ramal_Controller {
     
     public function inserir(Ramal $ramal){
@@ -27,7 +21,20 @@ class Ramal_Controller {
         return $teste;
     }
     
+    public function pesquisaRamal ($parametro){
+        $ramal_DAO = new Ramal_DAO();
+        $teste = $ramal_DAO->pesquisa_ramal($parametro);
+        return $teste;
+    }
+    
+     public function recTotal(){
+         $rd = new Ramal_DAO();
+         $teste = $rd->getTotal();
+         return $teste;
+     }
+    
     
     
     
 }
+

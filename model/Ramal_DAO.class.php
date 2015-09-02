@@ -5,13 +5,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-    include './ConnectionFactory.class.php';
+    include ('ConnectionFactory.class.php');
 class Ramal_DAO {
-
-   
-
-
-function insertRamais(Ramal $ramal ){
+public function  insertRamais(Ramal $ramal ){
                  $conn = new ConnectionFactory();   
                  $conexao = $conn->getConnection();
 		 $sql_text = "INSERT INTO DBAADV.INTRA_RAMAL
@@ -41,7 +37,7 @@ function insertRamais(Ramal $ramal ){
         		return $teste;
 	}
         
-        function updateRamais(Ramal $ramal ){
+        public function  updateRamais(Ramal $ramal ){
                  $conn = new ConnectionFactory();   
                  $conexao = $conn->getConnection();
 		 $sql_text = "UPDATE DBAADV.INTRA_RAMAL SET
@@ -73,7 +69,7 @@ function insertRamais(Ramal $ramal ){
         		return $teste;
 	}
         
-        public function deleteRamal($code){
+       public function  deleteRamal($code){
         
         $conn = new ConnectionFactory();
         $connection = $conn->getConnection();
@@ -110,7 +106,7 @@ function insertRamais(Ramal $ramal ){
         return $teste;
     }
         
-        function getCodigo(){
+        public function  getCodigo(){
                  $conn = new ConnectionFactory();   
                  $conexao = $conn->getConnection();
                  $i = 0;
@@ -123,7 +119,7 @@ function insertRamais(Ramal $ramal ){
                                               if ($row = oci_fetch_array($stmt, OCI_ASSOC)){
                                                  $i = $row["CODIGO"]; 
                                               }
-                             $conn->closeConnection($connection);
+                                $conn->closeConnection($conexao);
 				} catch (PDOException $ex) {
 				//    echo "<script>  alert('Erro: ".$ex->getMessage()."')</script>";
                                     echo " Erro: ".$ex->getMessage();
@@ -132,7 +128,28 @@ function insertRamais(Ramal $ramal ){
         		return $i;
 	}
         
-        function getSetor(){
+        public function  getTotal(){
+                 $conn = new ConnectionFactory();   
+                 $conexao = $conn->getConnection();
+                 $i = 0;
+		 $sql_text = "SELECT COUNT(*) TOTAL FROM DBAADV.INTRA_RAMAL";
+				
+					try {
+						
+                                            $stmt = oci_parse($conexao, $sql_text);
+                                            oci_execute($stmt);
+                                              if ($row = oci_fetch_array($stmt, OCI_ASSOC)){
+                                                 $i = $row["TOTAL"]; 
+                                              }
+                             $conn->closeConnection($conexao);
+				} catch (PDOException $ex) {
+				//    echo "<script>  alert('Erro: ".$ex->getMessage()."')</script>";
+                                    echo " Erro: ".$ex->getMessage();
+			  }
+            
+        		return $i;
+	}
+        public function  getSetor(){
                  $conn = new ConnectionFactory();   
                  $conexao = $conn->getConnection();                 
                  $setor = null;
@@ -158,7 +175,7 @@ function insertRamais(Ramal $ramal ){
             
         		return $i;
 	}
-      function pesquisa_ramal($set){
+      public function  pesquisa_ramal($set){
                  $conn = new ConnectionFactory();   
                  $conexao = $conn->getConnection();                 
                  $ramal = null;

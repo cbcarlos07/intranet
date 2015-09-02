@@ -4,7 +4,7 @@ class ConnectionFactory{
     private $ora_senha = "dbaadv"; 
     private $ora_bd = "(DESCRIPTION=
                         (ADDRESS_LIST=
-                        (ADDRESS=(PROTOCOL=TCP)(HOST=10.51.26.63)(PORT=1521))
+                        (ADDRESS=(PROTOCOL=TCP)(HOST=10.51.26.60)(PORT=1521))
                         )
                         (CONNECT_DATA=
                         (SERVICE_NAME=prdmv)

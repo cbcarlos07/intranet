@@ -26,9 +26,25 @@
 			<!--  seçao sistemas -->
 			<section class="about text-center" id="about">
 				<div class="container">
-                                    
-                                    
-                                    <h2>EM CONSTRUÇÃO </H2>
+                                    <?php 
+                                    include './controller/Ramal_Controller.class.php';
+                                    $rc = new Ramal_Controller();
+                                    $i = $rc->recTotal();
+                                    if($i>0){
+                                     ?>   
+                                        <h2> EXISTEM DADOS </H2>
+                                     <?php   
+                                    }
+                                    else{
+                                     ?>
+                                        
+                                        <h2> NÃO EXISTEM DADOS </H2>
+                                   <?php     
+                                    }
+                                      ?>  
+                                   
+                                      
+                                    <!-- <h2> EM CONSTRUÇÃO </H2> -->
                                      <!--
 					<div class="row">
                                         
