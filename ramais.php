@@ -38,7 +38,9 @@
                                     else{
                                      ?>
                                         
-                                        <h2> NÃO EXISTEM DADOS </H2>
+                                        <h2> NÃO EXISTEM RAMAIS CADASTRADOS </H2>
+                                        <!-- <input name="" type="button" onClick="window.open('Aqui você coloca a url para redirecionamento')" value="Cadastre o primeiro ramal"> -->
+                                        <a class="but but-success but-rc" href="http://www.mainframe.blog.br" target="_blank">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cadastre o primeiro ramal&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
                                    <?php     
                                     }
                                       ?>  

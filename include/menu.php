@@ -1,6 +1,10 @@
 <?php 
-       $ip = $_SERVER['SERVER_ADDR'];
+        $url = "";
+        $ip = gethostbyname($url);
+       //$ip = $_SERVER['REMOTE_ADDR'];
        $index = 'http://'.$ip.'/intranet/';
+       //echo "Index: ".$index;
+      // echo "<br>IP: ".$ip;
        $cardapio = "cardapio.php";
        $ramais = "ramais.php";
        $outros = "outros.php";
