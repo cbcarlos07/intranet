@@ -1,6 +1,6 @@
 <?php 
   $ip = $_SERVER['SERVER_ADDR'];
-  $add = 'http://'.$ip.'/intranet/';
+  $add = 'http://'.$ip.'/intranet/login';
 ?>
 <header class="top-header">
 		<div class="container">
