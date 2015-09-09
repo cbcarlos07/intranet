@@ -64,7 +64,7 @@
                                                <td>Visualiza? </td><td><input type="checkbox" checked="true" name="visualiza"></td>
                                           </tr>
                                            <tr>
-                                               <td>Apelido </td><td><textarea rows="10" cols="36" name="apelido"></textarea></td>
+                                               <td>Apelido </td><td><textarea rows="5" cols="36" name="apelido"></textarea></td>
                                           </tr>
                                       </table>
                                   </form>
