@@ -47,7 +47,8 @@
 						<div class="col-md-4 col-sm-6 largura">
 							<a href="links/mvpep"><div class="single-about-detail clearfix" style="border:1px solid black;border-radius:10px">
 								<div class="about-img" align="center">
-									<img class="img-responsive" src="img/PEP.png" alt="" style="width:76.5%">
+									<p>&nbsp;</p>
+									<p><img class="img-responsive" src="img/PEP.png" alt="" style="width:76.5%"></p>
 								</div>
 
 								<div class="about-details">
