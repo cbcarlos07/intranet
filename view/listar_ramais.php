@@ -35,8 +35,7 @@
                           <div id=tabela >
                                <table border=1 width=99% onload=chamaphp()>
                                        <tr id=titulo>
-                                          <td >PACIENTE</TD><TD>LEITO</TD><TD>M&Eacute;DICO</TD><TD>DATA INTERNA&Ccedil;&Atilde;O</TD><TD>DATA &Uacute;LTIMA PRESCRI&Ccedil;&Atilde;O</TD> 
-                                                <TD>PRESCRI&Ccedil;&Atilde;O</td> <TD>PARECER</TD><TD>LABORAT&Oacute;RIO</TD><TD>IMAGEM</TD>
+                                          <td >SETOR</TD><TD>RAMAL</TD><TD>ALTERAR</TD><TD>EXCLUIR</TD><TD>VISIVEL</TD>                                                 
                                       </tr>
                                         <tbody>
                                             <?php
@@ -104,7 +103,7 @@
                                              }
                                                 
                                                 
-                                                if($pagina == 1){
+                                             /*   if($pagina == 1){
                                                 $rs = $controller->lista($primeiro_registro, $num_por_pagina);
                                               //  $refresh = "refresh:20; url={$_SERVER['PHP_SELF']}?pagina=2" ;
                                                 header($refresh);
@@ -116,7 +115,7 @@
                                                         header($refresh);*/
                                                         
 
-                                                }
+                                            //    }
                                             
                                                     $total_paginas = $total / $num_por_pagina;
                                                     $prev = 1;
@@ -169,16 +168,16 @@
                                             // se página maior que 1 (um), então temos link para a página anterior
 
                                             $i = 0;
-                                            $spList = new SituacaoListIterator($rs);
-                                            $sp = new SituacaoPaciente();
-                                            $paciente = new Paciente();
+                                            $ramalList = new RamalListIterator($rs);
+                                            $ramal = new Ramal();
+                                            
                                             
                                             
                                             
                                      
-                                           while($spList->hasNextSituacao()){
+                                           while($ramalList->hasNextRamal()){
                                                 $i++;
-                                               $sp = $spList->getNextSituacao();
+                                               $ramal = $ramalList->getNextRamal();
                                               if($i % 2 == 0){
                                                   $par = "#d5e6ef";
                                               }else{
@@ -188,11 +187,11 @@
 
 
                                                 echo "<tr bgcolor=$par >";
-                                                echo "<td>".$sp->getPaciente()->getNome()."</td>";
-                                                echo "<td>".$sp->getLeito()."</td>";
-                                                echo "<td>".$sp->getPrestador()."</td>";
-                                                echo "<td>".$sp->getDateInternacao()."</td>";        
-                                                echo "<td>".$sp->getStrDataUltimaPrescricao()."</td>"; 
+                                                echo "<td>".$ramal->getSetor()->getNome()."</td>";
+                                                echo "<td>".$ramal->getNrRamal()."</td>";
+                                                echo "<td><a href='#?id=".$ramal->getCodigo()."'> <img src='../img/alterar.png'></td>";
+                                                echo "<td><a href='#?id=".$ramal->getCodigo()."'> <img src='../img/excluir.png'></td>";        
+                                                echo "<td></td>"; 
                                                 echo "<td align=center>".$sp->getStrPrescricao()."</td>"; 
                                                 echo "<td align=center>".$sp->getStrParecer()."</td>"; 
                                                 echo "<td align=center>".$sp->getStrLaboratorio()."</td>"; 

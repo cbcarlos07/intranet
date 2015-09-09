@@ -31,13 +31,14 @@
                                       
                                      <h2> CADASTRAR RAMAIS   </H2>  
                                      <div id="tabela">
-                                  <form >
+                                         <form action="../services/acaoRamais.php" method="POST">
+                                             <input type="hidden" name="opcao" value="I"/>
                                       <table>
                                           <tr>
                                               <td >* Número do Ramal:</td><td><input name="ramal" size="34"></td>
                                           </tr>
                                           <tr>
-                                              <td>Descrição</td><td><input name="descr" placeholder="opcional" size="34" height="10"></td>
+                                              <td>Descrição</td><td><input name="descricao" placeholder="opcional" size="34" height="10"></td>
                                           </tr>
                                           <tr>
                                               <td>Setor</td>
@@ -63,8 +64,16 @@
                                            <tr>
                                                <td>Visualiza? </td><td><input type="checkbox" checked="true" name="visualiza"></td>
                                           </tr>
-                                           <tr>
+                                          <tr>
                                                <td>Apelido </td><td><textarea rows="5" cols="36" name="apelido"></textarea></td>
+                                          </tr>
+                                          <tr>
+                                              <td colspan="2">
+                                                    <center>
+                                                        <input type="submit" value="Salvar">
+                                                        <input type="reset" value="Limpar campos">
+                                                    </center>
+                                              </td>
                                           </tr>
                                       </table>
                                   </form>

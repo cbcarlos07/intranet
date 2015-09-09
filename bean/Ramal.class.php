@@ -54,7 +54,7 @@ class Ramal {
         return $this;
     }
 
-    public function setSetor($setor) {
+    public function setSetor(Setor $setor) {
         $this->setor = $setor;
         return $this;
     }

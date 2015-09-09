@@ -6,32 +6,38 @@
  * and open the template in the editor.
  */
     include ('ConnectionFactory.class.php');
-    include ('../services/SetorList.class.php');
-    include ('../bean/Setor.class.php');
+    include ('services/SetorList.class.php');
+    include ('bean/Setor.class.php');
 class Ramal_DAO {
 public function  insertRamais(Ramal $ramal ){
                  $conn = new ConnectionFactory();   
                  $conexao = $conn->getConnection();
 		 $sql_text = "INSERT INTO DBAADV.INTRA_RAMAL
-					(CD_RAMAL, NR_RAMAL, DS_DESCRICAO, CD_SETOR, SN_VISUALIZA, DS_APELIDO)
+					(CD_RAMAL, DS_RAMAL, DS_DESCRICAO, CD_SETOR, SN_VISUALIZA, DS_APELIDO)
 					VALUES 
 					(:cdramal, :dsramal, :dsdesc, :cdsetor, :snvisualiza, :apelido)";
 				//	echo "<script>  alert('Metodo inserir')</script>";
 					try {
 							//echo "<script>  alert('Metod inserir denttro do TRY ".getSequencia()."')</script>";
 														
-							$statement = oci_parse($ora_conexao, $sql_text);
-							oci_bind_by_name($statement, ":cdramal", getCodigo());
-							oci_bind_by_name($statement, ":dsramal", $ramal->getNrRamal());
-							oci_bind_by_name($statement, ":dsdesc", $ramal->getDescricao());
-							oci_bind_by_name($statement, ":cdsetor", $ramal->getSetor());
-							oci_bind_by_name($statement, ":snvisualiza", $ramal->getSnVisutaliza());
-                                                        oci_bind_by_name($statement, ":apelido", $ramal->getDsApelido());
+							$statement = oci_parse($conexao, $sql_text);
+                                                        $codigo = $this->getCodigo();
+                                                        $nrRamal = $ramal->getNrRamal();
+                                                        $descricao = $ramal->getDescricao();
+                                                        $setor = $ramal->getSetor();
+                                                        $visualiza = $ramal->getSnVisutaliza();
+                                                        $apelido = $ramal->getDsApelido();
+							oci_bind_by_name($statement, ":cdramal", $codigo );
+							oci_bind_by_name($statement, ":dsramal", $nrRamal);
+							oci_bind_by_name($statement, ":dsdesc", $descricao);
+							oci_bind_by_name($statement, ":cdsetor", $setor);
+							oci_bind_by_name($statement, ":snvisualiza", $visualiza);
+                                                        oci_bind_by_name($statement, ":apelido", $apelido);
 							oci_execute($statement,  OCI_COMMIT_ON_SUCCESS);
 							
 							
 							$teste = true;
-							$conn->closeConnection($connection);
+							$conn->closeConnection($conexao);
 				} catch (PDOException $ex) {
 				//    echo "<script>  alert('Erro: ".$ex->getMessage()."')</script>";
 			  }
@@ -108,7 +114,7 @@ public function  insertRamais(Ramal $ramal ){
         return $teste;
     }
         
-        public function  getCodigo(){
+    public  function  getCodigo(){
                  $conn = new ConnectionFactory();   
                  $conexao = $conn->getConnection();
                  $i = 0;
