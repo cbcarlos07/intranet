@@ -864,3 +864,18 @@ responsive area
   		font-size: 10px;
   	}
 }
+
+td{
+    text-align: left;
+    width: 150px;
+    height: 30px;
+    font-family: "Arial","Tahoma";
+    font-size: 15px;
+}
+#tabela{
+    margin-top:20px;
+    left: 40%;
+    position: absolute;
+    margin:0px auto;
+}
+

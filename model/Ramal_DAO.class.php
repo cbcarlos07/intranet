@@ -6,6 +6,8 @@
  * and open the template in the editor.
  */
     include ('ConnectionFactory.class.php');
+    include ('../services/SetorList.class.php');
+    include ('../bean/Setor.class.php');
 class Ramal_DAO {
 public function  insertRamais(Ramal $ramal ){
                  $conn = new ConnectionFactory();   
@@ -154,28 +156,30 @@ public function  insertRamais(Ramal $ramal ){
                  $conexao = $conn->getConnection();                 
                  $setor = null;
                  $setorList = new SetorList();
-		 $sql_text = "select s.cd_setor, s.nm_setor from dbamv.setor s";
+		 
 				
 					try {
-						
+				            $sql_text = "select s.cd_setor, s.nm_setor from dbamv.setor s order by 2";
                                             $stmt = oci_parse($conexao, $sql_text);
                                             oci_execute($stmt);
                                               while ($row = oci_fetch_array($stmt, OCI_ASSOC)){
                                                  $setor = new Setor();
-                                                 $setor->setCodigo($row["s.cd_setor"]); 
-                                                 $setor->setNome($row["s.nm_setor"]);
+                                                 
+                                                 $setor->setCodigo($row['CD_SETOR']); 
+                                                 $setor->setNome($row['NM_SETOR']);
                                                  $setorList->addSetor($setor);
                                                  
                                               }
-                                $conn->closeConnection($connection);
+                                $conn->closeConnection($conexao);
 				} catch (PDOException $ex) {
 				//    echo "<script>  alert('Erro: ".$ex->getMessage()."')</script>";
                                     echo " Erro: ".$ex->getMessage();
 			  }
             
-        		return $i;
+        		return $setorList;
 	}
-      public function  pesquisa_ramal($set){
+     
+        public function  pesquisa_ramal($set){
                  $conn = new ConnectionFactory();   
                  $conexao = $conn->getConnection();                 
                  $ramal = null;
@@ -215,4 +219,43 @@ public function  insertRamais(Ramal $ramal ){
        return $entrevista;
 	}   
         
+ public function  lista_ramal($set){
+                 $conn = new ConnectionFactory();   
+                 $conexao = $conn->getConnection();                 
+                 $ramal = null;
+                 $ramalList = new RamalList();       
+		    $sql_text = "SELECT R.*, S.CD_SETOR, S.NM_SETOR FROM DBAADV.INTRA_RAMAL R 
+						,DBAMV.SETOR S  
+						WHERE (R.DS_DESCRICAO LIKE :setor
+                                                      OR R.NR_RAMAL LIKE :setor
+                                                      OR R.DS_APELIDO LIKE :setor)
+						 AND S.CD_SETOR = R.CD_SETOR";		   
+              try {
+             $statement = oci_parse($connection, $sql_text);
+             $parametro = "%".$set."%";
+             
+             oci_bind_by_name($statement, ":setor", $parametro, -1);
+             
+             oci_execute($statement);
+             
+            while($row = oci_fetch_array($statement, OCI_ASSOC)){
+                $ramal = new Ramal();
+                $setor = new Setor();
+                $ramal->setCodigo($row["CD_RAMAL"]);
+                $ramal->setDescricao($row["DS_DESCRICAO"]);
+                $ramal->setNrRamal($row["DS_RAMAL"]);
+                $setor->setCodigo($row["CD_SETOR"]);
+                $setor->setNome($row["NM_SETOR"]);
+                $ramal->setSetor($setor);
+                $ramal->setSnVisutaliza($row["SN_VISUALIZA"]);
+                $ramal->setDsApelido($row["DS_APELIDO"]);
+                $ramalList->addRamal($ramal);
+                
+            }
+            $conn->closeConnection($connection);
+        } catch (PDOException $ex) {
+            echo "Erro: ".$ex->getMessage();
+        }
+       return $entrevista;
+	}         
 }

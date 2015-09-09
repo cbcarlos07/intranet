@@ -1,5 +1,5 @@
 <?php
-include 'model/Ramal_DAO.class.php';
+include '../model/Ramal_DAO.class.php';
 
 class Ramal_Controller {
     
@@ -33,7 +33,11 @@ class Ramal_Controller {
          return $teste;
      }
     
-    
+     public function recSetor(){
+         $rd = new Ramal_DAO();
+         $teste = $rd->getSetor();
+         return $teste;
+     }
     
     
 }

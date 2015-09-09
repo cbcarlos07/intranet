@@ -26,33 +26,49 @@
 			<!--  seçao sistemas -->
 			<section class="about text-center" id="about">
 				<div class="container">
-                                    <?php 
-                                    include './controller/Ramal_Controller.class.php';
-                                    $rc = new Ramal_Controller();
-                                    $i = $rc->recTotal();
-                                    if($i>0){
-                                     ?>   
-                                        <h2> EXISTEM DADOS </H2>
-                                     <?php   
-                                    }
-                                    else{
-                                     ?>
-                                        
-                                        <h2> NÃO EXISTEM RAMAIS CADASTRADOS </H2>
-                                  <!--      <input name="" type="button" onClick="window.open('Aqui você coloca a url para redirecionamento')" value="Cadastre o primeiro ramal"> -->
-                                        <?php 
-                                        $url = "";
-                                        $ip = gethostbyname($url);
-                                         //$ip = $_SERVER['REMOTE_ADDR'];
-                                       $index = 'http://'.$ip.'/intranet/';
-                                        ?>
-                                        <a class="but but-success but-rc" href="<?php echo $index.'services/session.php?link='.$index.'view/cadastrar_ramais.php'?>" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cadastre o primeiro ramal&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a> 
-                                   <?php     
-                                    }
-                                      ?>  
+                                
                                    
                                       
-                                    <!-- <h2> EM CONSTRUÇÃO </H2> -->
+                                     <h2> CADASTRAR RAMAIS   </H2>  
+                                     <div id="tabela">
+                                  <form >
+                                      <table>
+                                          <tr>
+                                              <td >* Número do Ramal:</td><td><input name="ramal" size="34"></td>
+                                          </tr>
+                                          <tr>
+                                              <td>Descrição</td><td><input name="descr" placeholder="opcional" size="34" height="10"></td>
+                                          </tr>
+                                          <tr>
+                                              <td>Setor</td>
+                                              <td>
+                                                  <select name="setor">
+                                                        <?php
+                                                               include '../controller/Ramal_Controller.class.php';
+                                                               include '../services/SetorListIterator.class.php';
+                                                               $ramal = new Ramal_Controller();
+                                                               $setores = $ramal->recSetor();
+                                                               $setorList = new SetorListIterator($setores);
+                                                               $setor = new Setor();
+                                                               while($setorList->hasNextSetor())
+                                                                {
+                                                                   $setor = $setorList->getNextSetor();
+                                                                   echo "<option value=".$setor->getCodigo().">".$setor->getNome()."</option>";
+                                                                 }
+                                                         ?>
+                                                  </select>
+                                                  
+                                              </td>
+                                          </tr>
+                                           <tr>
+                                               <td>Visualiza? </td><td><input type="checkbox" checked="true" name="visualiza"></td>
+                                          </tr>
+                                           <tr>
+                                               <td>Apelido </td><td><textarea rows="10" cols="36" name="apelido"></textarea></td>
+                                          </tr>
+                                      </table>
+                                  </form>
+                                         </div>
                                      <!--
 					<div class="row">
                                         
