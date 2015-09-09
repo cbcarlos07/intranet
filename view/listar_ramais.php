@@ -191,11 +191,8 @@
                                                 echo "<td>".$ramal->getNrRamal()."</td>";
                                                 echo "<td><a href='#?id=".$ramal->getCodigo()."'> <img src='../img/alterar.png'></td>";
                                                 echo "<td><a href='#?id=".$ramal->getCodigo()."'> <img src='../img/excluir.png'></td>";        
-                                                echo "<td></td>"; 
-                                                echo "<td align=center>".$sp->getStrPrescricao()."</td>"; 
-                                                echo "<td align=center>".$sp->getStrParecer()."</td>"; 
-                                                echo "<td align=center>".$sp->getStrLaboratorio()."</td>"; 
-                                                echo "<td align=center>".$sp->getStrImagem()."</td>"; 
+                                                echo "<td><input type=hidden name=visivel ></td>";   
+                                                
                                                 echo "</tr>";
                                                 
                                             }
