@@ -36,7 +36,9 @@ function inserir()
         echo "Entrou aqui. Codigo nao eh igual a 0 <br>";
         $cdsetor = $_POST['setor'];
         echo "Cd setor: ".$cdsetor."<br>";
-        $setor = $rcon->recSetor($cdsetor);
+        $setor_ = new Setor();
+        $setor_ = $rcon->recSetor($cdsetor);
+        $setor = $setor_->getNome();
         echo "Setor recuperado: ".$setor."";
         
     }
@@ -73,7 +75,8 @@ function inserir()
     
     $teste = $rcon->inserir($ramal);
     if($teste){
-        echo "Foi cadastrado";
+        //echo "Foi cadastrado";
+        header("location: ../view/listar_ramais.php");
     }
     else{
         

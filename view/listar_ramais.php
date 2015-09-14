@@ -2,25 +2,25 @@
 
 
 <html lang="en">
-<?php include 'include/header.php'; ?>
+<?php include '../include/header.php'; ?>
 <body>
 	
 	<!-- ====================================================
 	header seçao -->
                                             <?php
-                                              include ('include/top-header.php');
+                                              include ('../include/top-header.php');
                                             ?>
 
 					    <!-- Colete as ligações nav, formulários e outros conteúdos para alternar -->
 					      <?php 
-                                                include ('include/menu.php');
+                                                include ('../include/menu.php');
                                                 menu('3');
                                                 
                                              ?>
                                                 
                                             <!-- /navbar-collapse -->
 					 <?php
-                                              include 'include/button-header.php';
+                                              include '../include/button-header.php';
                                           ?> <!-- fim do header area -->
 
 			<!--  seçao sistemas -->
@@ -93,7 +93,7 @@
                                                  }
                                              }
                                                 
-                                                
+                                                /*
                                                 if($pagina == 1){
                                                 $rs = $controller->lista($primeiro_registro, $num_por_pagina);
                                               //  $refresh = "refresh:20; url={$_SERVER['PHP_SELF']}?pagina=2" ;
@@ -106,7 +106,7 @@
                                                         header($refresh);*/
                                                         
 
-                                                }
+                                               // }
                                             
                                                     $total_paginas = $total / $num_por_pagina;
                                                     $prev = 1;
@@ -152,34 +152,43 @@
 
                                             }else{
                                              //   echo 'não é maior que o total';
-                                                $rs = $controller->lista($primeiro_registro, $num_por_pagina);
+                                                $rs = $controller->lista_ramais("");
                                                 echo '<meta http-equiv="refresh" content="10" />';
                                             }
                                             
                                             // se página maior que 1 (um), então temos link para a página anterior
 
                                             $i = 0;
-                                            $ramalList = new RamalIterator($rs);
+                                            $ramalList = new RamalListIterator($rs);
                                             $ramal = new Ramal();                                        
                                      
-                                           while($spList->hasNextSituacao()){
+                                           while($ramalList->hasNextRamal()){
                                                 $i++;
-                                               $sp = $spList->getNextSituacao();
+                                               $ramal = $ramalList->getNextRamal();
                                               if($i % 2 == 0){
                                                   $par = "#d5e6ef";
                                               }else{
                                                   $par = "#ffffff";
                                               }  
 
-
+                                                if($ramal->getSnVisutaliza() == 'S'){
+                                                     $checked = "checked";   
+                                                }else{
+                                                     $checked = "";   
+                                                }
 
                                                 echo "<tr bgcolor=$par >";
 
-                                                echo "<td>".$ramal->getSetor()->getNome()."</td>";
+                                                echo "<td>".$ramal->getSetor()."</td>";
                                                 echo "<td>".$ramal->getNrRamal()."</td>";
+                                                ?>
+                                        <td>
+                                           <center>  <input type="checkbox" name="visualiza" <?php echo $checked; ?>  ></center>
+                                             </td>
+                                            <?php
                                                 echo "<td><a href='#?id=".$ramal->getCodigo()."'> <img src='../img/alterar.png'></td>";
                                                 echo "<td><a href='#?id=".$ramal->getCodigo()."'> <img src='../img/excluir.png'></td>";        
-                                                echo "<td><input type=hidden name=visivel ></td>";   
+                                                
 
                                                 echo "</tr>";
                                                 
