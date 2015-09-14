@@ -21,7 +21,7 @@ function submitForm(){
 <div id="login-box">
 
 <H2>Login</H2>
-Para cadastrar ramais, primeiro faça login
+Para cadastrar ramais, primeiro fa&ccedil;a login
 <br />
 <br />
 <?php 

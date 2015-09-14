@@ -1,21 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
-<?php include 'include/header.php'; ?>
+<?php include '../include/header.php'; ?>
 <body>
 	
 	<!-- ====================================================
 	header seçao -->
                                             <?php
-                                              include ('include/top-header.php');
+                                              include ('../include/top-header.php');
                                             ?>
 					    <!-- Colete as ligações nav, formulários e outros conteúdos para alternar -->
 					      <?php 
-                                                include ('include/menu.php');
+                                                include ('../include/menu.php');
                                                 menu('4');
                                                // echo "Ramais: ".$ramais;
                                              ?><!-- /navbar-collapse -->
 					     <?php
-                                              include 'include/button-header.php';
+                                              include '../include/button-header.php';
                                              ?>
 
 			<!--  seçao sistemas -->

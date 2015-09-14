@@ -2,41 +2,50 @@
 
 
 <html lang="en">
-<?php include 'include/header.php'; ?>
+<?php include '../include/header.php'; ?>
 <body>
 	
 	<!-- ====================================================
 	header seçao -->
                                             <?php
-                                              include ('include/top-header.php');
+                                              include ('../include/top-header.php');
                                             ?>
 
 					    <!-- Colete as ligações nav, formulários e outros conteúdos para alternar -->
 					      <?php 
-                                                include ('include/menu.php');
+                                                include ('../include/menu.php');
                                                 menu('3');
                                                 
                                              ?>
                                                 
                                             <!-- /navbar-collapse -->
 					 <?php
-                                              include 'include/button-header.php';
+                                              include '../include/button-header.php';
                                           ?> <!-- fim do header area -->
 
 			<!--  seçao sistemas -->
 			<section class="about text-center" id="about">
 				<div class="container">
-                                      
-                                  <!--   <h2> CADASTRAR RAMAIS   </H2>  -->
-                                  
-                         <div id=tab >
-                          <div id=tabela >
-                               <table border=1 width=99% onload=chamaphp()>
-                                       <tr id=titulo>
-                                          <td >Setor</TD><TD>Ramal</TD><TD>Visivel</TD><TD>Alterar</TD><TD>Excluir</TD>                                                 
-                                      </tr>
-                                        <tbody>
-                                            <?php
+                                    <?php 
+                                    include '../controller/Ramal_Controller.class.php';
+                                    $rc = new Ramal_Controller();
+                                    $i = $rc->recTotal();
+                                    if($i>0){
+                                     ?> 
+                                    <table id="tabela" border="1"> 
+                                        <tr>
+                                            <td width="350">
+                                                Setor
+                                            </td>
+                                            <td>
+                                                Ramal
+                                            </td>
+                                            <td>
+                                                Responsável
+                                            </td>
+                                        </tr>
+                                   
+                                          <?php
                                             /* @var $pagina type */
                                             if(!isset($_GET['pagina']))
                                             {
@@ -152,19 +161,19 @@
 
                                             }else{
                                              //   echo 'não é maior que o total';
-                                                $rs = $controller->lista($primeiro_registro, $num_por_pagina);
+                                                $rs = $controller->lista_ramais("");
                                                 echo '<meta http-equiv="refresh" content="10" />';
                                             }
                                             
                                             // se página maior que 1 (um), então temos link para a página anterior
 
                                             $i = 0;
-                                            $ramalList = new RamalIterator($rs);
+                                            $ramalList = new RamalListIterator($rs);
                                             $ramal = new Ramal();                                        
                                      
-                                           while($spList->hasNextSituacao()){
+                                           while($ramalList->hasNextRamal()){
                                                 $i++;
-                                               $sp = $spList->getNextSituacao();
+                                               $ramal = $ramalList->getNextRamal();
                                               if($i % 2 == 0){
                                                   $par = "#d5e6ef";
                                               }else{
@@ -174,25 +183,38 @@
 
 
                                                 echo "<tr bgcolor=$par >";
-
-                                                echo "<td>".$ramal->getSetor()->getNome()."</td>";
-                                                echo "<td>".$ramal->getNrRamal()."</td>";
-                                                echo "<td><a href='#?id=".$ramal->getCodigo()."'> <img src='../img/alterar.png'></td>";
-                                                echo "<td><a href='#?id=".$ramal->getCodigo()."'> <img src='../img/excluir.png'></td>";        
-                                                echo "<td><input type=hidden name=visivel ></td>";   
-
-                                                echo "</tr>";
-                                                
+                                                if($ramal->getSnVisutaliza() == 'S'){
+                                                    echo "<td>".$ramal->getSetor()."</td>";
+                                                    echo "<td>".$ramal->getNrRamal()."</td>";                                                  
+                                                    echo "<td>".$ramal->getResponsavel()."</td>";      
+                                                    echo "</tr>";
+                                                }
                                             }
                                         
                                             
                        
                     ?>
-                                            <tbody>              
-                      </table>    
-                  </div>
-                </div>
-                                  
+                                         </table>
+                                    
+                                     <?php   
+                                    }
+                                    else{
+                                     ?>
+                                        
+                                        <h2> NÃO EXISTEM RAMAIS CADASTRADOS </H2>
+                                  <!--      <input name="" type="button" onClick="window.open('Aqui você coloca a url para redirecionamento')" value="Cadastre o primeiro ramal"> -->
+                                        <?php 
+                                        $url = "";
+                                        $ip = gethostbyname($url);
+                                         //$ip = $_SERVER['REMOTE_ADDR'];
+                                       $index = 'http://'.$ip.'/intranet/';
+                                        ?>
+                                        <a class="but but-success but-rc" href="<?php echo $index.'services/session.php?link='.$index.'view/cadastrar_ramais.php'?>" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cadastre o primeiro ramal&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a> 
+                                   <?php     
+                                    }
+                                      ?>  
+                                   
+                                    
 				</div>
 			</section><!-- end of about section -->
 

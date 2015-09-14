@@ -2,10 +2,11 @@
         $url = "";
         $ip = gethostbyname($url);
        //$ip = $_SERVER['REMOTE_ADDR'];
-       $index = 'http://'.$ip.'/intranet/';
+       $index = 'http://'.$ip.'/intranet/view/';
        
        //echo "Index: ".$index;
       // echo "<br>IP: ".$ip;
+       $inicio = $index."inicio.php";
        $cardapio = $index."cardapio.php";
        $ramais = $index."ramais.php";
        $outros = $index."outros.php";
@@ -31,7 +32,7 @@
  
  
  function sistemas(){
-     global $index;
+     global $inicio;
      global $cardapio;
      global $ramais;
      global $outros;
@@ -40,7 +41,7 @@
      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 
                     <ul class="nav navbar-nav navbar-right">                      
-                   <li><a class="menu active" href="<?php echo $index; ?> ">Sistemas</a></li>
+                   <li><a class="menu active" href="<?php echo $inicio; ?> ">Sistemas</a></li>
                    <li><a class="menu " href="<?php echo $ramais; ?> ">Ramais</a></li>  
                    <li><a class="menu " href="<?php echo $cardapio; ?> ">Cardápio</a></li>
                    <li><a class="menu " href="<?php echo $outros; ?> ">Outros</a></li>
@@ -52,7 +53,7 @@
  
 <?php
 function cardapio(){
-    global $index;
+    global $inicio;
      global $cardapio;
      global $ramais;
      global $outros;
@@ -60,7 +61,7 @@ function cardapio(){
  
      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
  <ul class="nav navbar-nav navbar-right">                      
-                   <li><a class="menu " href="<?php echo $index; ?> ">Sistemas</a></li>
+                   <li><a class="menu " href="<?php echo $inicio; ?> ">Sistemas</a></li>
                    <li><a class="menu " href="<?php echo $ramais; ?> ">Ramais</a></li>
                      <li><a class="menu active" href="<?php echo $cardapio; ?> ">Cardápio</a></li>
                           
@@ -75,7 +76,7 @@ function cardapio(){
                   
 <?php
 function ramais(){
-    global $index;
+    global $inicio;
      global $cardapio;
      global $ramais;
      global $outros;
@@ -83,7 +84,7 @@ function ramais(){
  
      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
  <ul class="nav navbar-nav navbar-right">                      
-                   <li><a class="menu " href="<?php echo $index; ?> ">Sistemas</a></li>
+                   <li><a class="menu " href="<?php echo $inicio; ?> ">Sistemas</a></li>
                    <li><a class="menu active" href="<?php echo $ramais; ?> ">Ramais</a></li>
                      <li><a class="menu " href="<?php echo $cardapio; ?> ">Cardápio</a></li>
                           
@@ -96,7 +97,7 @@ function ramais(){
 
                   <?php
 function outros(){
-    global $index;
+    global $inicio;
      global $cardapio;
      global $ramais;
      global $outros;
@@ -104,7 +105,7 @@ function outros(){
  
      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
  <ul class="nav navbar-nav navbar-right">                      
-                   <li><a class="menu " href="<?php echo $index; ?> ">Sistemas</a></li>
+                   <li><a class="menu " href="<?php echo $inicio; ?> ">Sistemas</a></li>
                    <li><a class="menu " href="<?php echo $ramais; ?> ">Ramais</a></li>
                      <li><a class="menu " href="<?php echo $cardapio; ?> ">Cardápio</a></li>
                           

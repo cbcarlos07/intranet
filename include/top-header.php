@@ -7,7 +7,7 @@
 			<div class="row">
 				<div class="col-xs-5 header-logo">
 					<br>
-					<a href="<?php echo $add; ?>"><img src="img/LOGOHAM.png" alt="" class="img-responsive logo" width="25%"></a>
+					<a href="<?php echo $add; ?>"><img src="../img/LOGOHAM.png" alt="" class="img-responsive logo" width="25%"></a>
 				</div>
 
 				<div class="col-md-7">

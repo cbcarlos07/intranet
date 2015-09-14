@@ -1,10 +1,10 @@
 <?php
-include_once 'model/Ramal_DAO.class.php';
+include '../model/Ramal_DAO.class.php';
+
 
 class Ramal_Controller {
     
     public function inserir(Ramal $ramal){
-        
         $ramal_DAO = new Ramal_DAO();
         $teste = $ramal_DAO->insertRamais($ramal);
         return $teste;
@@ -28,16 +28,27 @@ class Ramal_Controller {
         return $teste;
     }
     
-     public function recTotal(){         
+     public function recTotal(){
          $rd = new Ramal_DAO();
          $teste = $rd->getTotal();
          return $teste;
      }
     
-     public function recSetor(){
+     public function getSetor(){
          $rd = new Ramal_DAO();
          $teste = $rd->getSetor();
          return $teste;
+     }
+     public function recSetor($setor){
+         $rd = new Ramal_DAO();
+         $teste = $rd->recSetor($setor);
+         return $teste;
+     }
+     
+     public function lista_ramais($set){
+         $rd = new Ramal_DAO();
+         $lista = $rd->lista_ramal($set);
+         return $lista;
      }
     
     

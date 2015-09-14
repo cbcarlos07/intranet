@@ -9,7 +9,7 @@
 class Ramal {
     private $codigo;
     private $nrRamal;
-    private $descricao;
+    private $responsavel;
     private $setor;
     private $snVisutaliza;
     private $dsApelido;
@@ -23,8 +23,8 @@ class Ramal {
         return $this->nrRamal;
     }
 
-    public function getDescricao() {
-        return $this->descricao;
+    public function getResponsavel() {
+        return $this->responsavel;
     }
 
     public function getSetor() {
@@ -49,12 +49,12 @@ class Ramal {
         return $this;
     }
 
-    public function setDescricao($descricao) {
-        $this->descricao = $descricao;
+    public function setResponsavel($responsavel) {
+        $this->responsavel = $responsavel;
         return $this;
     }
 
-    public function setSetor(Setor $setor) {
+    public function setSetor($setor) {
         $this->setor = $setor;
         return $this;
     }

@@ -6,8 +6,8 @@
  * and open the template in the editor.
  */
 include_once '../controller/Pass_Controller.class.php';
-$login = $_POST['login']; 
-$senha = $_POST['senha'];
+$login = strtoupper($_POST['login']); 
+$senha = strtoupper($_POST['senha']);
 session_start(); 
  $con = new Rec_Senha_Controller();
  $senhadb = $con->rec_pass(strtoupper($login));
