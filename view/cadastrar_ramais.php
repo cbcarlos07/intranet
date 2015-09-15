@@ -46,12 +46,28 @@
             }
         }
     </script>
-			<section class="about text-center" id="about">
+<?php
+  if(isset($_GET['opcao'])){
+      $opcao = $_GET['opcao'];
+      
+  }else{
+      $opcao = isset($_POST['opcao']);
+  }
+
+  if($opcao == 'I'){
+      $strAcao = "CADASTRAR RAMAL";
+  }else{
+      $strAcao = "ALTERAR RAMAL";
+  }
+?>
+    
+    <section class="about text-center" id="about">
 				<div class="container">
-                                
+                                    
                                    
                                       
-                                     <h2> CADASTRAR RAMAIS   </H2>  
+                                     <h2> <?php echo $strAcao;   ?></H2>  
+                                     <A HREF="listar_ramais.php"><h3> LISTAR RAMAIS   </H3>  </A>
                                      <div id="tabela">
                                          <form action="../services/acaoRamais.php" method="post">
                                              <input type="hidden" name="opcao" value="I"> 

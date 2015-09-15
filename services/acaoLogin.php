@@ -23,7 +23,7 @@ session_start();
         $ip = gethostbyname($url);
        //$ip = $_SERVER['REMOTE_ADDR'];
        $index = 'http://'.$ip.'/intranet/';
-        header('location:'.$index.'/view/cadastrar_ramais.php'); 
+        header('location:'.$index.'/view/cadastrar_ramais.php?opcao=I'); 
      //   $teste = true;
 
      } else

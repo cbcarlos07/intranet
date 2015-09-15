@@ -162,7 +162,7 @@
                                             }else{
                                              //   echo 'não é maior que o total';
                                                 $rs = $controller->lista_ramais("");
-                                                echo '<meta http-equiv="refresh" content="10" />';
+                                              //  echo '<meta http-equiv="refresh" content="10" />';
                                             }
                                             
                                             // se página maior que 1 (um), então temos link para a página anterior

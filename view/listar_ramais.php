@@ -28,12 +28,12 @@
 				<div class="container">
                                       
                                   <!--   <h2> CADASTRAR RAMAIS   </H2>  -->
-                                  
-                         <div id=tab >
-                          <div id=tabela >
-                               <table border=1 width=99% onload=chamaphp()>
-                                       <tr id=titulo>
-                                          <td >Setor</TD><TD>Ramal</TD><TD>Visivel</TD><TD>Alterar</TD><TD>Excluir</TD>                                                 
+                                  <A HREF="cadastrar_ramais.php?opcao=I"><h3> CADASTRAR RAMAIS   </H3>  </A>
+                         
+                          
+                               <table border=1  id="tabela">
+                                       <tr >
+                                          <td width="450">Setor</TD><TD>Ramal</TD><TD>Visivel</TD><TD>Alterar</TD><TD>Excluir</TD>                                                 
                                       </tr>
                                         <tbody>
                                             <?php
@@ -153,7 +153,7 @@
                                             }else{
                                              //   echo 'não é maior que o total';
                                                 $rs = $controller->lista_ramais("");
-                                                echo '<meta http-equiv="refresh" content="10" />';
+                                           //     echo '<meta http-equiv="refresh" content="10" />';
                                             }
                                             
                                             // se página maior que 1 (um), então temos link para a página anterior
@@ -185,9 +185,12 @@
                                         <td>
                                            <center>  <input type="checkbox" name="visualiza" <?php echo $checked; ?>  ></center>
                                              </td>
+                                             <input type="hidden" id="id" value="<?php echo $ramal->getCodigo(); ?>">
+                                             <input type="hidden" id="opcao" value="A">
                                             <?php
-                                                echo "<td><a href='#?id=".$ramal->getCodigo()."'> <img src='../img/alterar.png'></td>";
-                                                echo "<td><a href='#?id=".$ramal->getCodigo()."'> <img src='../img/excluir.png'></td>";        
+                                                
+                                                echo "<td><a href='cadastrar_ramais.php' > <img src='../img/alterar.png'></td>";
+                                                echo "<td><a href='#?op=E' > <img src='../img/excluir.png'></td>";        
                                                 
 
                                                 echo "</tr>";
@@ -200,7 +203,28 @@
                                             <tbody>              
                       </table>    
                   </div>
-                </div>
+                            <script>
+                                        $(function(){
+                                            $('input[type=submit]').click(function(){
+                                                
+
+                                            $.ajax({
+                                                    type      : 'post',
+
+                                                    url       : 'cadastrar_ramais.php',
+
+                                                    data      : 'id='+ $('#id').val() +'&opcao='+ $('#opcao').val,
+
+                                                    dataType  : 'html',
+
+                                                    success : function(txt){
+                                                            $('body p').html(txt);
+                                                        }
+                                                });
+
+                                                });
+                                            });
+                                        </script>
                                   
 				</div>
 			</section><!-- end of about section -->
@@ -217,3 +241,4 @@
 	
 </body>
 </html>
+
