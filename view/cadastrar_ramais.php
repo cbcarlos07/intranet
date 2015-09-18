@@ -47,17 +47,26 @@
         }
     </script>
 <?php
-  if(isset($_GET['opcao'])){
-      $opcao = $_GET['opcao'];
-      
-  }else{
-      $opcao = isset($_POST['opcao']);
-  }
-
+ include '../controller/Ramal_Controller.class.php';
+include '../services/SetorListIterator.class.php';
+include '../bean/Ramal.class.php';
+$ramalController = new Ramal_Controller();
+$setores = $ramalController->getSetor();
+$setorList = new SetorListIterator($setores);
+$setor = new Setor();
+$opcao = $_GET['opcao'];
+//echo "Opcao escolhida: ".$opcao."<br>";
   if($opcao == 'I'){
       $strAcao = "CADASTRAR RAMAL";
+       $selected = "";
   }else{
-      $strAcao = "ALTERAR RAMAL";
+      $strAcao = "ALTERAR RAMAL";      
+      $id = $_GET['id'];
+      
+    //  echo "Codigo do ramal: ".$id."<br>";
+      $ramal = new Ramal();
+      $ramal = $ramalController->recuperar_ramal($id);
+      
   }
 ?>
     
@@ -67,47 +76,116 @@
                                    
                                       
                                      <h2> <?php echo $strAcao;   ?></H2>  
-                                     <A HREF="listar_ramais.php"><h3> LISTAR RAMAIS   </H3>  </A>
+                                     <A HREF="listar_ramais.php"><h4> LISTAR RAMAIS   </H4>  </A>
                                      <div id="tabela">
                                          <form action="../services/acaoRamais.php" method="post">
-                                             <input type="hidden" name="opcao" value="I"> 
+                                             <input type="hidden" name="opcao" value="<?php echo $opcao; ?>"> 
+                                            <?php 
+                                            if($opcao == 'A'){
+                                                ?>
+                                             <input type="hidden" name="cdramal" value="<?php echo $id; ?>"> 
+                                           <?php  
+                                            }
+                                            ?>
+                                             
+                                             <?php 
+                                               if($opcao == 'A'){
+                                                   $nrRamal = " value=".$ramal->getNrRamal()." ";
+                                                   $nmResp = " value=".$ramal->getResponsavel()." ";
+                                                   if($ramal->getSnVisutaliza() == 'S'){
+                                                       $visualiza = " checked=true ";
+                                                   }else{
+                                                       $visualiza = "";
+                                                   }
+                                                   if($ramal->getDsApelido() != ""){
+                                                       $apelido = $ramal->getDsApelido();
+                                                   }else{
+                                                       $apelido = " ";
+                                                   }
+                                                   
+                                                   $cdSetor = $ramal->getCdSetor();
+                                                  // echo "Apelido: ".$apelido."<br>";
+                                                  // echo "Codigo setor:   ".$cdSetor."<br>";
+                                               }else{
+                                                   $nrRamal = "";
+                                                   $nmResp = "";
+                                                   $visualiza = " checked=true ";
+                                                   $apelido = "";
+                                                   
+                                               }
+                                             ?>
                                       <table>
                                           <tr>
-                                              <td >* Número do Ramal:</td><td><input name="ramal" size="34"></td>
+                                              <td >* Número do Ramal:</td><td><input name="ramal" size="34" <?php echo $nrRamal; ?></td>
                                           </tr>
                                           <tr>
-                                              <td>Responsável</td><td><input name="descr" placeholder="opcional" size="34" height="10"></td>
+                                              <td>Responsável</td><td><input name="descr" placeholder="opcional" size="34" height="10" <?php echo $nmResp; ?>></td>
                                           </tr>
                                           <tr>
                                               <td>Setor</td>
                                               <td>
+                                                  
                                                   <select name="setor" onchange="habilitaBtn()" id="opcao" >
                                                         <?php
-                                                               include '../controller/Ramal_Controller.class.php';
-                                                               include '../services/SetorListIterator.class.php';
-                                                               $ramal = new Ramal_Controller();
-                                                               $setores = $ramal->getSetor();
-                                                               $setorList = new SetorListIterator($setores);
-                                                               $setor = new Setor();
+                                                            
+                                                               $selected = "";
+                                                               
                                                                while($setorList->hasNextSetor())
                                                                 {
+                                                                   
+                                                                   
                                                                    $setor = $setorList->getNextSetor();
-                                                                   echo "<option value=".$setor->getCodigo().">".$setor->getNome()."</option>";
+                                                                   $strSetor = $setor->getNome();
+                                                                   if($opcao == "A")
+                                                                       {
+                                                                       
+                                                                           if($cdSetor == $setor->getCodigo()){
+                                                                               $selected = "selected";
+                                                                       
+                                                                           }else{
+                                                                               $selected = "";
+                                                                           }
+                                                                           
+                                                                       }
+                                                                   echo "<option value=".$setor->getCodigo()." ".$selected." >".$strSetor."</option>";
+                                                                 }
+                                                                 if($opcao == "A"){
+                                                                     if($cdSetor == 0){
+                                                                         $selected = "selected";
+                                                                     }
                                                                  }
                                                          ?>
-                                                      <option value="0">N&Atilde;O EST&Aacute; NA LISTA</option>
+                                                        
+                                                          <option value="0" <?php echo $selected; ?>  >N&Atilde;O EST&Aacute; NA LISTA</option>
+                                                      
+                                                      
                                                   </select>
                                                   
                                               </td>
                                           </tr>
                                           <tr>
-                                              <td> </td><td><input  id="setor" size="34" name="nm_setor" disabled="true" class="maiuscula" ></td>
+                                              
+                                              <?php
+                                              $nmSetor = "";
+                                              if($opcao == "A"){
+                                                  
+                                                  if($cdSetor == 0){
+                                                      $nmSetor = "value='".$ramal->getSetor()."' ";
+                                                      ?>
+                                          <input type="hidden" name="cdsetor" value="0"/>
+                                              <?php
+                                                  }
+                                              }
+                                              
+                                              ?>
+                                              <td> </td><td><input  id="setor" size="34" name="nm_setor" disabled="true" class="maiuscula" <?php echo $nmSetor; ?> ></td>
+                                              
                                           </tr>
                                            <tr>
-                                               <td>Visualiza? </td><td><input type="checkbox" checked="true" name="visualiza"></td>
+                                               <td>Visualiza? </td><td><input type="checkbox" <?php echo $visualiza; ?> name="visualiza"></td>
                                           </tr>
                                            <tr>
-                                               <td>Apelido </td><td><textarea rows="5" cols="36" name="apelido" class="maiuscula"></textarea></td>
+                                               <td>Apelido </td><td><textarea rows="5" cols="36" name="apelido" class="maiuscula" ><?php  echo $apelido; ?></textarea></td>
                                           </tr>
                                           <tr>
                                           

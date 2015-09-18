@@ -32,7 +32,7 @@
                                     $i = $rc->recTotal();
                                     if($i>0){
                                      ?> 
-                                    <table id="tabela" border="1"> 
+                                    <table id="tabela1" border="1"> 
                                         <tr>
                                             <td width="350">
                                                 Setor

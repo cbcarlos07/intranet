@@ -13,9 +13,18 @@ class Ramal {
     private $setor;
     private $snVisutaliza;
     private $dsApelido;
+    private $cdSetor;
     
-    
-    public function getCodigo() {
+    public function getCdSetor() {
+        return $this->cdSetor;
+    }
+
+    public function setCdSetor($cdSetor) {
+        $this->cdSetor = $cdSetor;
+        return $this;
+    }
+
+        public function getCodigo() {
         return $this->codigo;
     }
 

@@ -178,18 +178,20 @@
                                                 }
 
                                                 echo "<tr bgcolor=$par >";
-
+                                                
                                                 echo "<td>".$ramal->getSetor()."</td>";
                                                 echo "<td>".$ramal->getNrRamal()."</td>";
+                                                
                                                 ?>
                                         <td>
                                            <center>  <input type="checkbox" name="visualiza" <?php echo $checked; ?>  ></center>
                                              </td>
-                                             <input type="hidden" id="id" value="<?php echo $ramal->getCodigo(); ?>">
+                                             <input type="hidden" id="cod" value="<?php echo $ramal->getCodigo(); ?>">
                                              <input type="hidden" id="opcao" value="A">
+                                             
                                             <?php
-                                                
-                                                echo "<td><a href='cadastrar_ramais.php' > <img src='../img/alterar.png'></td>";
+                                                //echo "Codigo: na lista: ".$$ramal->getCodigo();
+                                                echo "<td><a href='cadastrar_ramais.php?id=".$ramal->getCodigo()."&opcao=A' > <img src='../img/alterar.png'></td>";
                                                 echo "<td><a href='#?op=E' > <img src='../img/excluir.png'></td>";        
                                                 
 
@@ -213,7 +215,7 @@
 
                                                     url       : 'cadastrar_ramais.php',
 
-                                                    data      : 'id='+ $('#id').val() +'&opcao='+ $('#opcao').val,
+                                                    data      : 'id='+ $('#cod').val() +'&opcao='+ $('#opcao').val,
 
                                                     dataType  : 'html',
 

@@ -13,9 +13,9 @@ public function  insertRamais(Ramal $ramal ){
                  $conn = new ConnectionFactory();   
                  $conexao = $conn->getConnection();
 		 $sql_text = "INSERT INTO DBAADV.INTRA_RAMAL
-					(CD_RAMAL, DS_RAMAL, DS_RESPONSAVEL, SN_VISUALIZA, DS_APELIDO, DS_SETOR)
+					(CD_RAMAL, DS_RAMAL, DS_RESPONSAVEL, SN_VISUALIZA, DS_APELIDO, DS_SETOR, CD_SETOR)
 					VALUES 
-					(:cdramal, :dsramal, :dsdesc, :snvisualiza, :apelido, :setor)";
+					(:cdramal, :dsramal, :dsdesc, :snvisualiza, :apelido, :setor, :cdsetor)";
 				//	echo "<script>  alert('Metodo inserir')</script>";
 					try {
 							//echo "<script>  alert('Metod inserir denttro do TRY ".getSequencia()."')</script>";
@@ -26,6 +26,7 @@ public function  insertRamais(Ramal $ramal ){
                                                         $setor = $ramal->getSetor();
                                                         $visualiza = $ramal->getSnVisutaliza();
                                                         $apelido = $ramal->getDsApelido();
+                                                        $cdsetor = $ramal->getCdSetor();
 							$statement = oci_parse($conexao, $sql_text);
 							oci_bind_by_name($statement, ":cdramal", $codigo);
 							oci_bind_by_name($statement, ":dsramal", $nrramal);
@@ -33,6 +34,7 @@ public function  insertRamais(Ramal $ramal ){
 							oci_bind_by_name($statement, ":setor", $setor);
 							oci_bind_by_name($statement, ":snvisualiza", $visualiza);
                                                         oci_bind_by_name($statement, ":apelido", $apelido);
+                                                        oci_bind_by_name($statement, ":cdsetor", $cdsetor);
 							oci_execute($statement,  OCI_COMMIT_ON_SUCCESS);
 							
 							
@@ -47,34 +49,40 @@ public function  insertRamais(Ramal $ramal ){
         
         public function  updateRamais(Ramal $ramal ){
                  $conn = new ConnectionFactory();   
+                 $teste = false;
                  $conexao = $conn->getConnection();
-		 $sql_text = "UPDATE DBAADV.INTRA_RAMAL SET
-					 NR_RAMAL = :dsramal, DS_RESPONSAVEL = :dsdesc, 
-                                        DS_SETOR = :cdsetor, SN_VISUALIZA = :snvisualiza, DS_APELIDO = :apelido)
-					WHERE 
-                                        CD_RAMAL = :cdramal";
+		
 				//	echo "<script>  alert('Metodo inserir')</script>";
 					try {
-							//echo "<script>  alert('Metod inserir denttro do TRY ".getSequencia()."')</script>";
+                                                         $sql_text = "UPDATE DBAADV.INTRA_RAMAL SET
+                                                        DS_RAMAL = :dsramal, DS_RESPONSAVEL = :dsdesc, 
+                                                        DS_SETOR = :nmsetor, SN_VISUALIZA = :snvisualiza, 
+                                                        DS_APELIDO = :apelido, CD_SETOR = :cdsetor
+                                                        WHERE 
+                                                        CD_RAMAL = :cdramal";
+							echo "<script>  alert('Metod alterar denttro do TRY ');</script>";
 														
 							$codigo = $ramal->getCodigo();
-                                                        $ramal = $ramal->getNrRamal();
-                                                        $descricao = $ramal->getDescricao();
+                                                     //   echo "DAO cdramal: ".$codigo."<br>";
+                                                        $nrramal = $ramal->getNrRamal();
+                                                        $responsavel = $ramal->getResponsavel();
                                                         $setor = $ramal->getSetor();
                                                         $visualiza = $ramal->getSnVisutaliza();
                                                         $apelido = $ramal->getDsApelido();
+                                                        $cdsetor = $ramal->getCdSetor();
 							$statement = oci_parse($conexao, $sql_text);
 							oci_bind_by_name($statement, ":cdramal", $codigo);
 							oci_bind_by_name($statement, ":dsramal", $nrramal);
-							oci_bind_by_name($statement, ":dsdesc", $descricao);
-							oci_bind_by_name($statement, ":cdsetor", $setor);
+							oci_bind_by_name($statement, ":dsdesc", $responsavel);
+							oci_bind_by_name($statement, ":nmsetor", $setor);
 							oci_bind_by_name($statement, ":snvisualiza", $visualiza);
                                                         oci_bind_by_name($statement, ":apelido", $apelido);
+                                                        oci_bind_by_name($statement, ":cdsetor", $cdsetor);
 							oci_execute($statement,  OCI_COMMIT_ON_SUCCESS);
 							
-							
+							echo "<script>alert('alterado');</script>";
 							$teste = true;
-							$conn->closeConnection($connection);
+							$conn->closeConnection($conexao);
 				} catch (PDOException $ex) {
 				//    echo "<script>  alert('Erro: ".$ex->getMessage()."')</script>";
                                     echo " Erro: ".$ex->getMessage();
@@ -262,7 +270,7 @@ public function  insertRamais(Ramal $ramal ){
         } catch (PDOException $ex) {
             echo "Erro: ".$ex->getMessage();
         }
-       return $entrevista;
+       return $ramalList;
 	}   
         
  public function  lista_ramal($set){
@@ -306,12 +314,14 @@ public function  insertRamais(Ramal $ramal ){
                 }else{
                     $apelido = "";
                 }
+                
                 $ramal->setCodigo($row["CD_RAMAL"]);
                 $ramal->setResponsavel($resp);
                 $ramal->setNrRamal($row["DS_RAMAL"]);                                
                 $ramal->setSetor($row["DS_SETOR"]);
                 $ramal->setSnVisutaliza($row["SN_VISUALIZA"]);
                 $ramal->setDsApelido($apelido);
+                $ramal->setCdSetor($row["CD_SETOR"]);
                 $ramalList->addRamal($ramal);
                 
             }
@@ -320,5 +330,48 @@ public function  insertRamais(Ramal $ramal ){
             echo "Erro: ".$ex->getMessage();
         }
        return $ramalList;
-	}         
+	}      
+        
+        
+         public function  recuperar_ramal($id){
+                 $conn = new ConnectionFactory();   
+                 $conexao = $conn->getConnection();                 
+                 $ramal = null;
+                 //   echo "Codigo recuperar ramal: ".$id;
+		    $sql_text = "SELECT R.* FROM DBAADV.INTRA_RAMAL R 						
+						WHERE R.CD_RAMAL = :id";		   
+              try {
+             $statement = oci_parse($conexao, $sql_text);             
+             
+             oci_bind_by_name($statement, ":id", $id);
+             
+             oci_execute($statement);
+             
+            if($row = oci_fetch_array($statement, OCI_ASSOC)){
+                if(isset($row["DS_RESPONSAVEL"])){
+                    $resp = $row["DS_RESPONSAVEL"];
+                }else{
+                    $resp = "";
+                }
+                if(isset($row["DS_APELIDO"])){
+                    $apelido = $row["DS_APELIDO"];
+                }else{
+                    $apelido = "";
+                }
+                $ramal = new Ramal();                
+                $ramal->setCodigo($row["CD_RAMAL"]);
+                $ramal->setResponsavel($resp);
+                $ramal->setNrRamal($row["DS_RAMAL"]);
+                $ramal->setSetor($row["DS_SETOR"]);
+                $ramal->setSnVisutaliza($row["SN_VISUALIZA"]);
+                $ramal->setDsApelido($apelido);   
+                $ramal->setCdSetor($row["CD_SETOR"]);
+                
+            }
+            $conn->closeConnection($conexao);
+        } catch (PDOException $ex) {
+            echo "Erro: ".$ex->getMessage();
+        }
+       return $ramal;
+	}   
 }

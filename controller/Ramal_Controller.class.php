@@ -50,7 +50,11 @@ class Ramal_Controller {
          $lista = $rd->lista_ramal($set);
          return $lista;
      }
-    
+     public function recuperar_ramal($id){
+         $rd = new Ramal_DAO();
+         $ramal = $rd->recuperar_ramal($id);
+         return $ramal;
+     }
     
 }
 
