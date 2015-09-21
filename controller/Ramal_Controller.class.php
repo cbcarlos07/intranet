@@ -45,14 +45,20 @@ class Ramal_Controller {
          return $teste;
      }
      
-     public function lista_ramais($set){
+     public function lista_ramais($set, $inicio, $fim){
          $rd = new Ramal_DAO();
-         $lista = $rd->lista_ramal($set);
+         $lista = $rd->lista_ramal($set, $inicio, $fim);
          return $lista;
      }
      public function recuperar_ramal($id){
          $rd = new Ramal_DAO();
          $ramal = $rd->recuperar_ramal($id);
+         return $ramal;
+     }
+     
+     public function total_pesquisa($id){
+         $rd = new Ramal_DAO();
+         $ramal = $rd->total_pesquisa($id);
          return $ramal;
      }
     

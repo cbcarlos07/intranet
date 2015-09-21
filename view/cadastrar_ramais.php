@@ -90,7 +90,7 @@ $opcao = $_GET['opcao'];
                                              
                                              <?php 
                                                if($opcao == 'A'){
-                                                   $nrRamal = " value=".$ramal->getNrRamal()." ";
+                                                   $nrRamal = " value='".$ramal->getNrRamal()."' ";
                                                    $nmResp = " value=".$ramal->getResponsavel()." ";
                                                    if($ramal->getSnVisutaliza() == 'S'){
                                                        $visualiza = " checked=true ";
@@ -119,7 +119,7 @@ $opcao = $_GET['opcao'];
                                               <td >* Número do Ramal:</td><td><input name="ramal" size="34" <?php echo $nrRamal; ?></td>
                                           </tr>
                                           <tr>
-                                              <td>Responsável</td><td><input name="descr" placeholder="opcional" size="34" height="10" <?php echo $nmResp; ?>></td>
+                                              <td>Responsável</td><td><input class="maiuscula"  name="descr" placeholder="opcional" size="34" height="10" <?php echo $nmResp; ?>></td>
                                           </tr>
                                           <tr>
                                               <td>Setor</td>

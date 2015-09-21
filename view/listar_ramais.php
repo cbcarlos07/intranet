@@ -33,7 +33,7 @@
                           
                                <table border=1  id="tabela">
                                        <tr >
-                                          <td width="450">Setor</TD><TD>Ramal</TD><TD>Visivel</TD><TD>Alterar</TD><TD>Excluir</TD>                                                 
+                                          <td>Setor</TD><TD>Ramal</TD>Responsavel<TD>Visivel</TD><TD>Alterar</TD><TD>Excluir</TD>                                                 
                                       </tr>
                                         <tbody>
                                             <?php
@@ -152,7 +152,7 @@
 
                                             }else{
                                              //   echo 'não é maior que o total';
-                                                $rs = $controller->lista_ramais("");
+                                                $rs = $controller->lista_ramais("",$primeiro_registro, $num_por_pagina);
                                            //     echo '<meta http-equiv="refresh" content="10" />';
                                             }
                                             
@@ -183,6 +183,7 @@
                                                 echo "<td>".$ramal->getNrRamal()."</td>";
                                                 
                                                 ?>
+                                        <td><?php echo $ramal->getResponsavel(); ?></td>
                                         <td>
                                            <center>  <input type="checkbox" name="visualiza" <?php echo $checked; ?>  ></center>
                                              </td>
@@ -192,7 +193,7 @@
                                             <?php
                                                 //echo "Codigo: na lista: ".$$ramal->getCodigo();
                                                 echo "<td><a href='cadastrar_ramais.php?id=".$ramal->getCodigo()."&opcao=A' > <img src='../img/alterar.png'></td>";
-                                                echo "<td><a href='#?op=E' > <img src='../img/excluir.png'></td>";        
+                                                echo "<td><a href='../services/acaoRamais.php?opcao=E&id=".$ramal->getCodigo()."'  onclick=\" return verifica('Tem certeza de que deseja excluir o item selecionado?');\" > <img src='../img/excluir.png'></td>";        
                                                 
 
                                                 echo "</tr>";
@@ -227,6 +228,12 @@
                                                 });
                                             });
                                         </script>
+                                        <script language=javascript>
+                                           function verifica(Msg)
+                                                {
+                                                 return confirm(Msg) ;
+                                                }
+                                            </script>
                                   
 				</div>
 			</section><!-- end of about section -->

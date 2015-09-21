@@ -2,6 +2,7 @@
         $url = "";
         $ip = gethostbyname($url);
        //$ip = $_SERVER['REMOTE_ADDR'];
+        
        $index = 'http://'.$ip.'/intranet/view/';
        
        //echo "Index: ".$index;

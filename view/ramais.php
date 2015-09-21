@@ -26,15 +26,20 @@
 			<!--  seçao sistemas -->
 			<section class="about text-center" id="about">
 				<div class="container">
+                                    
                                     <?php 
                                     include '../controller/Ramal_Controller.class.php';
                                     $rc = new Ramal_Controller();
                                     $i = $rc->recTotal();
+                                    
+                                   // echo $_SERVER['DOCUMENT_ROOT'];
+                                    
                                     if($i>0){
                                      ?> 
+                                    
                                     <table id="tabela1" border="1"> 
                                         <tr>
-                                            <td width="350">
+                                            <td>
                                                 Setor
                                             </td>
                                             <td>
@@ -57,12 +62,19 @@
                      
                      
                                             // bloco 2 - defina o número de registros exibidos por página
-                                            $num_por_pagina = 33; 
+                                            $num_por_pagina = 16; 
 
                                             // bloco 3 - descubra o número da página que será exibida
                                             // se o numero da página não for informado, definir como 1
                                             session_start();
-                                            
+                                            ?>
+                                        <div id="pesq">
+                                                    <form action="pesquisa_ramal.php" method="post" id="maiuscula">
+                                                                <input name="pesquisa" placeholder="Pesquise aqui">
+                                                                <input type="submit" value="Pesquisar">
+                                                    </form>
+                                             </div>
+                                        <?php
                                             // bloco 4 - construa uma cláusula SQL "SELECT" que nos retorne somente os registros desejados
                                             // definir o número do primeiro registro da página. Faça a continha na calculadora que você entenderá minha fórmula.
                                             $primeiro_registro = ($pagina*$num_por_pagina) - $num_por_pagina;
@@ -104,12 +116,16 @@
                                                 
                                                 
                                                 if($pagina == 1){
-                                                $rs = $controller->lista($primeiro_registro, $num_por_pagina);
+                                                $rs = $controller->lista_ramais("", $primeiro_registro, $num_por_pagina);
                                               //  $refresh = "refresh:20; url={$_SERVER['PHP_SELF']}?pagina=2" ;
-                                                header($refresh);
+                                              //  header($refresh);
                                                 
                                                 }else{
-                                                        $rs = $controller->lista($num_por_pagina+1, $total);
+                                                        //$rs = $controller->lista($num_por_pagina+1, $total);
+                                                        
+                                                        $rs = $controller->lista_ramais("", $num_por_pagina+($pagina-1), $num_por_pagina*$pagina);
+                                                       
+                                                        //lista_ramais("", $primeiro_registro, $num_por_pagina);
                                                         /*echo '<meta http-equiv="refresh" content="6" />';
                                                         $refresh = "refresh:6; url={$_SERVER['PHP_SELF']}?pagina=1" ;
                                                         header($refresh);*/
@@ -157,11 +173,11 @@
 
 
                                             // exibir painel na tela
-                                            echo "$prev_link | $painel | $next_link";
+                                            echo "<h4>$prev_link | $painel | $next_link </h4>";
 
                                             }else{
                                              //   echo 'não é maior que o total';
-                                                $rs = $controller->lista_ramais("");
+                                                $rs = $controller->lista_ramais("", $primeiro_registro, $num_por_pagina);
                                               //  echo '<meta http-equiv="refresh" content="10" />';
                                             }
                                             
@@ -185,7 +201,7 @@
                                                 echo "<tr bgcolor=$par >";
                                                 if($ramal->getSnVisutaliza() == 'S'){
                                                     echo "<td>".$ramal->getSetor()."</td>";
-                                                    echo "<td>".$ramal->getNrRamal()."</td>";                                                  
+                                                    echo "<td id=celula-ramal>".$ramal->getNrRamal()."</td>";                                                  
                                                     echo "<td>".$ramal->getResponsavel()."</td>";      
                                                     echo "</tr>";
                                                 }

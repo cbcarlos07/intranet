@@ -11,13 +11,21 @@ include '../controller/Ramal_Controller.class.php';
 ?>
 <meta charset="UTF-8">
 <?php
-$opcao = $_POST['opcao'];
+if(isset($_POST['opcao'])){
+    $opcao = $_POST['opcao'];
+}else{
+    $opcao = $_GET['opcao'];
+}
+    
 switch($opcao){
     case 'I':
         inserir(); 
         break;
     case 'A':
         alterar();
+        break;
+    case 'E':
+        excluir();
         break;
 }
 
@@ -155,6 +163,20 @@ function alterar()
     else{
         
      echo "Nao Foi cadastrado";
+    }
+   
+}
+
+function excluir(){
+    $id = $_GET['id'];
+    $rc = new Ramal_Controller();
+    $teste = $rc->excluir($id);
+    if($teste){
+      header("location: ../view/listar_ramais.php");
+    }
+    else{
+        
+     echo "Nao foi excluido";
     }
    
 }
