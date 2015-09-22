@@ -25,6 +25,7 @@ session_start();
        $index = 'http://'.$ip.'/intranet/';
         header('location:'.$index.'/view/cadastrar_ramais.php?opcao=I'); 
      //   $teste = true;
+        $_SESSION['login'] = $login;
 
      } else
          { 

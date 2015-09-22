@@ -37,6 +37,17 @@
                                       </tr>
                                         <tbody>
                                             <?php
+                                             session_start();
+                                             //inicia uma sessão
+                                          
+                                            if(!isset($_SESSION['login']))
+                                            {
+                                               // $_SESSION['login'] = $this->usuario;
+                                                header("Location:../login/");
+                                                //echo 'não havia sessão ativa';
+                                            }else{
+                                                
+                                         
                                             /* @var $pagina type */
                                             if(!isset($_GET['pagina']))
                                             {
@@ -52,7 +63,7 @@
 
                                             // bloco 3 - descubra o número da página que será exibida
                                             // se o numero da página não for informado, definir como 1
-                                            session_start();
+                                           
                                             
                                             // bloco 4 - construa uma cláusula SQL "SELECT" que nos retorne somente os registros desejados
                                             // definir o número do primeiro registro da página. Faça a continha na calculadora que você entenderá minha fórmula.
@@ -201,7 +212,7 @@
                                             }
                                         
                                             
-                       
+                          }
                     ?>
                                             <tbody>              
                       </table>    
