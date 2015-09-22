@@ -6,4 +6,10 @@
  * and open the template in the editor.
  */
 
-header("Location: view/inicio.php");
+$url = "";
+        $ip = gethostbyname($url);
+       //$ip = $_SERVER['REMOTE_ADDR'];
+        
+       $index = 'http://'.$ip.'/intranet/view/inicio.php';
+       
+header("Location: ".$index);
