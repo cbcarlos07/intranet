@@ -1,12 +1,8 @@
 ﻿<?php
 session_start();
+if ($_SESSION['logado'] == true){
 
-$_SESSION['logado'] = true;
-
-if ($_SESSION['logado'] == true)
-{
 ?>
-
 <!doctype html>
 <html lang="pt-br">
 
@@ -15,6 +11,7 @@ if ($_SESSION['logado'] == true)
 	<title>Painel Administrativo</title>
 	
 	<link rel="stylesheet" href="css/layout.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="css/reveal.css" type="text/css" media="screen" />
     <!--<link href="css/bootstrap.css" rel="stylesheet" type="text/css" />
     <link href="css/bootstrap-responsive.css" rel="stylesheet" type="text/css" />
 	<!--[if lt IE 9]>
@@ -24,6 +21,7 @@ if ($_SESSION['logado'] == true)
 	<script src="js/jquery-1.5.2.min.js" type="text/javascript"></script>
     <script src="js/bootstrap.js"></script>
 	<script src="js/hideshow.js" type="text/javascript"></script>
+    <script src="js/jquery.reveal.js" type="text/javascript"></script>
 	<script src="js/jquery.tablesorter.min.js" type="text/javascript"></script>
 	<script type="text/javascript" src="js/jquery.equalHeight.js"></script>
     <script src="js/script.js"></script>
@@ -60,7 +58,7 @@ if ($_SESSION['logado'] == true)
     });
 </script>
 
-
+<input type="hidden" class="acesso" value="<?php echo $_SESSION['nivel'] ?>">
 </head>
 
 
@@ -69,17 +67,18 @@ if ($_SESSION['logado'] == true)
 	<header id="header">
 		<hgroup>
 			<h1 class="site_title"><a href="index.html">Admin</a></h1>
-			<h2 class="section_title">Painel Administrativo</h2><div class="btn_view_site"><a href="http://www.medialoot.com">Ver site</a></div>
+			<h2 class="section_title">Painel Administrativo</h2><div class="btn_view_site"><a href="http://10.51.28.7/intranet2">Ver site</a></div>
 		</hgroup>
 	</header> <!-- end of header bar -->
 	
 	<section id="secondary_bar">
 		<div class="user">
-			<p>Leanderson Silva (<a href="#">3 Mensagens</a></p>
+			<p><?php echo $_SESSION['nome']; ?> </p>
 			<!-- <a class="logout_user" href="#" title="Logout">Logout</a> -->
 		</div>
 		<div class="breadcrumbs_container">
-			<article class="breadcrumbs"><a href="index.html">Painel Admin</a> <div class="breadcrumb_divider"></div> <a class="current">Dashboard</a></article>
+			<article class="breadcrumbs"><a href="index.html">Painel Admin</a> <div class="breadcrumb_divider"></div> 
+			<a class="current">Painel</a></article>
 		</div>
 	</section><!-- end of secondary bar -->
 	
@@ -88,203 +87,52 @@ if ($_SESSION['logado'] == true)
 	
 	?>
     
-	<aside id="sidebar" class="column">
-		<form class="quick_search">
-			<input type="text" value="Quick Search" onfocus="if(!this._haschanged){this.value=''};this._haschanged=true;">
-		</form>
-		<hr/>
-		<h3>Conteúdo</h3>
-		<ul class="toggle">
-			<li class="icn_new_article"><a href="#">Novo Artigo</a></li>
-			<li class="icn_edit_article"><a href="#">Editar Artigos</a></li>
-			<li class="icn_categories"><a href="#">Categorias</a></li>
-			<li class="icn_tags"><a href="#">Tags</a></li>
-		</ul>
-		<h3>Usuários</h3>
-		<ul class="toggle">
-			<li class="icn_add_user"><a href="#">Novo usuário</a></li>
-			<li class="icn_view_users"><a href="#">Usuários</a></li>
-			<li class="icn_profile"><a href="#">Seu Profile</a></li>
-		</ul>
-		<h3>Arquivos</h3>
-		<ul class="toggle">
-			<li class="icn_folder"><a href="#">File Manager</a></li>
-			<li class="icn_photo"><a href="#">Gallery</a></li>
-			<li class="icn_audio"><a href="#">Audio</a></li>
-			<li class="icn_video"><a href="#">Video</a></li>
-		</ul>
-		<h3>Admin</h3>
-		<ul class="toggle">
-			<li class="icn_settings"><a href="#">Opções</a></li>
-			<li class="icn_security"><a href="#">Segurança</a></li>
-			<li class="icn_jump_back"><a href="#">Sair</a></li>
-		</ul>
-		
-		<footer>
-			<hr />
-			<p><strong>Sistema de Gestão hospitalar</strong></p>
-			<p>Desenvolvido por ACLP TECH</p>
-		</footer>
-	</aside><!-- end of sidebar -->
-	
+    <!--inicio secao paneil esquerdo -->
+    <?php include 'php/painel_conteudo.php'; ?>
+	<!-- fim de painel de conteudo -->
+    
+	<!--inicio secao de campos principal --> 
 	<section id="main" class="column">
 		<div class="mensagem">
-		<h4 class="alert_info">Bem vindo convidado.</h4>
+		<h4 class="alert_info">Preencha todos os campos</h4>
 		</div>
-		<article class="module width_full">
-			<header>
-			  <h3>Cadastro de cardapio</h3></header>
-			<div class="module_content">
-
-                <form class="form-horizontal cardapio" action="php/action.php" method="post" name="card">
-  <div class="control-group">
-    <label class="control-label" for="inputEmail">Prato Principal</label>
-    <div class="controls">
-      <textarea rows="3" cols="80" name="principal"></textarea>
-    </div>
-  </div>
-  <div class="control-group">
-    <label class="control-label" for="inputPassword">Acompanhamento</label>
-    <div class="controls">
-      <textarea rows="3" cols="80" name="acompanhamento"></textarea>
-    </div>
-  </div>
-  <div class="control-group">
-    <label class="control-label" for="inputPassword">Salada</label>
-    <div class="controls">
-      <textarea rows="3" cols="80" name="salada"></textarea>
-    </div>
-  </div>
-  <div class="control-group">
-    <label class="control-label" for="inputPassword">Caldos</label>
-    <div class="controls">
-      <textarea rows="3" cols="80" name="caldos"></textarea>
-    </div>
-  </div>
-  <div class="control-group">
-    <label class="control-label" for="inputPassword">Sobremesa</label>
-    <div class="controls">
-      <textarea rows="3" cols="80" name="sobremesa"></textarea>
-    </div>
-  </div>
-  <div class="control-group">
-    <label class="control-label" for="inputPassword">Sucos</label>
-    <div class="controls">
-      <textarea rows="3" cols="80" name="sucos"></textarea>
-    </div>
-  </div>
-  <div class="control-group">
-    <label class="control-label" for="inputPassword">Outros</label>
-    <div class="controls">
-      <textarea rows="3" cols="80" name="outros"></textarea>
-    </div>
-  </div>
-  <div align="center">
-  <input type="submit" value="enviar">
- <!-- <button class="btn btn-success btn_tamanho">Cadastrar</button>
-  <button class="btn btn-success btn_tamanho">Limpar</button>
-  </div>-->
-</form>
-                <div class="clear"></div>
-			</div>
-		</article><!-- end of stats article -->
+        
+        
+        
+        <!-----------paineis de cadastro----------->
+        
+        
+        <!--inicio cadastro de usuarios-->
+        <?php include 'php/cadastro_usuarios.php'; ?>
+        <!--fim cadastro usuarios-->
+               
+        <!--inicio cadastro de cardapio-->
+        <?php include 'php/cadastro_cardapio.php'; ?>
+		<!-- fim de cadas de usuario-->
+        
+        <!--inicio do cadastro de ramais-->
+        <?php include 'php/cadastro_ramais.php'; ?>
+        <!--fim do cadastro de ramais-->
+        
+        
+         <!-----------fim de cadastro-------------->
+         
+         
+         <!--------paineis de visualização--------->
+         
+         
+         <!--inicio painel usuarios -->
+         <?php include 'php/Painel_usuarios.php'; ?>
+         <!--fim painel usuarios -->
+         
+         
+         <!-------fim paines de visualização------->
 		
-		<article class="module width_3_quarter">
-		<header><h3 class="tabs_involved">Cadastros recentes</h3>
-		<ul class="tabs">
-   			<li><a href="#tab1">Piasts</a></li>
-    		<li><a href="#tab2">Comentario</a></li>
-		</ul>
-		</header>
-
-		<div class="tab_container">
-			<div id="tab1" class="tab_content">
-			<table class="tablesorter" cellspacing="0"> 
-			<thead> 
-				<tr> 
-   					<th></th> 
-    				<th>Nome</th> 
-    				<th>Categoria</th> 
-    				<th>Criado em</th> 
-    				<th>Ações</th> 
-				</tr> 
-			</thead> 
-			<tbody> 
-				<tr> 
-   					<td><input type="checkbox"></td> 
-    				<td>asdfsdfsdf dsfsd s dfds</td> 
-    				<td>Artigos</td> 
-    				<td>Setembro 2015</td> 
-    				<td><input type="image" src="images/icn_edit.png" title="Edit"><input type="image" src="images/icn_trash.png" title="Trash"></td> 
-				</tr> 
-				<tr> 
-   					<td><input type="checkbox"></td> 
-    				<td>asdfsdfsdf dsfsd s dfdst</td> 
-    				<td>Artigos</td> 
-    				<td>Setembro 2015</td> 
-   				 	<td><input type="image" src="images/icn_edit.png" title="Edit"><input type="image" src="images/icn_trash.png" title="Trash"></td> 
-				</tr>
-				<tr> 
-   					<td><input type="checkbox"></td> 
-    				<td>asdfsdfsdf dsfsd s dfds</td> 
-    				<td>Artigos</td> 
-    				<td>Setembro 2015</td> 
-    				<td><input type="image" src="images/icn_edit.png" title="Edit"><input type="image" src="images/icn_trash.png" title="Trash"></td> 
-				</tr> 
-				<tr> 
-   					<td><input type="checkbox"></td> 
-    				<td>asdfsdfsdf dsfsd s dfds</td> 
-    				<td>Artigos</td> 
-    				<td>Setembro 2015</td> 
-   				 	<td><input type="image" src="images/icn_edit.png" title="Edit"><input type="image" src="images/icn_trash.png" title="Trash"></td> 
-				</tr>
-				<tr> 
-   					<td><input type="checkbox"></td> 
-    				<td>asdfsdfsdf dsfsd s dfdst</td> 
-    				<td>Articles</td> 
-    				<td>Setembro 2015</td> 
-   				 	<td><input type="image" src="images/icn_edit.png" title="Edit"><input type="image" src="images/icn_trash.png" title="Trash"></td> 
-				</tr>  
-			</tbody> 
-			</table>
-			</div><!-- end of #tab1 -->
-			
-			<div id="tab2" class="tab_content">
-			
-
-			</div><!-- end of #tab2 -->
-			
-		</div><!-- end of .tab_container -->
-		
-		</article><!-- end of content manager article -->
-		
-		<article class="module width_quarter">
-			<header><h3>Painel 3</h3></header>
-			<div class="message_list">
-				<div class="module_content">
-					<div class="message"><p>Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor.</p>
-					<p><strong>John Doe</strong></p></div>
-					<div class="message"><p>Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor.</p>
-					<p><strong>John Doe</strong></p></div>
-					<div class="message"><p>Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor.</p>
-					<p><strong>John Doe</strong></p></div>
-					<div class="message"><p>Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor.</p>
-					<p><strong>John Doe</strong></p></div>
-					<div class="message"><p>Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor.</p>
-					<p><strong>John Doe</strong></p></div>
-				</div>
-			</div>
-			<footer>
-				<form class="post_message">
-					<input type="text" value="Message" onfocus="if(!this._haschanged){this.value=''};this._haschanged=true;">
-					<input type="submit" class="btn_post_message" value=""/>
-				</form>
-			</footer>
-		</article><!-- end of messages article -->
+	  <!-- end of content manager article --><!-- end of messages article -->
 		<!-- apagar <div class="active"><a href=""></a>-->
-		<div class="clear"></div>
+	  <div class="clear"></div>
 		
-		<article class="module width_full">
+		<article class="module width_full data">
 			<header><h3>Novo Artigo</h3></header>
 				<div class="module_content">
 						<fieldset>
@@ -319,13 +167,82 @@ if ($_SESSION['logado'] == true)
 				</div>
 			</footer>
 		</article><!-- end of post new article -->
+        
+        
+        <!-- inicio editar dados -->
+        
+        <div id="myModal" class="reveal-modal">
+			<h1 align="center">Editar dados</h1>
+			<article class="module width_full">
+			<header>
+			  <h3>Cadastro de Usuários</h3></header>
+              <div class="module_content">
+						
+					
+		  </div>
+			<div class="module_content">
+
+                <form class="form-horizontal cardapio" action="" method="post" name="editar_form">
+  <div class="control-group">
+    <label class="control-label" for="usuarioNome">Nome completo:</label>
+    <div class="controls">
+      <input type="text" style="width:61.5%" name="nome" />  <!--value="php echo $_SESSION['nome']; ?>*/"-->
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label" for="usuarioUser">Nome de Usuário</label>
+    <div class="controls">
+      <input type="text" style="width:61.5%" name="usuario" />
+    </div>
+  </div>
+ 
+  
+  <div class="control-group">
+    <label class="control-label" for="usuarioRestricao">Nível de Restrição</label>
+    <div class="controls">
+							<select style="width:62%;" name="nivel">
+                            <option>Selecione</option>
+								<option value="1">Administrador</option>
+								<option value="2">Nutricao</option>
+								<option value="3">Telefonia</option>
+							</select>
+    </div>
+  </div>
+  
+  <div class="control-group">
+    <label class="control-label" for="usuarioSenha">Senha</label>
+    <div class="controls">
+      <input type="password" style="width:61.5%" name="senha" />
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label" for="usuarioConfsenha">Confirmar Senha</label>
+    <div class="controls">
+      <input type="password" style="width:61.5%" name="senha" />
+    </div>
+  </div>
+  
+  <div align="center">
+  <input type="submit" value="atualizar">
+ <!-- <button class="btn btn-success btn_tamanho">Cadastrar</button>
+  <button class="btn btn-success btn_tamanho">Limpar</button>
+  </div>-->
+</form>
+                <div class="clear"></div>
+			</div>
+	  </article>
+			<a class="close-reveal-modal">&#215;</a>
+		</div>
+        
+        
+        <!--fim editar-->
 		
-		<h4 class="alert_warning">A Warning Alert</h4>
+		<h4 class="alert_warning">Mensagem de alerta</h4>
 		
-		<h4 class="alert_error">An Error Message</h4>
+		<h4 class="alert_error">Mensagem de Erro</h4>
 		
-		<h4 class="alert_success">A Success Message</h4>
-		
+		<h4 class="alert_success">Mensagem de Sucesso</h4>
+		<!--
 		<article class="module width_full">
 			<header><h3>Basic Styles</h3></header>
 				<div class="module_content">
@@ -354,6 +271,7 @@ if ($_SESSION['logado'] == true)
 </html>
 
 <?php
-
+}else{
+	header("location:http://localhost/intranet/Admin/login.php");
 }
 ?>

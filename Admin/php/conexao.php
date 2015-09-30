@@ -9,8 +9,14 @@ if (mysqli_connect_errno())
   {
   echo "Falha na conexao com o banco de dados: " . mysqli_connect_error();
   }
- else
+/*else
   {
   echo "conectado";
-  }
+  }*/
+  
+/*$comando =  "select * from cardapio";
+
+$query = mysqli_query($conexao,$comando); */ 
+  
+  
 ?>

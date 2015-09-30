@@ -37,7 +37,7 @@
                                     if($i>0){
                                      ?> 
                                     
-                                    <table id="tabela1" border="1"> 
+                                    <table id="tabela1" class="table" border="1"> 
                                         <tr>
                                             <td>
                                                 Setor
