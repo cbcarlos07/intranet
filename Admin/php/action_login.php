@@ -32,10 +32,9 @@ if ($contar == 1){
 	header('location:http://localhost/intranet/Admin/nutricao.php');
 	
 }else{
-	$msg =  "<script>alert('nao foi')</script>";
-	echo $msg;
+	$_SESSION['erro'] = '1';
+	header('location:http://localhost/intranet/Admin/php/login.php');
 	
-	header('location:http://localhost/intranet/Admin/login.php');
 	
 }
 	

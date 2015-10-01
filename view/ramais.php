@@ -40,13 +40,13 @@
                                     <table id="tabela1" class="table" border="1"> 
                                         <tr>
                                             <td>
-                                                Setor
+                                                SETOR
+                                            </td>
+                                            <td style="text-align:center">
+                                                RAMAL
                                             </td>
                                             <td>
-                                                Ramal
-                                            </td>
-                                            <td>
-                                                Responsável
+                                                RESPONSÁVEL
                                             </td>
                                         </tr>
                                    

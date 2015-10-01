@@ -119,7 +119,6 @@ var mensagem = $('.mensagem');
 		var dados = $(this).serialize();
 		var acao = "&acao=cadastro";
 		var sender	= dados+acao;
-
 		
 		$.ajax({
 			data:	sender,
@@ -128,6 +127,7 @@ var mensagem = $('.mensagem');
 					$('.mensagem').empty().html('<h4 class="alert_error">Usuário já existente</h4>');
 				}else{
 				sucesso();
+				location.reload();
 				}//location.href="http://localhost/intranet/Admin/nutricao.php";
 			/*if(resposta == 1){
 					sucesso();
@@ -155,19 +155,23 @@ var mensagem = $('.mensagem');
 	}*/
 
 $('input[name=excluir]').click(function(){
+	var confirma = confirm('Você tem certeza que desejas excluir este usuário?');
+	if (confirma){//--
 	var del = $(this).attr("id");
 	deletar = "acao=deletar&delete="+del;
-	alert(deletar);
+
 	$.ajax({
 		type:    'POST',
 		url:   urlpost,
 		data:  deletar,
 		beforeSend: '',
 		success: function(resposta){
-			alert(resposta);
+			if (resposta == 1)
+			alert('usuario excluído com sucesso!');
+			location.reload();
 			}
 		});
-	
+	}//--
 	});
 	
 //----------------fim delete------------------------//
@@ -179,7 +183,7 @@ var buttonconsult = $('input[name=editar]');
 buttonconsult.click(function(){
 	var edit = $(this).attr("id");
 	var consult = "acao=consultar&editar="+edit;
-	alert(edit);
+
 	
 	$.ajax({
 	    	type:       'POST',

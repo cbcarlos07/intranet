@@ -37,9 +37,11 @@ else
 	case 'deletar':
 	//print_r($_POST);
 		$delid = $_POST['delete'];
-		echo $delid;
 		$qr = "DELETE from usuarios WHERE idUser = $delid";
 		$ex = mysqli_query($conexao,$qr);
+		if ($ex){
+			echo '1';
+		}
 	break;
 	
 	case 'consultar':

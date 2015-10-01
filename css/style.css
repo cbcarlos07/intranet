@@ -16,7 +16,7 @@ h1, h2{
 
 /*header area*/
 .top-header{
-	background: #42b3e5 !important;
+	background: #2a2a2a !important;
 	
 	width: 100%;
 	z-index: 99999;
@@ -81,6 +81,12 @@ li a.active{
 .navbar-default .navbar-toggle {
   border-color: #fff;
   margin-top: 4px;
+}
+
+
+.seg_fileira{
+	margin-top:50px;
+	/*margin-bottom:30px;*/
 }
 
 
