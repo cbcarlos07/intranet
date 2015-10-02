@@ -31,7 +31,8 @@
 						<h4>Departamento de Tecnologia da Informação</h4>-->
 
 						<div class="col-md-4 col-sm-6 largura">
-							<a href="../links/mv"><div class="single-about-detail clearfix" style="border:1px solid black;border-radius:10px">
+                        <!--http://C:/Program Files (x86)/Internet Explorer/iexplorer.exe-->
+							<a href="http://www.google.com"><?php exec("C:/Program Files (x86)/Internet Explorer/iexplorer.exe")?><div class="single-about-detail clearfix" style="border:1px solid black;border-radius:10px">
 								<div class="about-img" align="center">
 									<img class="img-responsive" src="../img/MVG.png" alt="">
 								</div>
@@ -110,7 +111,7 @@
                     <div class="row seg_fileira">
 
 						<div class="col-md-4 col-sm-6 largura">
-							<a href="../links/mv"><div class="single-about-detail clearfix" style="border:1px solid black;border-radius:10px">
+							<a href="http://www.gcpecfatorrh.com.br/gcpec/Login"><div class="single-about-detail clearfix" style="border:1px solid black;border-radius:10px">
 								<div class="about-img" align="center">
 									<img class="img-responsive" src="../img/gcpec.png" alt="" style="width:94%;margin:7px">
 								</div>

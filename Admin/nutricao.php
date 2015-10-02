@@ -66,7 +66,7 @@ if ($_SESSION['logado'] == true){
 
 	<header id="header">
 		<hgroup>
-			<h1 class="site_title"><a href="index.html">Admin</a></h1>
+			<h1 class="site_title"><?php $setor = $_SESSION['nivel']; if ($setor == 1)echo 'Admin';else if($setor == 2)echo 'Nutrição';else if($setor == 3)echo 'Telefonia';?></h1>
 			<h2 class="section_title">Painel Administrativo</h2><div class="btn_view_site"><a href="http://10.51.28.7/intranet2">Ver site</a></div>
 		</hgroup>
 	</header> <!-- end of header bar -->
@@ -272,6 +272,6 @@ if ($_SESSION['logado'] == true){
 
 <?php
 }else{
-	header("location:http://localhost/intranet/Admin/login.php");
+	header("location:http://localhost/intranet/Admin/php/login.php");
 }
 ?>

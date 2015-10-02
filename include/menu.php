@@ -10,7 +10,7 @@
        $inicio = $index."inicio.php";
        $cardapio = $index."cardapio.php";
        $ramais = $index."ramais.php";
-       $outros = $index."outros.php";
+       $outros = $index."../Admin/nutricao.php";
    function menu($opcao){
        
        switch ($opcao){
@@ -45,7 +45,7 @@
                    <li><a class="menu active" href="<?php echo $inicio; ?> ">Sistemas</a></li>
                    <li><a class="menu " href="<?php echo $ramais; ?> ">Ramais</a></li>  
                    <li><a class="menu " href="<?php echo $cardapio; ?> ">Cardápio</a></li>
-                   <li><a class="menu " href="<?php echo $outros; ?> ">Outros</a></li>
+                   <li><a class="menu " href="<?php echo $outros; ?> ">Painel</a></li>
                     </ul>
                   </div><!-- /navbar-collapse -->
      <?php             
@@ -66,7 +66,7 @@ function cardapio(){
                    <li><a class="menu " href="<?php echo $ramais; ?> ">Ramais</a></li>
                      <li><a class="menu active" href="<?php echo $cardapio; ?> ">Cardápio</a></li>
                           
-                      <li><a class="menu " href="<?php echo $outros; ?> ">Outros</a></li>
+                      <li><a class="menu " href="<?php echo $outros; ?> ">Painel</a></li>
                     </ul>
                   </div><!-- /navbar-collapse -->
      <?php             
@@ -89,7 +89,7 @@ function ramais(){
                    <li><a class="menu active" href="<?php echo $ramais; ?> ">Ramais</a></li>
                      <li><a class="menu " href="<?php echo $cardapio; ?> ">Cardápio</a></li>
                           
-                      <li><a class="menu " href="<?php echo $outros; ?> ">Outros</a></li>
+                      <li><a class="menu " href="<?php echo $outros; ?> ">Painel</a></li>
                     </ul>
                   </div><!-- /navbar-collapse -->
      <?php             
@@ -110,7 +110,7 @@ function outros(){
                    <li><a class="menu " href="<?php echo $ramais; ?> ">Ramais</a></li>
                      <li><a class="menu " href="<?php echo $cardapio; ?> ">Cardápio</a></li>
                           
-                      <li><a class="menu active" href="<?php echo $outros; ?> ">Outros</a></li>
+                      <li><a class="menu active" href="<?php echo $outros; ?> ">Painel</a></li>
                     </ul>
                   </div><!-- /navbar-collapse -->
      <?php             
