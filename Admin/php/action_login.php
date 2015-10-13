@@ -28,8 +28,9 @@ if ($contar == 1){
 		//$flah = 'logado';
 		echo 'logado';
 	}*/
-
-	header('location:http://localhost/intranet/Admin/painel.php');
+        $url = "";
+        $ip = gethostbyname($url);
+	header('location:http://'.$ip.'/intranet/Admin/painel.php');
 	
 }else{
 	$_SESSION['erro'] = '1';

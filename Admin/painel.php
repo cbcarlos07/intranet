@@ -147,7 +147,7 @@ if ($_SESSION['logado'] == true){
          <!--fim painel usuarios -->
          
          <!--inicio painel ramais -->
-         <?php include 'php/Painel_ramais.php'; ?>
+         <?php include 'php/painel_ramais.php'; ?>
          <!-- fim painel ramais -->
          
          <!-------fim paines de visualização------->
