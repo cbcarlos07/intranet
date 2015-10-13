@@ -11,15 +11,17 @@ include '../controller/Ramal_Controller.class.php';
 ?>
 <meta charset="UTF-8">
 <?php
+$rcon = new Ramal_Controller();
 if(isset($_POST['opcao'])){
     $opcao = $_POST['opcao'];
 }else{
     $opcao = $_GET['opcao'];
 }
-    
+ //  echo "Acao cadastro: $opcao"; 
 switch($opcao){
     case 'I':
-        inserir(); 
+        
+        verificar();
         break;
     case 'A':
         alterar();
@@ -28,29 +30,39 @@ switch($opcao){
         excluir();
         break;
 }
-
+function verificar(){
+    global $rcon;
+    $nrramal = $_POST['nrramal'];
+    $valor = $rcon->verificarDulicidade($nrramal);
+    if($valor == 0){
+        inserir();
+    }else{
+        echo "1";
+    }
+}
 function inserir()
 {
-    $rcon = new Ramal_Controller();
-    $nrRamal = $_POST['ramal'];
-    if(isset($_POST['descr'])){
-        $descricao = strtoupper($_POST['descr']);
+    global $rcon;
+    
+    $nrRamal = $_POST['nrramal'];
+    if(isset($_POST['nmresponsavel'])){
+        $descricao = strtoupper($_POST['nmresponsavel']);
     }else{
         $descricao = "";
     }
     
     $cdsetor = $_POST['setor'];
     if($cdsetor == 0){
-        echo "Entrou aqui. Codigo 0 <br>";
-        $setor = strtoupper($_POST['nm_setor']);
+      //      echo "Entrou aqui. Codigo 0 <br>";
+        $setor = strtoupper($_POST['nmsetor']);
     }else{
-        echo "Entrou aqui. Codigo nao eh igual a 0 <br>";
+      //  echo "Entrou aqui. Codigo nao eh igual a 0 <br>";
        // $cdsetor = $_POST['setor'];
       //  echo "Cd setor: ".$cdsetor."<br>";
         $setor_ = new Setor();
         $setor_ = $rcon->recSetor($cdsetor);
         $setor = strtoupper($setor_->getNome());
-        echo "Setor recuperado: ".$setor."";
+ //       echo "Setor recuperado: ".$setor."";
         
     }
     
@@ -66,13 +78,13 @@ function inserir()
         $apelido = '';
     }
     
-    echo "Cadastrar();"."<br>";
+    /*echo "Cadastrar();"."<br>";
     echo 'Ramal: '.$nrRamal."<br>";
     echo 'Responsavel: '.$descricao."<br>";
     echo 'Setor: '.$setor."<br>";
     echo 'Visualiza: '.$visualiza."<br>";
     echo 'Apelido: '.$apelido."<br>";
-    
+    */
     
     $ramal = new Ramal();
     
@@ -87,11 +99,11 @@ function inserir()
     $teste = $rcon->inserir($ramal);
     if($teste){
         //echo "Foi cadastrado";
-        header("location: ../view/listar_ramais.php");
+          return 1;
     }
     else{
         
-     echo "Nao Foi cadastrado";
+       echo '1';
     }
    
 }
@@ -105,7 +117,7 @@ function alterar()
 //    echo "Código do ramal: ".$cdramal."<br>";
     $nrRamal = $_POST['ramal'];
     if(isset($_POST['descr'])){
-        $descricao = strtoupper($_POST['descr']);
+        $descricao = ucfirst($_POST['descr']);
     }else{
         $descricao = "";
     }

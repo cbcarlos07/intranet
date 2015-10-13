@@ -1,9 +1,10 @@
-﻿<article class="module width_full painel2">
+﻿
+<article class="module width_full painel3">
 			<header>
-			  <h3>Cadastro de Ramais</h3></header>
+			  <h3>Cadastro de cardapio</h3></header>
               <div class="module_content">
 						<fieldset>
-							<label>Titulo</label>
+							<label>titulo</label>
 							<input type="text">
 						</fieldset>
 						
@@ -19,26 +20,26 @@
 							<!--<label>Tags</label>
 							<input type="text" style="width:92%;">
 						</fieldset><div class="clear"></div>-->
-		  </div>
+				</div>
 			<div class="module_content">
 
-                            <form class="form-horizontal cardapio" action="../services/acaoRamais.php" method="post" name="cadastro_ramais">
+                <form class="form-horizontal cardapio" action="" method="post" name="form_cardapio">
   <div class="control-group">
-    <label class="control-label" for="inputEmail">Número do Ramal</label>
+    <label class="control-label" for="inputEmail">Prato Principal</label>
     <div class="controls">
-      <input type="text" />
+      <textarea rows="3" cols="80" name="principal"></textarea>
     </div>
   </div>
   <div class="control-group">
-    <label class="control-label" for="inputPassword">Descricao</label>
+    <label class="control-label" for="inputPassword">Acompanhamento</label>
     <div class="controls">
-      <input type="text" />
+      <textarea rows="3" cols="80" name="acompanhamento"></textarea>
     </div>
   </div>
   <div class="control-group">
-    <label class="control-label" for="inputPassword">Setor</label>
+    <label class="control-label" for="inputPassword">Salada</label>
     <div class="controls">
-      <input type="text" />
+      <textarea rows="3" cols="80" name="salada"></textarea>
     </div>
   </div>
   <div class="control-group">
@@ -53,13 +54,24 @@
       <textarea rows="3" cols="80" name="sobremesa"></textarea>
     </div>
   </div>
-  
+  <div class="control-group">
+    <label class="control-label" for="inputPassword">Sucos</label>
+    <div class="controls">
+      <textarea rows="3" cols="80" name="sucos"></textarea>
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label" for="inputPassword">Outros</label>
+    <div class="controls">
+      <textarea rows="3" cols="80" name="outros"></textarea>
+    </div>
+  </div>
   <div align="center">
-  <input type="submit" value="enviar">
+  <input type="button" value="enviar" class="j_button" />
  <!-- <button class="btn btn-success btn_tamanho">Cadastrar</button>
   <button class="btn btn-success btn_tamanho">Limpar</button>
   </div>-->
 </form>
                 <div class="clear"></div>
 			</div>
-	  </article>
+		</article>

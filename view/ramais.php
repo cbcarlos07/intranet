@@ -2,9 +2,11 @@
 
 
 <html lang="en">
+    
 <?php include '../include/header.php'; ?>
+    
 <body>
-	
+
 	<!-- ====================================================
 	header seçao -->
                                             <?php
@@ -24,60 +26,58 @@
                                           ?> <!-- fim do header area -->
 
 			<!--  seçao sistemas -->
+                        <div id="pesq">
+                                                    <form action="pesquisa_ramal.php" method="post" id="maiuscula">
+                                                                <input name="pesquisa" placeholder="Pesquise aqui">
+                                                                <input type="submit" value="Pesquisar">
+                                                    </form>
+                                             </div>
 			<section class="about text-center" id="about">
 				<div class="container">
                                     
                                     <?php 
                                     include '../controller/Ramal_Controller.class.php';
                                     $rc = new Ramal_Controller();
-                                    $i = $rc->recTotal();
+                                     $painel = "";
+                                                 
+                                                  foreach(range('A', 'Z') as $letra) {
+                                                         $painel .= " <a href='{$_SERVER['PHP_SELF']}?pagina=$letra'>[$letra]</a>";
+                                                    }
+                                                     echo "<h4> $painel  </h4>";
+                                    if(!isset($_GET['pagina']))
+                                            {
+                                                $pagina = 'A';
+                                            }  
+                                            else{
+                                                $pagina = $_GET['pagina'];
+                                            }
+                                    $i = $rc->recTotal("$pagina%");
+                                     /* @var $pagina type */
+                                            
                                     
                                    // echo $_SERVER['DOCUMENT_ROOT'];
                                     
                                     if($i>0){
                                      ?> 
                                     
-                                    <table id="tabela1" class="table" border="1"> 
+                                    <table id="tabela1" border="1"> 
                                         <tr>
                                             <td>
-                                                SETOR
-                                            </td>
-                                            <td style="text-align:center">
-                                                RAMAL
+                                                Setor
                                             </td>
                                             <td>
-                                                RESPONSÁVEL
+                                                Ramal
+                                            </td>
+                                            <td>
+                                                Responsável
                                             </td>
                                         </tr>
                                    
-                                          <?php
-                                            /* @var $pagina type */
-                                            if(!isset($_GET['pagina']))
-                                            {
-                                                $pagina = 1;
-                                            }  
-                                            else{
-                                                $pagina = $_GET['pagina'];
-                                            }
-                     
-                     
-                                            // bloco 2 - defina o número de registros exibidos por página
-                                            $num_por_pagina = 16; 
-
-                                            // bloco 3 - descubra o número da página que será exibida
-                                            // se o numero da página não for informado, definir como 1
-                                            session_start();
-                                            ?>
-                                        <div id="pesq">
-                                                    <form action="pesquisa_ramal.php" method="post" id="maiuscula">
-                                                                <input name="pesquisa" placeholder="Pesquise aqui">
-                                                                <input type="submit" value="Pesquisar">
-                                                    </form>
-                                             </div>
+                                       
                                         <?php
                                             // bloco 4 - construa uma cláusula SQL "SELECT" que nos retorne somente os registros desejados
                                             // definir o número do primeiro registro da página. Faça a continha na calculadora que você entenderá minha fórmula.
-                                            $primeiro_registro = ($pagina*$num_por_pagina) - $num_por_pagina;
+                                            //$primeiro_registro = ($pagina*$num_por_pagina) - $num_por_pagina;
 
                                              // consulta apenas os registros da página em questão utilizando como auxílio a definição LIMIT. Ordene os registros pela quantidade de pontos, começando do maior para o menor DESC.
 
@@ -95,10 +95,10 @@
                                             $controller = new Ramal_Controller();
 
 
-                                            $total = $controller->recTotal();
-                                            $refresh = "";
+                                          //  $total = $controller->recTotal("$pagina%");
+                                       //     $refresh = "";
                                            // echo "total: $total  Numero por pagina: $num_por_pagina";
-                                            if($total > $num_por_pagina){
+                                        /*    if($total > $num_por_pagina){
                                                  if(!isset($_SESSION['pagina'])){
                                                  $pagina = 1;
                                                  $_SESSION['pagina'] = $pagina ;
@@ -113,9 +113,9 @@
                                                      
                                                  }
                                              }
+                                          */      
                                                 
-                                                
-                                                if($pagina == 1){
+                                               /* if($pagina == 1){
                                                 $rs = $controller->lista_ramais("", $primeiro_registro, $num_por_pagina);
                                               //  $refresh = "refresh:20; url={$_SERVER['PHP_SELF']}?pagina=2" ;
                                               //  header($refresh);
@@ -131,9 +131,9 @@
                                                         header($refresh);*/
                                                         
 
-                                                }
+                                                //}
                                             
-                                                    $total_paginas = $total / $num_por_pagina;
+                                                /*    $total_paginas = $total / $num_por_pagina;
                                                     $prev = 1;
                                                     $next = 2;
                                                     
@@ -158,28 +158,30 @@
                                                   // vamos arredondar para o alto o número de páginas que serão necessárias para exibir todos os registros. Por exemplo, se temos 20 registros e mostramos 6 por página, nossa variável $total_paginas será igual a 20/6, que resultará em 3.33. Para exibir os 2 registros restantes dos 18 mostrados nas primeiras 3 páginas (0.33), será necessária a quarta página. Logo, sempre devemos arredondar uma fração de número real para um inteiro de cima e isto é feito com a função ceil().
                                                   //echo "onload=chamaphp()";
                                                   $total_paginas = ceil($total_paginas);
-                                                  $painel = "";
-                                                  for ($x=1; $x<=$total_paginas; $x++) {
+                                               
+                                                 */   
+
+                                    /*
+                                     /* for ($x=1; $x<=$total_paginas; $x++) {
                                                     if ($x==$pagina) { // se estivermos na página corrente, não exibir o link para visualização desta página
                                                       $painel .= " [$x] ";
                                                     } else {
                                                       $painel .= " <a href='{$_SERVER['PHP_SELF']}?pagina=$x'>[$x]</a>";
                                                     }
                                                   }
-
-
-
+                                                  
+*/
 
 
 
                                             // exibir painel na tela
-                                            echo "<h4>$prev_link | $painel | $next_link </h4>";
+                                           
 
-                                            }else{
+//                                            }else{
                                              //   echo 'não é maior que o total';
-                                                $rs = $controller->lista_ramais("", $primeiro_registro, $num_por_pagina);
+                                                $rs = $controller->lista_ramais("", $pagina);
                                               //  echo '<meta http-equiv="refresh" content="10" />';
-                                            }
+                                            //}
                                             
                                             // se página maior que 1 (um), então temos link para a página anterior
 
@@ -202,7 +204,7 @@
                                                 if($ramal->getSnVisutaliza() == 'S'){
                                                     echo "<td>".$ramal->getSetor()."</td>";
                                                     echo "<td id=celula-ramal>".$ramal->getNrRamal()."</td>";                                                  
-                                                    echo "<td>".$ramal->getResponsavel()."</td>";      
+                                                    echo "<td>".ucfirst($ramal->getResponsavel())."</td>";      
                                                     echo "</tr>";
                                                 }
                                             }
@@ -225,7 +227,7 @@
                                          //$ip = $_SERVER['REMOTE_ADDR'];
                                        $index = 'http://'.$ip.'/intranet/';
                                         ?>
-                                        <a class="but but-success but-rc" href="<?php echo $index.'services/session.php?link='.$index.'view/cadastrar_ramais.php'?>" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cadastre o primeiro ramal&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a> 
+                                        <a class="but but-success but-rc" href="<?php echo $index.'services/session.php?link='.$index.'view/cadastrar_ramais.php?opcao=I'?>" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cadastre o primeiro ramal&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a> 
                                    <?php     
                                     }
                                       ?>  
@@ -243,6 +245,19 @@
 	<script src="js/smoothscroll.js"></script>
 	<script src="js/bootstrap.min.js"></script>
 	<script src="js/custom.js"></script>
+         <script type="text/javascript">
+		$('#busca').live(function({
+			var busca = $('#busca').val();
+			$.post(
+				'pesquisa_ramal.php',
+				{texto: busca},
+				function(data){
+					alert(data);
+				}
+			);
+		}));
+	</script>
+	
 	
 </body>
 </html>

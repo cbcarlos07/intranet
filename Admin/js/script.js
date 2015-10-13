@@ -1,18 +1,59 @@
 // JavaScript Document
 $(function(){
+    // acesso = define o nivel de usuário
 	var acesso = $('.acesso').val();
-	if (acesso == '1'){
+        var urlpost = null; 
+        var forms = $('form');
+        var botao = $('.j_button');
+        var mensagem = $('.mensagem');
+          //alert("Acesso: "+acesso);  
+          
+        switch(acesso){
+           
+                case '1':   
+                
 		$('.painel2').hide(1);
 		$('.painel3').hide(1);
-	}else if (acesso == '2'){
+		$('.painel_ramais').hide(1);
+                urlpost = 'php/action_usuarios.php'; 
+                
+                cad_usuario();
+                principal();
+                break;
+                
+                case '2':
+                
 		$('.painel1').hide(1);
 		$('.painel2').hide(1);
-	}else if (acesso == '3'){
+                break;
+                
+                case '3':
+                    
 		$('.painel1').hide(1);
 		$('.painel3').hide(1);
+		$('.painel_usuarios').hide(1);
+                
+                urlpost = "../services/acaoRamais.php"; 
+                cad_ramais();
+                 principal();
+               // principal('../services/acaoRamais.php')
+                break;
 	}
 	$('.data').hide("fast");
 	
+	//inicio ocultar e exibir cadastros recentos
+	$('#tab2').click(function(){
+		$('.data').show("fast");
+		
+		});
+	
+	$('#tab3').click(function(){
+		$('.data').hide(1);
+		
+		});
+	//fim ocultar e exibir cadastros recentos
+		
+		
 	//-------------mensagens de alertas------------//
 	$('.alert_warning').hide("fast");
 	$('.alert_error').hide("fast");
@@ -20,10 +61,8 @@ $(function(){
 	//----------fim mensagens de alertas------------//
 	
 
-var urlpost = 'php/action_usuarios.php'; 
-var forms = $('form');
-var botao = $('.j_button');
-var mensagem = $('.mensagem');
+//var urlpost = 'php/action_usuarios.php'; 
+
 	//botao.attr("type","submit");
 	
 	function carregando(){
@@ -35,7 +74,11 @@ var mensagem = $('.mensagem');
 	}
 	
 	function sucesso(){
+		
 		mensagem.empty().html('<h4 class="alert_success">Cadastro Realizado com Sucesso</h4>').fadeIn("fast");
+		setTimeout(function (){location.reload()},1500);
+		//window.setTimeout()
+		//delay(2000);
 	}
 	
 	
@@ -56,16 +99,18 @@ var mensagem = $('.mensagem');
 		
 	
 	});
-	
+function principal(){	
+   // alert('Url Send '+urlpost);
 	$.ajaxSetup({
 			url:	urlpost,
 			type:	'POST',
 			beforeSend: carregando,
 			error: 		errosend
 		});
-	
-	var cadastro_usuarios = $('form[name="usuarios"]');
-	
+}
+	//alert("UrlPost: "+urlpost);
+function cad_usuario(){	
+        var cadastro_usuarios = $('form[name="usuarios"]');
 	cadastro_usuarios.submit(function(){
 		
 	//-----------------validacao--------------//	
@@ -109,9 +154,6 @@ var mensagem = $('.mensagem');
 	$('input[name="usuarioSenha"]').css("border-color","red");
 	$('input[name="usuarioConfsenha"]').css("border-color","red");
 	return false;
-	}else if (duplo == '1'){
-		$('.mensagem').empty().html('<h4 class="alert_error">Usuário já existente</h4>');
-		return false;
 	}
 	
 	//---------------fim validacao---------------//
@@ -127,7 +169,6 @@ var mensagem = $('.mensagem');
 					$('.mensagem').empty().html('<h4 class="alert_error">Usuário já existente</h4>');
 				}else{
 				sucesso();
-				location.reload();
 				}//location.href="http://localhost/intranet/Admin/nutricao.php";
 			/*if(resposta == 1){
 					sucesso();
@@ -145,8 +186,68 @@ var mensagem = $('.mensagem');
 			}
 		});
 });		
+
+}
+
+function cad_ramais(){	
+        //urlpost = "../services/acaoRamais.php"; 
+        var cadastro_ramais = $('form[name="cadastro_ramais"]');
+	cadastro_ramais.submit(function(){
+	
+		
+	//-----------------validacao--------------//	
+	var nrramal = $('input[name="nrramal"]').val();
+	var nmresponsavel = $('input[name="nmresponsavel"]').val();	
+	var nmsetor = $('input[name="nmsetor"]').val();
+	var visualiza = $('input[name="visualiza"]').val();
+	var apelido = $('input[name="apelido"]').val();
 	
 	
+	if (nrramal == ''){
+	$('.mensagem').empty().html('<h4 class="alert_error">Preencha o campo Numero do Ramal</h4>');
+	$('input[name="nrramal"]').css("border-color","red").focus();
+		
+	return false;
+	
+	}else if (opcao == '0' && nmsetor == ''){
+	$('.mensagem').empty().html('<h4 class="alert_error">Preencha o campo Setor</h4>');
+	$('select[name="nmsetor"]').css("border-color","red").focus();	
+	return false;
+	}
+	
+	
+	//---------------fim validacao---------------//
+	
+		var dados1 = $(this).serialize();
+		var action = "&acao=I";
+		var sender	= dados1+action;
+		
+		$.ajax({
+			data:	sender,
+			success: function(dados1){
+				if (dados1 == 1){
+					$('.mensagem').empty().html('<h4 class="alert_error">Ramal já existente</h4>');
+				}else{
+				sucesso();
+				}//location.href="http://localhost/intranet/Admin/nutricao.php";
+			/*if(resposta == 1){
+					sucesso();
+				}else if(resposta == '2'){
+					errosend();
+				}else{
+					errdados('<strong>Erro ao cadastrar:</strong> Existem campos em branco!');
+					
+				}*/	
+			},
+			complete: function(){	
+				//sucesso();
+				cadastro_ramais.find("input:text,textarea").val('');
+				//location.href="http://localhost/intranet/Admin/nutricao.php";
+			}
+		});
+});		
+
+}
 
 //-----------------delete-------------------------//
 

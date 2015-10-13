@@ -22,11 +22,29 @@
 
 			<!--  seçao sistemas -->
                         
-                                    
+                <script type="text/javascript">
+                $('#vai').('show');
+                
+                </script>                    
                         
 			<section class="about text-center" id="about">
 				<div class="container">
-                                    <H2>EM CONSTRUÇÃO</H2>
+                                    <H2>Cardapio</H2>
+                                    
+                                   <div class="tabbable"> <!-- Only required for left/right tabs -->
+  <ul class="nav nav-tabs">
+    <li class="active"><a href="#tab1" data-toggle="tab">Cafe da manha</a></li>
+    <li><a href="#tab2" data-toggle="tab">Almoço</a></li>
+  </ul>
+  <div class="tab-content">
+    <div class="tab-pane active" id="tab1">
+      <p id="vai">Café da Manhã</p>
+    </div>
+    <div class="tab-pane" id="tab2">
+      <p>Almoço</p>
+    </div>
+  </div>
+</div>
                                   
 				</div>
                 

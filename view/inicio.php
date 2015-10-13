@@ -32,7 +32,12 @@
 
 						<div class="col-md-4 col-sm-6 largura">
                         <!--http://C:/Program Files (x86)/Internet Explorer/iexplorer.exe-->
-							<a href="http://www.google.com"><?php exec("C:/Program Files (x86)/Internet Explorer/iexplorer.exe")?><div class="single-about-detail clearfix" style="border:1px solid black;border-radius:10px">
+                        <script type="text/javascript">
+						function cmd(vai){
+							
+							}
+						</script>
+							<a href="redirecionar.php" ><div class="single-about-detail clearfix" style="border:1px solid black;border-radius:10px">
 								<div class="about-img" align="center">
 									<img class="img-responsive" src="../img/MVG.png" alt="">
 								</div>

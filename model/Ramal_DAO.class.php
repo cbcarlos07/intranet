@@ -150,15 +150,39 @@ public function  insertRamais(Ramal $ramal ){
         		return $i;
 	}
         
-        public function  getTotal(){
+        public function  verificarDulicidade($nrramal){
                  $conn = new ConnectionFactory();   
                  $conexao = $conn->getConnection();
                  $i = 0;
-		 $sql_text = "SELECT COUNT(*) TOTAL FROM DBAADV.INTRA_RAMAL";
+		 $sql_text = "SELECT * FROM DBAADV.INTRA_RAMAL R WHERE R.DS_RAMAL = :DSRAMAL";
 				
 					try {
 						
-                                            $stmt = oci_parse($conexao, $sql_text);
+                                            $stmt = oci_parse($conexao, $sql_text);                                            
+                                            oci_bind_by_name($stmt, ":DSRAMAL", $nrramal);
+                                            oci_execute($stmt);
+                                              if ($row = oci_fetch_array($stmt, OCI_ASSOC)){
+                                                 $i = 1; 
+                                              }
+                             $conn->closeConnection($conexao);
+				} catch (PDOException $ex) {
+				//    echo "<script>  alert('Erro: ".$ex->getMessage()."')</script>";
+                                    echo " Erro: ".$ex->getMessage();
+			  }
+            
+        		return $i;
+	}
+        
+         public function  getTotal($dssetor){
+                 $conn = new ConnectionFactory();   
+                 $conexao = $conn->getConnection();
+                 $i = 0;
+		 $sql_text = "SELECT COUNT(*) TOTAL FROM DBAADV.INTRA_RAMAL R WHERE R.DS_SETOR LIKE :DSSETOR";
+				
+					try {
+						
+                                            $stmt = oci_parse($conexao, $sql_text);                                            
+                                            oci_bind_by_name($stmt, ":DSSETOR", $dssetor);
                                             oci_execute($stmt);
                                               if ($row = oci_fetch_array($stmt, OCI_ASSOC)){
                                                  $i = $row["TOTAL"]; 
@@ -170,7 +194,9 @@ public function  insertRamais(Ramal $ramal ){
 			  }
             
         		return $i;
-	}
+	} 
+        
+        
         public function  getSetor(){
                  $conn = new ConnectionFactory();   
                  $conexao = $conn->getConnection();                 
@@ -273,7 +299,7 @@ public function  insertRamais(Ramal $ramal ){
        return $ramalList;
 	}   
         
- public function  lista_ramal($set, $inicio, $fim){
+ public function  lista_ramal1($set){
                  $conn = new ConnectionFactory();   
                  $conexao = $conn->getConnection();                 
                  $ramal = null;
@@ -292,7 +318,7 @@ public function  insertRamais(Ramal $ramal ){
                                         OR R.DS_RAMAL LIKE :ramal
                                         OR R.DS_APELIDO LIKE :apelido
                                         OR R.DS_SETOR LIKE :setor
-                                    )
+                                    )                                  
                                       ORDER BY R.DS_SETOR
                                                       ";		   
                       $statement = oci_parse($conexao, $sql_text);
@@ -316,16 +342,13 @@ public function  insertRamais(Ramal $ramal ){
                                                 )
                                                 R
                                                 )
-                                                S
-                                                WHERE S.NUMERO BETWEEN :inicio AND :fim
-                                                ORDER BY  NUMERO
+                                                S                                               
+                                                ORDER BY  S.DS_SETOR
 
 
                                  ";
 			$statement = oci_parse($conexao, $sql_text);	
                        
-                        oci_bind_by_name($statement, ":inicio", $inicio, -1);
-                        oci_bind_by_name($statement, ":fim", $fim, -1);
                   }
              
              
@@ -361,6 +384,97 @@ public function  insertRamais(Ramal $ramal ){
        return $ramalList;
 	}      
         
+        
+     public function  lista_ramal($set, $inicio){
+                 $conn = new ConnectionFactory();   
+                 $conexao = $conn->getConnection();                 
+                 $ramal = null;
+                 $ramalList = new RamalList();       
+		//echo "<h2>".$inicio ." de ".$fim ."</h2>";
+                 
+              try {
+                  
+                  if($set != ""){
+                      
+                   //   echo "Pesquisa ramal: ".$set."<br>Nao Vazio";
+                      $sql_text = "SELECT * FROM DBAADV.INTRA_RAMAL R 						
+				  WHERE 
+                                  (
+                                        R.DS_RESPONSAVEL LIKE :resp
+                                        OR R.DS_RAMAL LIKE :ramal
+                                        OR R.DS_APELIDO LIKE :apelido
+                                        OR R.DS_SETOR LIKE :setor
+                                    )
+                                    AND R.SN_VISUALIZA = 'S'
+                                      ORDER BY R.DS_SETOR
+                                                      ";		   
+                      $statement = oci_parse($conexao, $sql_text);
+             $parametro = "%".$set."%";
+             oci_bind_by_name($statement, ":resp", $parametro,-1);
+             oci_bind_by_name($statement, ":ramal", $parametro,-1);
+             oci_bind_by_name($statement, ":apelido", $parametro,-1);
+             oci_bind_by_name($statement, ":setor", $parametro,-1);
+             
+             
+                  }
+                  else{
+                //      echo "Pesquisa ramal: ".$set."<br>Vazio";
+                        $sql_text = "SELECT * FROM (
+                                                SELECT rownum as NUMERO 
+                                                   ,R.*
+                                                FROM 
+                                                (
+                                                    SELECT * FROM DBAADV.INTRA_RAMAL I
+                                                     ORDER BY I.DS_SETOR
+                                                )
+                                                R
+                                                )
+                                                S
+                                                WHERE S.DS_SETOR LIKE :DSSETOR
+                                                AND S.SN_VISUALIZA = 'S'
+                                                ORDER BY  NUMERO
+
+
+                                 ";
+			$statement = oci_parse($conexao, $sql_text);	
+                        $par = "$inicio%"; //par = de parametro
+                        oci_bind_by_name($statement, ":DSSETOR", $par, -1);
+                        
+                  }
+             
+             
+             oci_execute($statement);
+             
+            while($row = oci_fetch_array($statement, OCI_ASSOC)){
+                $ramal = new Ramal();                
+                if(isset($row["DS_RESPONSAVEL"])){
+                    $resp = $row["DS_RESPONSAVEL"];
+                }else{
+                    $resp = "";
+                }
+                if(isset($row["DS_APELIDO"])){
+                    $apelido = $row["DS_APELIDO"];
+                }else{
+                    $apelido = "";
+                }
+                
+                $ramal->setCodigo($row["CD_RAMAL"]);
+                $ramal->setResponsavel($resp);
+                $ramal->setNrRamal($row["DS_RAMAL"]);                                
+                $ramal->setSetor($row["DS_SETOR"]);
+                $ramal->setSnVisutaliza($row["SN_VISUALIZA"]);
+                $ramal->setDsApelido($apelido);
+                $ramal->setCdSetor($row["CD_SETOR"]);
+                $ramalList->addRamal($ramal);
+                
+            }
+            $conn->closeConnection($conexao);
+        } catch (PDOException $ex) {
+            echo "Erro: ".$ex->getMessage();
+        }
+       return $ramalList;
+	}    
+        
         public function  total_pesquisa($set){
                  $conn = new ConnectionFactory();   
                  $conexao = $conn->getConnection();                 
@@ -377,6 +491,7 @@ public function  insertRamais(Ramal $ramal ){
                                                   OR R.DS_APELIDO LIKE :apelido
                                                   OR R.DS_SETOR = :setor
                                                   )
+                                                  AND R.SN_VISUALIZA = 'S'
                                                  ORDER BY R.DS_SETOR
                                                       ";		   
                       $statement = oci_parse($conexao, $sql_text);

@@ -54,7 +54,11 @@ $ramalController = new Ramal_Controller();
 $setores = $ramalController->getSetor();
 $setorList = new SetorListIterator($setores);
 $setor = new Setor();
-$opcao = $_GET['opcao'];
+if(isset($_GET['opcao'])){
+    $opcao = $_GET['opcao'];
+}else{
+    $opcao = $_POST['opcao'];
+}
 //echo "Opcao escolhida: ".$opcao."<br>";
   if($opcao == 'I'){
       $strAcao = "CADASTRAR RAMAL";

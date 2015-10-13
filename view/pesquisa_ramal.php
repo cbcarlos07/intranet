@@ -36,21 +36,34 @@
                                              </div>
                          
                           
-                               <table border=1  id="tabelap">
-                                       <tr >
-                                           <td>Setor</TD><TD>Ramal</TD><td>Responsavel</td>
-                                           
-                                      </tr>
-                                        <tbody>
+                              
                                             <?php
                                             $pesquisa = strtoupper($_POST['pesquisa']);
-                                            
+                                          /*  extract($_POST);
+                                            $pesquisa = $texto;
+                                            */
                                             include_once '../controller/Ramal_Controller.class.php';
                                             include '../bean/Ramal.class.php'; 
                                             include_once '../services/RamalList.class.php';
                                             include_once '../services/RamalListIterator.class.php';
                                             $controller = new Ramal_Controller();
                                             $total = $controller->total_pesquisa($pesquisa);
+                                            if($total == 0){  
+                                                ?>
+                                  <h3>Não foi encontrado nenhum dado referente à pesquisa</h3>
+                                  <?php
+                                  
+                                            }else{ // casp o total encontrado seja maior do que zero
+                                             ?>
+                                    <table border=1  id="tabelap">
+                                                        <tr >
+                                                            <td>Setor</TD><TD>Ramal</TD><td>Responsavel</td>
+
+                                                       </tr>
+                                                         <tbody>
+                                                             
+                           <?php                                  
+                                            }
                                             $rs = $controller->lista_ramais($pesquisa, 0, $total);
 
                                             $i = 0;

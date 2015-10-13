@@ -10,7 +10,7 @@
        $inicio = $index."inicio.php";
        $cardapio = $index."cardapio.php";
        $ramais = $index."ramais.php";
-       $outros = $index."../Admin/nutricao.php";
+       $outros = $index."../Admin/painel.php";
    function menu($opcao){
        
        switch ($opcao){

@@ -28,9 +28,9 @@ class Ramal_Controller {
         return $teste;
     }
     
-     public function recTotal(){
+     public function recTotal($dssetor){
          $rd = new Ramal_DAO();
-         $teste = $rd->getTotal();
+         $teste = $rd->getTotal($dssetor);
          return $teste;
      }
     
@@ -45,9 +45,15 @@ class Ramal_Controller {
          return $teste;
      }
      
-     public function lista_ramais($set, $inicio, $fim){
+     public function lista_ramais1($set){
          $rd = new Ramal_DAO();
-         $lista = $rd->lista_ramal($set, $inicio, $fim);
+         $lista = $rd->lista_ramal1($set);
+         return $lista;
+     }
+     
+      public function lista_ramais($set, $letra){
+         $rd = new Ramal_DAO();
+         $lista = $rd->lista_ramal($set, $letra);
          return $lista;
      }
      public function recuperar_ramal($id){
@@ -59,6 +65,12 @@ class Ramal_Controller {
      public function total_pesquisa($id){
          $rd = new Ramal_DAO();
          $ramal = $rd->total_pesquisa($id);
+         return $ramal;
+     }
+     
+     public function  verificarDulicidade($nrramal){
+         $rd = new Ramal_DAO();
+         $ramal = $rd->verificarDulicidade($nrramal);
          return $ramal;
      }
     

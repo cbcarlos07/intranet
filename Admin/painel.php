@@ -57,17 +57,38 @@ if ($_SESSION['logado'] == true){
         $('.column').equalHeight();
     });
 </script>
+<script type="text/javascript">
+        function habilitaBtn () {
+            var op = document.getElementById("opcao").value;
 
+            if(op == "0")
+            {
+                    document.getElementById('setor').disabled=false;                    
+                    document.getElementById('setor').focus();                    
+            }
+
+            else 
+            {
+                
+                    document.getElementById('setor').disabled=true;              
+                    document.getElementById('setor').value="";              
+                    
+                    
+                    
+                
+            }
+        }
+    </script>
 <input type="hidden" class="acesso" value="<?php echo $_SESSION['nivel'] ?>">
 </head>
 
 
-<body>
+<body onload="habilitaBtn()">
 
 	<header id="header">
 		<hgroup>
 			<h1 class="site_title"><?php $setor = $_SESSION['nivel']; if ($setor == 1)echo 'Admin';else if($setor == 2)echo 'Nutrição';else if($setor == 3)echo 'Telefonia';?></h1>
-			<h2 class="section_title">Painel Administrativo</h2><div class="btn_view_site"><a href="http://10.51.28.7/intranet2">Ver site</a></div>
+			<h2 class="section_title">Painel Administrativo</h2><div class="btn_view_site"><a href="http://localhost/intranet/view/inicio.php">Ver site</a></div>
 		</hgroup>
 	</header> <!-- end of header bar -->
 	
@@ -125,6 +146,9 @@ if ($_SESSION['logado'] == true){
          <?php include 'php/Painel_usuarios.php'; ?>
          <!--fim painel usuarios -->
          
+         <!--inicio painel ramais -->
+         <?php include 'php/Painel_ramais.php'; ?>
+         <!-- fim painel ramais -->
          
          <!-------fim paines de visualização------->
 		
@@ -224,6 +248,7 @@ if ($_SESSION['logado'] == true){
   
   <div align="center">
   <input type="submit" value="atualizar">
+  </div>
  <!-- <button class="btn btn-success btn_tamanho">Cadastrar</button>
   <button class="btn btn-success btn_tamanho">Limpar</button>
   </div>-->

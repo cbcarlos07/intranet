@@ -2,8 +2,8 @@
 		<header>
 		<h3 class="tabs_involved">Cadastros recentes de usuários</h3>
 		<ul class="tabs">
-   			<li><a href="#tab1">Piasts</a></li>
-    		<li><a href="#tab2">Comentario</a></li>
+   			<li><a href="#tab1" id="tab3">Mostrar</a></li>
+    		<li><a href="#tab2" id="tab2">Ocultar</a></li>
 		</ul>
 		</header>
         
@@ -16,11 +16,11 @@
    					<th></th> 
     				<th>Nome</th> 
     				<th>Usuário</th> 
-    				<th>Nível</th>
+    				<th width="100px" align="center">Nível</th>
                     <th>Senha</th> 
-    				<th>Editar</th> 
-                    <th>Excluir</th>
-                    <th>Link</th>
+    				<th align="center">Editar</th> 
+                    <th align="center">Excluir</th>
+                    
 				</tr> 
 			</thead> 
 			<tbody> 
@@ -30,13 +30,35 @@
    					<td><input type="checkbox"></td> 
     				<td><?php echo $dados['nome']; ?></td> 
     				<td><?php echo $dados['usuario']; ?></td> 
-    				<td><?php echo $dados['nivel']; ?></td> 
+    				<td width="100px" align="center"><?php echo $dados['nivel']; ?></td> 
                     <td><?php echo $dados['senha']; ?></td>
-                    <td><a href="#" class="big-link" data-reveal-id="myModal" data-animation="fade"><input type="image" src="images/icn_edit.png" title="Edit"></a></td>
-    				<td><input type="image" src="images/icn_trash.png" title="Trash"></td>
-                    <td><input type="image" src="images/icn_trash.png" title="Trash"></td>  
+                    <td align="center"><a href="#" class="big-link" data-reveal-id="myModal" data-animation="fade"><input type="image" src="images/icn_edit.png" title="Editar" name="editar" id="<?php echo $dados['idUser']?>"></a></td>
+    				<td align="center"><input type="image" src="images/icn_trash.png" title="excluir" name="excluir" id="<?php echo $dados['idUser']?>"></td>
+                     
 				</tr> 
              <?php } ?>
+             
+            
+             
+             
+             <!--<div id="myModal" class="reveal-modal">
+			<h1 align="center">Excluir dados</h1>
+			<article class="module width_full">
+			<header>
+			  <h3>Exclusão de Usuários</h3></header>
+              <div class="module_content">
+						
+					
+		  </div>
+			<div class="module_content">
+
+                <p>Você tem certeza que deseja excluir o usuário</p>
+                <div class="clear"></div>
+			</div>
+	  </article>
+			<a class="close-reveal-modal">&#215;</a>
+		</div>-->
+        
 				<!--<tr> 
    					<td><input type="checkbox"></td> 
     				<td>asdfsdfsdf dsfsd s dfdst</td> 

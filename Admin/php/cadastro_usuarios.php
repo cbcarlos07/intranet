@@ -1,11 +1,11 @@
-﻿<article class="module width_full">
+﻿<article class="module width_full painel1">
 			<header>
 			  <h3>Cadastro de Usuários</h3></header>
               <div class="module_content">
-						<fieldset>
+						<!--<fieldset>
 							<label>Titulo</label>
 							<input type="text">
-						</fieldset>
+						</fieldset>-->
 						
 						<!--<fieldset style="width:48%; float:left; margin-right: 3%;"> 
 							<label>Categoria</label>
@@ -22,7 +22,7 @@
 		  </div>
 			<div class="module_content">
 
-                            <form class="form-horizontal cardapio" action="../services/acaoRamais.php" method="post" name="usuarios">
+                <form class="form-horizontal cardapio" action="" method="post" name="usuarios">
   <div class="control-group">
     <label class="control-label" for="usuarioNome">Nome completo:</label>
     <div class="controls">
@@ -42,9 +42,9 @@
     <div class="controls">
 							<select style="width:62%;" name="usuarioRestricao">
                             <option>Selecione</option>
-								<option>Administrador</option>
-								<option>Nutricao</option>
-								<option>Telefonia</option>
+								<option value="1">Administrador</option>
+								<option value="2">Nutricao</option>
+								<option value="3">Telefonia</option>
 							</select>
     </div>
   </div>
@@ -64,6 +64,8 @@
   
   <div align="center">
   <input type="submit" value="enviar">
+  </div>
+
  <!-- <button class="btn btn-success btn_tamanho">Cadastrar</button>
   <button class="btn btn-success btn_tamanho">Limpar</button>
   </div>-->
