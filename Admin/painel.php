@@ -240,7 +240,7 @@ if ($_SESSION['logado'] == true){
     </div>
   </div>
   <div class="control-group">
-    <label class="control-label" for="usuarioConfsenha">Confirmar Senha</label>
+    <label class="control-label" for="usuarioConfsenha">Confirmar n/Senha</label>
     <div class="controls">
       <input type="password" style="width:61.5%" name="senha" />
     </div>

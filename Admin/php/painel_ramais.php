@@ -14,31 +14,71 @@
 			<thead> 
 				<tr> 
    					<th></th> 
-    				<th>Nome</th> 
-    				<th>Usuário</th> 
-    				<th width="100px" align="center">Nível</th>
-                    <th>Senha</th> 
+    				<th>Setor</th> 
+    				<th>Ramal</th> 
+    				<th>Responsável</th>
+                                <th>Visível</th> 
     				<th align="center">Editar</th> 
-                    <th align="center">Excluir</th>
+                                <th align="center">Excluir</th>
                     
 				</tr> 
 			</thead> 
 			<tbody> 
-            <?php include 'php/consulta_user.php';?>
-            <?php while ($dados = mysqli_fetch_array($query1)) {?>
-				<tr> 
-   					<td><input type="checkbox"></td> 
-    				<td><?php echo $dados['nome']; ?></td> 
-    				<td><?php echo $dados['usuario']; ?></td> 
-    				<td width="100px" align="center"><?php echo $dados['nivel']; ?></td> 
-                    <td><?php echo $dados['senha']; ?></td>
-                    <td align="center"><a href="#" class="big-link" data-reveal-id="myModal" data-animation="fade"><input type="image" src="images/icn_edit.png" title="Editar" name="editar" id="<?php echo $dados['idUser']?>"></a></td>
-    				<td align="center"><input type="image" src="images/icn_trash.png" title="excluir" name="excluir" id="<?php echo $dados['idUser']?>"></td>
-                     
-				</tr> 
-             <?php } ?>
-             
-            
+                            <?php 
+                            
+                                            include_once '../controller/Ramal_Controller.class.php';
+                                            include '../bean/Ramal.class.php'; 
+                                            include_once '../services/RamalList.class.php';
+                                            include_once '../services/RamalListIterator.class.php';
+                                            $controller = new Ramal_Controller();
+                                         
+                                             //   echo 'não é maior que o total';
+                                            $rs = $controller->lista_ramais1("");
+                                           
+                                            
+                                            // se página maior que 1 (um), então temos link para a página anterior
+
+                                            $i = 0;
+                                            $ramalList = new RamalListIterator($rs);
+                                            $ramal = new Ramal();                                        
+                                     
+                                           while($ramalList->hasNextRamal()){
+                                                $i++;
+                                               $ramal = $ramalList->getNextRamal();
+                                              if($i % 2 == 0){
+                                                  $par = "#d5e6ef";
+                                              }else{
+                                                  $par = "#ffffff";
+                                              }  
+
+                                                if($ramal->getSnVisutaliza() == 'S'){
+                                                     $checked = "checked";   
+                                                }else{
+                                                     $checked = "";   
+                                                }
+                                            ?>
+                            
+                                                <tr bgcolor="<?php echo $par; ?>" >;
+                                                
+                                                        <td><?php echo $ramal->getSetor(); ?></td>
+                                                        <td><?php echo $ramal->getNrRamal(); ?></td>;
+
+                                                        ?>
+                                                        <td><?php echo $ramal->getResponsavel(); ?></td>
+                                                        <td>
+                                                           <center>  <input type="checkbox" name="visualiza" <?php echo $checked; ?>  ></center>
+                                                        </td>
+                                                         <input type="hidden" id="cod" value="<?php echo $ramal->getCodigo(); ?>">
+                                                         <input type="hidden" id="opcao" value="A">
+
+                                                        <td align="center"><a href="#" class="big-link" data-reveal-id="myModal" data-animation="fade"><input type="image" src="images/icn_edit.png" title="Editar" name="editar" id="<?php echo $ramal->getCodigo(); ?>"></a></td>
+                                                        <td align="center"><input type="image" src="images/icn_trash.png" title="excluir" name="excluir" id="<?php echo $ramal->getCodigo(); ?>"></td> 
+
+                                                </tr>
+                                          <?php
+                                           }
+                                          ?>
+   
              
              
              <!--<div id="myModal" class="reveal-modal">
@@ -151,5 +191,4 @@
 			</div><!-- end of #tab2 -->
 			
 		</div><!-- end of .tab_container -->
-		
-		</article>
+</article>

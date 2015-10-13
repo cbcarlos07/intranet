@@ -32,6 +32,7 @@ $(function(){
 		$('.painel1').hide(1);
 		$('.painel3').hide(1);
 		$('.painel_usuarios').hide(1);
+              
                 
                 urlpost = "../services/acaoRamais.php"; 
                 cad_ramais();
