@@ -32,6 +32,8 @@ $(function(){
 		$('.painel1').hide(1);
 		$('.painel3').hide(1);
 		$('.painel_usuarios').hide(1);
+                $('.editar_usuarios').hide(1);
+                
               
                 
                 urlpost = "../services/acaoRamais.php"; 
@@ -256,7 +258,7 @@ function cad_ramais(){
 	confirm ('Você tem certeza que desejas excluir o usuario');
 	}*/
 
-function excluir(){
+
 $('input[name=excluir]').click(function(){
 	var confirma = confirm('Você tem certeza que desejas excluir este usuário?');
 	if (confirma){//--
@@ -276,12 +278,12 @@ $('input[name=excluir]').click(function(){
 		});
 	}//--
 	});
-}	
+	
 //----------------fim delete------------------------//
 
 
 //------------------editar------------------------//
-function editar(){
+
 var formmodal	= $('form[name="editar_form"]');
 var buttonconsult = $('input[name=editar]');
 buttonconsult.click(function(){
@@ -310,12 +312,12 @@ buttonconsult.click(function(){
 		})
 	
 	});
-}
+
 //------------------fim consultar pra editar-----------------//
 
 
 //-----------------inicio editar-------------------------//
-function editar2(){
+
 formmodal.submit(function(){
 	var buttonedit = $('input[name=editar]');
 	var dados = $(this).serialize();
@@ -334,7 +336,7 @@ formmodal.submit(function(){
 		});
 	
 	});
-}
+
 //formulario de cadastro de usuarios--------------	
 /*$('form[name="usuarios"]').submit(function(){
 	var nome = $('input[name="usuarioNome"]').val();

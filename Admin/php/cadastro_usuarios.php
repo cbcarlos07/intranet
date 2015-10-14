@@ -22,7 +22,7 @@
 		  </div>
 			<div class="module_content">
 
-                <form class="form-horizontal cardapio" action="" method="post" name="usuarios">
+                <form class="form-horizontal usuario" action="" method="post" name="usuarios">
   <div class="control-group">
     <label class="control-label" for="usuarioNome">Nome completo:</label>
     <div class="controls">

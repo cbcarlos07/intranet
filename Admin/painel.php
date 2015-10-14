@@ -3,7 +3,6 @@ session_start();
 if ($_SESSION['logado'] == true){
 
 ?>
-<!doctype html>
 <html lang="pt-br">
 
 <head>
@@ -11,17 +10,12 @@ if ($_SESSION['logado'] == true){
 	<title>Painel Administrativo</title>
 	
 	<link rel="stylesheet" href="css/layout.css" type="text/css" media="screen" />
-    <link rel="stylesheet" href="css/reveal.css" type="text/css" media="screen" />
-    <!--<link href="css/bootstrap.css" rel="stylesheet" type="text/css" />
-    <link href="css/bootstrap-responsive.css" rel="stylesheet" type="text/css" />
 	<!--[if lt IE 9]>
 	<link rel="stylesheet" href="css/ie.css" type="text/css" media="screen" />
 	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 	<![endif]-->
 	<script src="js/jquery-1.5.2.min.js" type="text/javascript"></script>
-    <script src="js/bootstrap.js"></script>
 	<script src="js/hideshow.js" type="text/javascript"></script>
-    <script src="js/jquery.reveal.js" type="text/javascript"></script>
 	<script src="js/jquery.tablesorter.min.js" type="text/javascript"></script>
 	<script type="text/javascript" src="js/jquery.equalHeight.js"></script>
     <script src="js/script.js"></script>
