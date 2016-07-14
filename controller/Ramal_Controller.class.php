@@ -1,5 +1,5 @@
 <?php
-include '../model/Ramal_DAO.class.php';
+
 
 
 class Ramal_Controller {
@@ -35,6 +35,7 @@ class Ramal_Controller {
      }
     
      public function getSetor(){
+         include_once  '../model/Ramal_DAO.class.php';
          $rd = new Ramal_DAO();
          $teste = $rd->getSetor();
          return $teste;

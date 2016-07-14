@@ -5,14 +5,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-    include ('ConnectionFactory.class.php');
-    include ('../services/SetorList.class.php');
-    include ('../bean/Setor.class.php');
+
+    
+    
 class Ramal_DAO {
+    
 public function  insertRamais(Ramal $ramal ){
-                 $conn = new ConnectionFactory();   
+				  $teste = false;
+                  $conn = new ConnectionFactory();   
                  $conexao = $conn->getConnection();
-		 $sql_text = "INSERT INTO DBAADV.INTRA_RAMAL
+				 $sql_text = "INSERT INTO DBAADV.INTRA_RAMAL
 					(CD_RAMAL, DS_RAMAL, DS_RESPONSAVEL, SN_VISUALIZA, DS_APELIDO, DS_SETOR, CD_SETOR)
 					VALUES 
 					(:cdramal, :dsramal, :dsdesc, :snvisualiza, :apelido, :setor, :cdsetor)";
@@ -198,6 +200,9 @@ public function  insertRamais(Ramal $ramal ){
         
         
         public function  getSetor(){
+                 include_once ('ConnectionFactory.class.php');
+                 include_once ('../services/SetorList.class.php');
+                 include_once ('../bean/Setor.class.php');
                  $conn = new ConnectionFactory();   
                  $conexao = $conn->getConnection();                 
                  $setor = null;
@@ -524,7 +529,7 @@ public function  insertRamais(Ramal $ramal ){
                  $conexao = $conn->getConnection();                 
                  $ramal = null;
                  //   echo "Codigo recuperar ramal: ".$id;
-		    $sql_text = "SELECT R.* FROM DBAADV.INTRA_RAMAL R 						
+		         $sql_text = "SELECT R.* FROM DBAADV.INTRA_RAMAL R 						
 						WHERE R.CD_RAMAL = :id";		   
               try {
              $statement = oci_parse($conexao, $sql_text);             

@@ -1,0 +1,19 @@
+
+
+#imagem{
+    margin-left: 5%;
+	margin-top: 3%;
+}
+
+#imagem a:hover 
+{ 
+  background-image: url(imagens/botao.png);
+  
+}
+
+#imagem a{
+background-image: url(imagens/tela_03.png);
+width:346px;/*defina*/
+height:75px;/*defina*/
+}
+/*<img src="imagens/tela_03.png" width="346" height="75" border="0" alt="">*/

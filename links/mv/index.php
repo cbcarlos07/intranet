@@ -6,4 +6,4 @@
  * and open the template in the editor.
  */
 
-header("Location:http://10.51.19.100/mv");
+header("Location:http://10.51.28.10/atendimento");

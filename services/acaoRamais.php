@@ -192,3 +192,12 @@ function excluir(){
     }
    
 }
+
+function pesquisar(){
+    $ramalController = new Ramal_Controller();
+    $setores = $ramalController->getSetor();
+    $setorList = new SetorListIterator($setores);
+    $setor = new Setor();
+    $ramal = new Ramal();
+    $ramal = $ramalController->recuperar_ramal($id);
+}

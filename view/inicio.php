@@ -12,7 +12,7 @@
 					    <!-- Colete as ligações nav, formulários e outros conteúdos para alternar -->
 					      <?php 
                                                 include ('../include/menu.php');
-                                                menu('1');
+                                                 menu('1');
                                                 
                                              ?>
                                                 

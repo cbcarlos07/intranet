@@ -1,0 +1,159 @@
+@charset "utf-8";
+/* CSS Document */
+
+.logo{
+	float:left;
+	margin:-5px 0px;
+        position: absolute;
+        //z-index: 2;
+        background: #fff;    
+        width: 100%;
+        
+}
+
+.topo{
+	/*width:100%;*/
+	height:150px;
+	padding:0;
+       // position: absolute;
+	background-color:#fff;
+       // background-image: linear-gradient(to right, white, #4d8b7f);
+	width: 100%;
+        margin-top: -30px;
+        
+}
+.ramais{
+    width: 100px;
+    
+    
+}
+
+#img{
+    width: 50px;
+    margin: 12px auto auto 20px;
+}
+.principal{
+    margin: 750px ;
+    
+    //position: absolute;
+}
+.cont{
+	margin: 42px auto auto auto;
+        width:1370px;
+      //  cursor:pointer;	
+        height: 230px;
+       
+}
+.novo{
+   text-size: 100px; 
+   font-weight: bold;
+   color: #990000;
+   font-family: "Arial";
+}
+.lista{
+    margin: auto auto auto auto;
+    width: 1300px;
+    
+}
+
+.listamenu{
+	//margin-left: 900px;
+	list-style:none;
+       
+        
+}
+.limenu{
+	font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
+	font-size:24px;
+	color:#315c5a;
+	float:right;
+	margin:0;
+	margin:55px 30px 0px 0px;
+	cursor:pointer;
+        z-index: 2;
+        position: relative;
+}
+li:hover{
+	color:#F90;
+}
+
+
+.ativo{
+	color:#FFF;
+}
+
+.listas{
+	margin:0px 50px 0px 0px;
+}
+
+
+.todosquadros{
+	margin:50px auto;
+	/*border:1px solid black;*/
+}
+.quadro{
+	background-color:#FFF;
+	height:260px;
+	border-radius:15px;
+	border:1px solid black;
+
+}
+.conteudo{
+	/*background-color:#2a2a2a;*/
+	height:100px;
+	width:190px;
+	margin-top:146px;
+
+	background: #315c5a;
+	border-top: 2px solid #fff;
+	transition: all .7s ease 0s;
+	-webkit-transition: all .7s ease 0s;
+	-moz-transition: all .7s ease 0s;
+	-o-transition: all .7s ease 0s;
+	-ms-transition: all .7s ease 0s;
+
+
+}
+
+.quadro:hover .conteudo{
+	background: #3a9dca;
+}
+
+.imagem{
+	width:190px;
+	height:144px;
+	/*border:1px solid black;*/
+	float:left;
+}
+.img_quadro{
+	width:72%;
+}
+.conteudo font{
+	margin:-10px 0px 0px 20px;
+	padding:20px;
+	color:#FFF;
+	font-size:26px;
+	float:left;
+	
+}
+
+.conteudo .quadro-grande{
+	//margin:-180px 0px 0px 0px;
+	padding:20px;
+	color:#FFF;
+	font-size:22px;
+	//float:left;
+    font-family: "Arial";
+	
+}
+.conteudo p{
+	/*margin:-10px 0px 0px 20px;
+	padding:20px;
+	color:#FFF;
+	font-size:36px;
+	float:left;*/
+	color:#FFF;
+	
+}
+
+
