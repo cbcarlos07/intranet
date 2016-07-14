@@ -37,17 +37,23 @@
      global $ramais;
      global $outros;
      ?>
-   <div class="topo">
+   <div class="topo ">
 	
     <div class="logo">
         <img src="img/banner5.png"/>
     </div>
    </div>
 
-<div class="lista row " id="principal" >
-    <div class="ramais">
-        <a  href="http://soulmvlinks/ramais"><img src="img/ramais.png" class="img-responsive img-thumbnail"></a>
+<div class="lista1 row  "  >
+    <div class="col-md-5">
+        <div id="elemento"><h1>Carregando</h1></div>
     </div>
+    <div class="col-md-7">
+        <div class="ramais">
+            <a  href="http://soulmvlinks/ramais"><img src="img/ramais.png" class="img-responsive img-thumbnail"></a>
+        </div>
+    </div>
+    
    
 </div> 
 

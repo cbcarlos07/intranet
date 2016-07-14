@@ -24,16 +24,21 @@
 }
 .ramais{
     width: 100px;
-    
+    float: right;   
+}
+#elemento{
     
 }
-
+.linhaPersonalizada{
+    background: #3a9dca;
+}
 #img{
     width: 50px;
     margin: 12px auto auto 20px;
 }
 .principal{
     margin: 750px ;
+   
     
     //position: absolute;
 }
@@ -51,6 +56,12 @@
    font-family: "Arial";
 }
 .lista{
+    margin: auto auto auto auto;
+    width: 1300px;
+    
+}
+
+.lista1{
     margin: auto auto auto auto;
     width: 1300px;
     
