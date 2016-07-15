@@ -275,21 +275,21 @@ function atualizaContador(YY,MM,DD,HH,MI,saida) {
 
 	var faltam = '';
 	faltam += (dd && dd > 1) ? dd+' dias, ' : (dd==1 ? '1 dia, ' : '');
-	faltam += (toString(hh).length) ? hh+':' : '';
-	faltam += (toString(mm).length) ? mm+':' : '';
-	faltam += ss;
+	faltam += (toString(hh).length) ? hh+' horas ' : '';
+	faltam += (toString(mm).length) ? mm+' minutos ' : '';
+	faltam += (ss && ss > 1) ? ss+' segundos ' : (ss == 1 ? '1 segundo.' : '' );
 
 	if (dd+hh+mm+ss > 0) {
 		document.getElementById(saida).innerHTML = faltam;
 		setTimeout(function(){atualizaContador(YY,MM,DD,HH,MI,saida)},1000);
 	} else {
-		document.getElementById(saida).innerHTML = '';
+		document.getElementById(saida).innerHTML = 'ESTAMOS EM VISITA';
 		setTimeout(function(){atualizaContador(YY,MM,DD,HH,MI,saida)},1000);
 	}
 }
 
 window.onload=function(){
-	atualizaContador('2016','10','06','09','00','elemento');
+	atualizaContador('2016','07','14','17','26','elemento');
 }
 </script>
 
