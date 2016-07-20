@@ -38,29 +38,32 @@
      global $outros;
      ?>
 <link href="./css/bootstrap.css" rel="stylesheet" type="text/css" />
-   <div class="row">
-<div class="topo ">
-        <div class="logo">
-            <img src="img/banner5.png"/>
+<link href="./css/cronometro.css" rel="stylesheet" type="text/css" />
+<center>
+   <div class="row  " >
+        <div class="topo ">
+                <div class="logo ">
+                    <img src="img/banner5.png"/>
+                </div>
         </div>
-   </div>
-</div>    
+    </div>    
+</center>
 
-<div class="container">
-    
-<div class="lista1 row  "  >
-    <div class="col-md-5 " id="elemento">
-        <h1>Carregando</h1>
-    </div>
-    <div class="col-md-7  ">
-        <div class="ramais">
-            <a  href="http://soulmvlinks/ramais"><img src="img/ramais.png" class="img-responsive img-thumbnail sty"></a>
-        </div>
-    </div>
+<center>
+        <div class="col-md-12 ona">
+            <div class="ona3">
+            
+                <img src="img/ona.png">
+            </div>
+        </div>   
+</center>   
+        
+            
+  
     
    
-</div> 
-</div>    
+
+
 
 
     <!--

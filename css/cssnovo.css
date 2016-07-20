@@ -4,11 +4,11 @@
 .logo{
 	
 	//margin:-5px 0px;
-        position: absolute;
+       // position: absolute;
         //z-index: 2;
         //background: #fff;    
         //width: 100%;
-        display: inline-block;
+        //display: inline-block;
         background-image: linear-gradient(to right, white, #508d81);
         
 }
@@ -21,7 +21,9 @@
 	background-color:#fff;
         //background-image: linear-gradient(to right, white, #4d8b7f);
 	width: 100%;
-        margin-top: -30px;
+        margin-top: -20px;
+        //margin: auto;
+        
         
         
 }
@@ -32,11 +34,17 @@
     margin-right: 60px;
     border: none;
 }
-#elemento{
-    //background: #315c5a;
+
+
+.corLinha{
+  background: #0088cc;
 }
+
 .linhaPersonalizada{
     background: #3a9dca;
+}
+.linhaPerson{
+    background: #F90;
 }
 #img{
     width: 50px;
@@ -72,12 +80,7 @@
     width: 1300px;
     margin-top: -30px;
 }
-#elemento{
-    font-size: 20px;
-    font-weight: bold;
-    vertical-align: center;
-    
-}
+
 .listamenu{
 	//margin-left: 900px;
 	list-style:none;
@@ -151,7 +154,7 @@ li:hover{
 	width:72%;
 }
 .conteudo font{
-	margin:-10px 0px 0px 20px;
+	margin:-20px 0px 0px 20px;
 	padding:20px;
 	color:#FFF;
 	font-size:26px;
@@ -165,7 +168,7 @@ li:hover{
 	color:#FFF;
 	font-size:22px;
 	//float:left;
-    font-family: "Arial";
+        font-family: "Arial";
 	
 }
 .conteudo p{

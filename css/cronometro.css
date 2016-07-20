@@ -1,0 +1,39 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 18/07/2016, 07:49:10
+    Author     : CARLOS
+*/
+
+.middle{
+    //display: table-cell;
+   // vertical-align: middle;
+    //margin-left: -40px;
+    
+}
+
+#elemento{
+    height:  80px;
+    font-size: 40px;
+    font-weight: bold;   
+    text-align: center;  
+    position: absolute;
+    margin-top: -50px;
+    //position: absolute;
+   // margin-left: 10px;
+}
+
+.contagem{
+    float: right;
+}
+
+.ona{
+    margin-top: -40px;
+}
+.ona3{
+    width: 103%;
+    margin-left: -17px;
+}
