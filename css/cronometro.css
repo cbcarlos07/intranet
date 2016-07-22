@@ -14,26 +14,95 @@ and open the template in the editor.
     //margin-left: -40px;
     
 }
-
-#elemento{
-    height:  80px;
-    font-size: 40px;
-    font-weight: bold;   
-    text-align: center;  
-    position: absolute;
-    margin-top: -50px;
-    //position: absolute;
-   // margin-left: 10px;
+#cronometro{
+    height:  auto;
+    font-size: 30px;
+    font-weight: bold;
+    margin-top: 5px;
+    //border: 1px solid blue;
+    text-align: left;
+    margin-left: 100px;
+    width: 56%;
+    color: #346347;
 }
+#dia{
+    height:  auto;
+    font-size: 30px;
+    font-weight: bold;
+    //margin-top: 20px;
+    //border: 1px solid blue;
+    text-align: left;
+    margin-left: 08px;
+   // border: 1px solid green ;
+  
+   inline-box-align: inherit
+    
+}
+
+#hora{
+    height:  auto;
+    font-size: 30px;
+    font-weight: bold;
+    margin-top: -45px;
+   // border: 1px solid blue;
+    text-align: left;
+    margin-left: 55px;
+   // border: 1px solid green ;
+    
+}
+
+
+
+#minuto{
+    height:  auto;
+    font-size: 30px;
+    font-weight: bold;
+    margin-top: -42px;
+   // border: 1px solid blue;
+    text-align: left;
+    margin-left: 100px;
+   // border: 1px solid green ;
+    
+}
+
+#segundo{
+    height:  auto;
+    font-size: 30px;
+    font-weight: bold;
+    margin-top: -42px;
+   // border: 1px solid blue;
+    text-align: left;
+    margin-left: 150px;
+   // border: 1px solid green ;
+    
+}
+
 
 .contagem{
     float: right;
+    margin-right: 55px;
+    position: relative;
+    margin-top: -65px;
+    width: 30%;
+    height: 60px;
+    background: url('../img/time.png') no-repeat center center;
+    //text-align: center;  
+    background-size: 95%;
+    //border: 1px solid green;
+    
 }
 
+
 .ona{
-    margin-top: -40px;
+    
+    
+    float: right;
+    position:absolute;
 }
 .ona3{
     width: 103%;
     margin-left: -17px;
+    margin-top: -50px;
+    
+    background-image: linear-gradient(to right, #FDF7D5, #F7E6A0);
 }
