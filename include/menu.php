@@ -52,9 +52,13 @@
 <center>
         <div class="col-md-12 ona">
             <div class="ona3">
-            
                 <img src="img/ona.png">
             </div>
+            <center>
+            <div class="contagem" align="right" >
+                    <div  id="cronometro"></div>
+            </div>
+                </center>
         </div>   
 </center>   
         
