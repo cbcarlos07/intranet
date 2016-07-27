@@ -300,9 +300,9 @@ function atualizaContador(YY,MM,DD,HH,MI,saida) {
         //hora = hh;
        // minuto = mm;
        // segundo = ss;
-	faltam +=  dd+'&nbsp;&nbsp;&nbsp;' ;
-	faltam += hh < 10 ? '0'+(toString(hh).length)+'&nbsp;&nbsp;' : hh+'&nbsp;&nbsp;';
-	faltam += mm < 10 ? '0'+(toString(mm).length)+'&nbsp;&nbsp;' : mm+'&nbsp;&nbsp;&nbsp;';
+	faltam += dd < 10 ? '0'+dd+'&nbsp;:&nbsp;' : ' '+dd+'&nbsp;:&nbsp;' ;
+	faltam += hh < 10 ? '0'+hh+'&nbsp;:&nbsp;' : (toString(hh).length)+'&nbsp;:&nbsp;';
+	faltam += mm < 10 ? '0'+mm+'&nbsp;:&nbsp;' : (toString(mm).length)+'&nbsp;:&nbsp;';
         //dias = dd < 10 ? '0'+dd : dd;
         //horas = hh < 10 ? '0'+hh : hh;
         //minutos = mm < 10 ? '0'+mm : mm;

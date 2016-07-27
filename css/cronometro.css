@@ -20,11 +20,30 @@ and open the template in the editor.
     font-weight: bold;
     margin-top: 5px;
     //border: 1px solid blue;
-    text-align: left;
-    margin-left: 100px;
-    width: 56%;
+    //text-align: left;
+    float: right;
+    width: 50%;
+    _width: 60%;
     color: #346347;
+    margin-right:  25px;
+    _margin-left: 230px;
 }
+
+
+.contagem{
+    float: right;
+    margin-right: 55px;
+    position: relative;
+    margin-top: -65px;
+    width: 30%;
+    height: 60px;
+    background: url('../img/time.png') no-repeat center center;
+    //text-align: center;  
+    background-size: 95%;
+    //border: 1px solid green;
+    
+}
+
 #dia{
     height:  auto;
     font-size: 30px;
@@ -78,20 +97,6 @@ and open the template in the editor.
 }
 
 
-.contagem{
-    float: right;
-    margin-right: 55px;
-    position: relative;
-    margin-top: -65px;
-    width: 30%;
-    height: 60px;
-    background: url('../img/time.png') no-repeat center center;
-    //text-align: center;  
-    background-size: 95%;
-    //border: 1px solid green;
-    
-}
-
 
 .ona{
     
@@ -103,6 +108,10 @@ and open the template in the editor.
     width: 103%;
     margin-left: -17px;
     margin-top: -50px;
-    
+    border: 1px solid yellow;
     background-image: linear-gradient(to right, #FDF7D5, #F7E6A0);
+    background: #FDF7D59;
+    *background: #FDF7D5;
+    _background: #FDF7D5;
 }
+
