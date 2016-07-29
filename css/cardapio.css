@@ -1,0 +1,27 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 08/07/2016, 08:26:50
+    Author     : CARLOS
+*/
+.linhaPersonalizada{
+    background: #f9f9f9;
+}
+
+.nutricao{
+    float: left;
+    height: 1%;
+    position: absolute;
+}
+
+.tipo{
+    width: 230px;
+    background: green;
+}
+
+input[type=text]{
+    height: 30px;
+}
