@@ -100,10 +100,11 @@ class Funcionario_DAO{
           $conn = new ConnectionFactory();
           $connection = $conn->getConnection();
           $sql_text = "DELETE FROM DBAADV.INTRA_AGENDAMENTO WHERE ROWID = :CDP";
-          $select = "SELECT ROWID FROMDBAADV.INTRA_AGENDAMENTO I WHERE I.CD_CARDAPIO = = :CDP AND I.CD_FUNCIONARIO = :CDF";
+          $select = "SELECT ROWID FROM DBAADV.INTRA_AGENDAMENTO I WHERE I.CD_CARDAPIO  = :CDP AND I.CD_FUNCIONARIO = :CDF";
           try{
               $statement = oci_parse($connection, $select);
-              oci_bind_by_name($statement, ":CDP", $codigo);
+              oci_bind_by_name($statement, ":CDP", $card);
+              oci_bind_by_name($statement, ":CDF", $func);
               $rowid = oci_new_descriptor($connection, OCI_D_ROWID);
               oci_define_by_name($statement, "ROWID", $rowid);
               oci_execute($statement);

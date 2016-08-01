@@ -9,13 +9,15 @@ require_once './controller/Funcionario_Controller.class.php';
 $valor = $_GET['codigo'];
 $card = $_GET['card'];
 $c = new Funcionario_Controler();
-
+$name = $c->getFuncionario($valor);
 $com = $c->verificarCadastro($card, $valor);
+
 if($com > 0){
-    echo json_encode(array('response' => $com));
+    
+    echo json_encode(array('response' => $com, 'nome' => $name));
 }else{
-    $name = $c->getFuncionario($valor);
-    echo json_encode(array('response' => $name));
+
+    echo json_encode(array('response' => $com, 'nome' => $name));
 }
 
 //echo "<script>alert($name)</script>";

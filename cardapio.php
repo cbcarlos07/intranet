@@ -20,6 +20,7 @@ function pegarDataAtual(){
          
        $data;  
        $tipo_refeicao = 0;
+       $_SESSION['disable'] = 'disabled=""';
          if(isset($_POST['tipo'])){
              $tipo_refeicao = $_POST['tipo'];
              $_SESSION['tipo_refeicao'] = $tipo_refeicao;
@@ -122,6 +123,7 @@ function pegarDataAtual(){
                       $rs1    = $cpc->lista_tipo_pratos($cd_cardapio);
                       $tpList = new TPListIterator($rs1);
                       if($tpList->hasNextTipo()){
+                           $_SESSION['disable'] = '';
                       $cpp   = new Cardapio_Por_Prato();
             ?>
       
@@ -185,6 +187,7 @@ function pegarDataAtual(){
       <?php
                       } // fim do se
                       else{
+                           $_SESSION['disable'] = 'disabled=""';
                           ?><br><br><br><br><br>
       <center><p><h3>N&atilde;o existe card&aacute;pio para esta data ou ainda n&atilde;o foi publicado</h3></p></center>
       <?php
@@ -201,7 +204,8 @@ function pegarDataAtual(){
             <!-- formulario  -->
        <br>
           <div class="row linhaPersonalizada dropdown">
-              <button class="btn btn-primary btn-calendario" onclick="mostrar()">Agendar</button>
+              
+              <button class="btn btn-primary btn-calendario"  <?php echo  $_SESSION['disable']; ?>  onclick="mostrar()">Agendar</button>
               <br>
               <br>
               <div id="oculto" style="display:none;" class="row">
@@ -218,7 +222,8 @@ function pegarDataAtual(){
                       </div>
                       <div class="col-md-2"></div>
                       <div class="col-md-10 btn-group">
-                          <button type="submit" id="btn-agendar" class="btn btn-success" disabled="" onclick="salvar()">Confirmar Agendamento</button>
+                          <button type="submit" id="btn-agendar" class="btn btn-success" disabled="" onclick="salvar();">Confirmar Agendamento</button>
+                          <button type="submit" id="btn-desagendar" class="btn btn-danger" disabled="" onclick="cancelar();">Cancelar Agendamento</button>
                       </div>
                       
                   </form>
@@ -283,13 +288,18 @@ function pegarDataAtual(){
                 jQuery.get( 'funcionario.php', {'codigo': val, 'card' : card}, function(data) {
                        // alert( 'response: ' + data.response +" codigo: "+val);
                         var x = document.getElementById("nm_func");
-                        
+                        //alert(data.response);
                         console.log(data.response);
+                        console.log(data.nome);
                         if(data.response == "1"){
                             alert("Crachá já agendado");
+                            x.value= data.nome;
+                            document.getElementById("btn-desagendar").disabled = false;
+                            document.getElementById("btn-agendar").disabled = true;
                         }
                         else{
-                            x.value= data.response;
+                            x.value= data.nome;
+                            document.getElementById("btn-desagendar").disabled = true;
                             document.getElementById("btn-agendar").disabled = false;
                         }
                         
@@ -312,7 +322,7 @@ function pegarDataAtual(){
         
 	<script>
                 function salvar() {
-                    jQuery(document).ready(function(){
+                    //jQuery(document).ready(function(){
                     jQuery('#agenda_form').submit(function(){
                                     //var dados = jQuery( this ).serialize();
                                     var cardapio = document.getElementById("cd_card").value;
@@ -337,6 +347,9 @@ function pegarDataAtual(){
                                                       alert("Agendamento realizado com sucesso");
                                                       document.getElementById("nm_func").value = "";
                                                       document.getElementById("cracha").value =  "";
+                                                      document.getElementById("btn-desagendar").disabled = true;
+                                                      document.getElementById("btn-agendar").disabled = true;
+                                                      location.reload();
                                                   }
                                                   else{
                                                       alert ("Erro ao salvar");
@@ -346,7 +359,58 @@ function pegarDataAtual(){
 
                                     return false;
                             });
-                    });
+                    //});
+                    
+                    //document.getElementById("nm_func").value = "";
+                    //document.getElementById("cracha").value =  "";
+                    
+                }
+                
+                
+                
+          </script>
+          
+          <script>
+          function cancelar() {
+                   // alert('Funcao cancelar chamada');
+                   // jQuery(document).ready(function(){
+                    jQuery('#agenda_form').submit(function(){
+                                    //var dados = jQuery( this ).serialize();
+                                    var cardapio = document.getElementById("cd_card").value;
+                                    var cracha = document.getElementById("cracha").value;
+                                    //var cracha = $('#cracha').value;
+                                    
+                                    //console.log("Cardapio: "+cardapio+" Cracha: "+cracha+" Nome: "+nome);    
+                                    jQuery.ajax({
+                                            type: "POST",
+                                            url: "cancelar.php",
+                                            data: {
+                                                'cardapio' : cardapio,
+                                                'cracha'   : cracha
+                                                
+                                            },
+                                            success: function( data )
+                                            {
+                                                //var retorno = data.retorno;
+                                                //alert(retorno);
+                                                console.log("Data: "+data);
+                                                if(data == 1){
+                                                      alert("Agendamento excluido com sucesso");
+                                                      document.getElementById("nm_func").value = "";
+                                                      document.getElementById("cracha").value =  "";
+                                                      document.getElementById("btn-desagendar").disabled = true;
+                                                      document.getElementById("btn-agendar").disabled = true;
+                                                      location.reload();
+                                                  }
+                                                  else{
+                                                      alert ("Erro ao salvar");
+                                                  }
+                                            }
+                                    });
+
+                                    return false;
+                            });
+                   // });
                     
                     //document.getElementById("nm_func").value = "";
                     //document.getElementById("cracha").value =  "";
