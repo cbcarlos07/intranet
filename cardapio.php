@@ -205,15 +205,16 @@ function pegarDataAtual(){
               <br>
               <br>
               <div id="oculto" style="display:none;" class="row">
-                  <form method="post" action="" id="ajax_form">
+                  <form method="post" action="" id="agenda_form">
+                      <input type="hidden" name="cardapio" id="cd_card" value="<?php echo $cd_cardapio; ?>">
                       <div class="form-group col-md-5">
                           <label for="codigo">C&oacute;digo do Crach&aacute;</label>
-                          <input type="text" name="codigo" id="codigo" class="form-control" onfocusout="buscar()"> 
+                          <input type="text" name="codigo" id="cracha" class="form-control" onfocusout="buscar()"> 
                       </div>
                       <div class="col-md-7"></div>
                       <div class="form-group col-md-10">
                           <label for="nome">Nome</label>
-                          <input type="text" name="nome" id="nome" class="form-control"  > 
+                          <input type="text" name="nome" id="nm_func" class="form-control"  > 
                       </div>
                       <div class="col-md-2"></div>
                       <div class="col-md-10 btn-group">
@@ -267,32 +268,7 @@ function pegarDataAtual(){
                }
            }
           </script>
-          <script>
-                function salvar() {
-                    jQuery(document).ready(function(){
-                    jQuery('#ajax_form').submit(function(){
-                                    var dados = jQuery( this ).serialize();
-
-                                    jQuery.ajax({
-                                            type: "POST",
-                                            url: "processa.php",
-                                            data: dados,
-                                            success: function( data )
-                                            {
-                                                    alert( data );
-                                            }
-                                    });
-
-                                    return false;
-                            });
-                    });
-                    
-                    document.getElementById("nome").value = "";
-                    document.getElementById("codigo").value =  "";
-                    
-                }
-          </script>
-          
+       
       
         <script src="js/bootstrap.min.js"></script>
         <script src="js/bootstrap.js"></script>
@@ -301,13 +277,19 @@ function pegarDataAtual(){
         function buscar( )
         {
                 var val;
-                val = document.getElementById("codigo").value;
-                jQuery.get( 'funcionario.php', {'codigo': val}, function(data) {
+                var card;
+                val = document.getElementById("cracha").value;
+                card = document.getElementById("cd_card").value;
+                jQuery.get( 'funcionario.php', {'codigo': val, 'card' : card}, function(data) {
                        // alert( 'response: ' + data.response +" codigo: "+val);
-                        var x = document.getElementById("nome");
-                        x.value= data.response;
+                        var x = document.getElementById("nm_func");
+                        
                         console.log(data.response);
-                        if(x.value != ""){
+                        if(data.response == "1"){
+                            alert("Crachá já agendado");
+                        }
+                        else{
+                            x.value= data.response;
                             document.getElementById("btn-agendar").disabled = false;
                         }
                         
@@ -331,16 +313,34 @@ function pegarDataAtual(){
 	<script>
                 function salvar() {
                     jQuery(document).ready(function(){
-                    jQuery('#ajax_form').submit(function(){
-                                    var dados = jQuery( this ).serialize();
-
+                    jQuery('#agenda_form').submit(function(){
+                                    //var dados = jQuery( this ).serialize();
+                                    var cardapio = document.getElementById("cd_card").value;
+                                    var cracha = document.getElementById("cracha").value;
+                                    //var cracha = $('#cracha').value;
+                                    var nome = document.getElementById("nm_func").value;
+                                    //console.log("Cardapio: "+cardapio+" Cracha: "+cracha+" Nome: "+nome);    
                                     jQuery.ajax({
                                             type: "POST",
-                                            url: "processa.php",
-                                            data: dados,
+                                            url: "agendar.php",
+                                            data: {
+                                                'cardapio' : cardapio,
+                                                'cracha'   : cracha,
+                                                'nome'     : nome
+                                            },
                                             success: function( data )
                                             {
-                                                    alert( data );
+                                                //var retorno = data.retorno;
+                                                //alert(retorno);
+                                                console.log("Data: "+data);
+                                                if(data == 1){
+                                                      alert("Agendamento realizado com sucesso");
+                                                      document.getElementById("nm_func").value = "";
+                                                      document.getElementById("cracha").value =  "";
+                                                  }
+                                                  else{
+                                                      alert ("Erro ao salvar");
+                                                  }
                                             }
                                     });
 
@@ -348,23 +348,13 @@ function pegarDataAtual(){
                             });
                     });
                     
-                    document.getElementById("nome").value = "";
-                    document.getElementById("codigo").value =  "";
+                    //document.getElementById("nm_func").value = "";
+                    //document.getElementById("cracha").value =  "";
                     
                 }
           </script>
           
-          
-          <script>
-            $(document).ready(function(){
-              $(".dropdown").on("hide.bs.dropdown", function(){
-                $(".btn-calendario").html('Consultar outra data <span class="caret"></span>');
-              });
-              $(".dropdown").on("show.bs.dropdown", function(){
-                $(".btn-calendario").html('Consultar outra data <span class="caret caret-up"></span>');
-              });
-            });
-     </script>
+         
 </div>
 
 </body>

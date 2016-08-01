@@ -9,7 +9,17 @@
 class Funcionario {
     private $codigo;
     private $nome;
-    
+    private $cardapio;
+    public function getCardapio() {
+        return $this->cardapio;
+    }
+
+    public function setCardapio($cardapio) {
+        $this->cardapio = $cardapio;
+        return $this;
+    }
+
+        
     public function getCodigo() {
         return $this->codigo;
     }

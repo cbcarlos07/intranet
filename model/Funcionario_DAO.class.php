@@ -47,21 +47,22 @@ class Funcionario_DAO{
 
     }
     
-    public function agendar($cardapio, $funcionario){
+    public function agendar($cdc, $cdf, $nmf){
         require_once 'ConnectionFactory.class.php';
         $teste = false;
         $conn = new ConnectionFactory();   
         $conexao = $conn->getConnection();
-        $sql_text = "INSERT INTO DBAADV.INTRA_AGENDAMENTO (CD_TIPO_PRATO, D_TIPO_PRATO)
-		     VALUES (:CDTP, :DSTP)";
+        $sql_text = "INSERT INTO DBAADV.INTRA_AGENDAMENTO (CD_CARDAPIO, CD_FUNCIONARIO, NM_FUNCIONARIO)
+		     VALUES (:CDC, :CDF, :NMF)";
         try {
             
-            echo "Nome: ".
-            $codigo = $this->getCodigo();
-            $descricao = $tp->getDescricao();
+            //echo "Nome: ".
+            //$codigo = $this->getCodigo();
+            //$descricao = $tp->getDescricao();
             $statement = oci_parse($conexao, $sql_text);
-            oci_bind_by_name($statement, ":CDTP", $codigo);
-	    oci_bind_by_name($statement, ":DSTP", $descricao);
+            oci_bind_by_name($statement, ":CDC", $cdc);
+	    oci_bind_by_name($statement, ":CDF", $cdf);
+            oci_bind_by_name($statement, ":NMF", $nmf);
             oci_execute($statement,  OCI_COMMIT_ON_SUCCESS);
 	    $teste = true;
             $conn->closeConnection($conexao);
@@ -93,23 +94,23 @@ class Funcionario_DAO{
         		return $i;
 	}
         
-      public function delete($codigo){
+      public function delete($card, $func){
           require_once 'ConnectionFactory.class.php';
           $teste = false;
           $conn = new ConnectionFactory();
           $connection = $conn->getConnection();
-          $sql_text = "DELETE FROM DBAADV.INTRA_TIPO_PRATO WHERE ROWID = :CDTP";
-          $select = "SELECT ROWID FROM DBAADV.INTRA_TIPO_PRATO R WHERE CD_TIPO_PRATO = :CDTP";
+          $sql_text = "DELETE FROM DBAADV.INTRA_AGENDAMENTO WHERE ROWID = :CDP";
+          $select = "SELECT ROWID FROMDBAADV.INTRA_AGENDAMENTO I WHERE I.CD_CARDAPIO = = :CDP AND I.CD_FUNCIONARIO = :CDF";
           try{
               $statement = oci_parse($connection, $select);
-              oci_bind_by_name($statement, ":CDTP", $codigo);
+              oci_bind_by_name($statement, ":CDP", $codigo);
               $rowid = oci_new_descriptor($connection, OCI_D_ROWID);
               oci_define_by_name($statement, "ROWID", $rowid);
               oci_execute($statement);
               while(oci_fetch($statement)){
                 $nrows = oci_num_rows($statement);
                 $delete = oci_parse($connection, $sql_text);
-                oci_bind_by_name($delete, ":CDTP", $rowid, -1, OCI_B_ROWID);
+                oci_bind_by_name($delete, ":CDP", $rowid, -1, OCI_B_ROWID);
                 oci_execute($delete, OCI_COMMIT_ON_SUCCESS);       
               }
             $teste = true;
@@ -119,5 +120,29 @@ class Funcionario_DAO{
           return $teste;
       }
       
-    
+    public function  verificarCadastro($cardapio, $func){
+          require_once  'ConnectionFactory.class.php';
+         $conn = new ConnectionFactory();   
+         $conexao = $conn->getConnection();
+         $i = 0;
+         $sql_text = "SELECT * FROM DBAADV.INTRA_AGENDAMENTO I
+                        WHERE I.CD_CARDAPIO = :CARD
+                            AND I.CD_FUNCIONARIO = :FUNC";
+         try {
+           $stmt = oci_parse($conexao, $sql_text);                                            
+           
+           oci_bind_by_name($stmt, ":CARD", $cardapio);
+           oci_bind_by_name($stmt, ":FUNC", $func);
+           oci_execute($stmt);
+           if ($row = oci_fetch_array($stmt, OCI_ASSOC)){
+                $i = 1; 
+            }
+            $conn->closeConnection($conexao);
+        } catch (PDOException $ex) {
+           echo " Erro: ".$ex->getMessage();
+        }
+        return $i;
+    }
+      
+      
 }// FIM DA CLASSE

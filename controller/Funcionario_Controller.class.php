@@ -13,5 +13,26 @@ class Funcionario_Controler{
             $nome = $dao->getFuncionario($usuario);
             return $nome;
         }
+        
+        public function agendar($cdc, $cdf, $nmf){
+            include 'model/Funcionario_DAO.class.php';
+            $dao = new Funcionario_DAO();
+            $nome = $dao->agendar($cdc, $cdf, $nmf);
+            return $nome;
+        }
+        
+        public function  verificarCadastro($cardapio, $func){
+            include 'model/Funcionario_DAO.class.php';
+            $dao = new Funcionario_DAO();
+            $nome = $dao->verificarCadastro($cardapio, $func);
+            return $nome;
+        }
+        
+        public function delete($card, $func){
+            include 'model/Funcionario_DAO.class.php';
+            $dao = new Funcionario_DAO();
+            $nome = $dao->delete($cdc, $cdf, $nmf);
+            return $nome;
+        }
 
 }
