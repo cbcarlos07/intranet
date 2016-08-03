@@ -208,7 +208,7 @@ function pegarDataAtual(){
                                        
                                                 ?>
                                         <div  class="collapse in" id="<?php echo $prato_desc; ?>">
-                                            <div class="card card-block">
+                                            <div class="card card-block ">
                                                 <ul>
                                                     <?php
                                                      while($cList->hasNextCardapio()){
