@@ -131,7 +131,7 @@ function pegarDataAtual(){
                       <div class="col-md-7"></div>
                       <div class="form-group col-md-10">
                           <label for="nome">Nome</label>
-                          <input type="text" name="nome" id="nm_func" class="form-control"  > 
+                          <input type="text" name="nome" id="nm_func" class="form-control" style="text-transform: uppercase;" > 
                       </div>
                       <div class="col-md-2"></div>
                       <div class="col-md-10 btn-group">

@@ -9,7 +9,7 @@ $cdc = $_POST['cardapio'];
 
 $cdf = $_POST['cracha'];
 
-$nmf = $_POST['nome'];
+$nmf = strtoupper($_POST['nome']);
 
 include ('./controller/Funcionario_Controller.class.php');
 $fc = new Funcionario_Controler();
