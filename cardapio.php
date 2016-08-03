@@ -98,14 +98,67 @@ function pegarDataAtual(){
           <br>
           <br>
           <hr />
-          <!-- CARDAPIO  -->
+          <!-- ESPACO PARA NOVA AREA -->
+            <!-- formulario  -->
+       <br>
+          <div class="row linhaPersonalizada dropdown">
+              <?php 
+              if($tipo_refeicao > 0){
+                     include './controller/CPP_Controller.class.php';
+                     
+                     $cpc = new CPP_Controller();
+                     $cd_cardapio = $cpc->recuperar_cardapio($tipo_refeicao, $data);
+                     //$cd_cardapio = $cpc->recuperar_cardapio($tipo_refeicao, date('d/m/Y', strtotime($data)));
+                     
+                     
+                      if($cd_cardapio > 0){
+                           $_SESSION['disable'] = '';
+                      }else {
+                           $_SESSION['disable'] = 'disabled=""';
+                      } 
+              }      
+              ?>
+              <button class="btn btn-primary btn-calendario"  <?php echo  $_SESSION['disable']; ?>  onclick="mostrar()">Agendar</button>
+              <br>
+              <br>
+              <div id="oculto" style="display:none;" class="row">
+                  <form method="post" action="" id="agenda_form">
+                      <input type="hidden" name="cardapio" id="cd_card" value="<?php echo $cd_cardapio; ?>">
+                      <div class="form-group col-md-5">
+                          <label for="codigo">C&oacute;digo do Crach&aacute;</label>
+                          <input type="text" name="codigo" id="cracha" class="form-control" onfocusout="buscar()"> 
+                      </div>
+                      <div class="col-md-7"></div>
+                      <div class="form-group col-md-10">
+                          <label for="nome">Nome</label>
+                          <input type="text" name="nome" id="nm_func" class="form-control"  > 
+                      </div>
+                      <div class="col-md-2"></div>
+                      <div class="col-md-10 btn-group">
+                          <button type="submit" id="btn-agendar" class="btn btn-success" disabled="" onclick="salvar();">Confirmar Agendamento</button>
+                          <button type="submit" id="btn-desagendar" class="btn btn-danger" disabled="" onclick="cancelar();">Cancelar Agendamento</button>
+                      </div>
+                      
+                  </form>
+             </div>
+          </div>
+       <!-- FORMULARIO  -->
+          <!-- ESPACO PARA NOVA AREA -->
+          
+          
+      </div>
+      <div class="col-xs-12 col-sm-12 col-md-6 ">
+          
+       
+       
+       <!-- CARDAPIO  -->
           
           <?php 
       
      // echo $_SESSION['data'];
      // echo "<br>$tipo_refeicao";
       if($tipo_refeicao > 0){
-                     include './controller/CPP_Controller.class.php';
+                     include_once './controller/CPP_Controller.class.php';
                      include './bean/Tipo_Prato.class.php';
                      include './services/TPListIterator.class.php';
                      include './services/CPPListIterator.class.php';
@@ -164,7 +217,7 @@ function pegarDataAtual(){
                                                         if($v == $tp){
                                                     ?>
                                                     <?php $ingredientes = $cpp->getPrato()->getDs_ingrediente(); ?>
-                                                    <a href="#" class="list-group-item" onmouseover="toolTip('<b>Ingredientes</b><br><?php echo $ingredientes; ?>', 300, 350)" onmouseout="toolTip()"><?php echo $cpp->getPrato()->getNome();  ?></a>                            
+                                                    <a href="#" class="list-group-item lista-item" onmouseover="toolTip('<b>Ingredientes</b><br><?php echo $ingredientes; ?>', 300, 350)" onmouseout="toolTip()"><?php echo $cpp->getPrato()->getNome();  ?></a>                            
                                                        <?php
                                                             } // fim do se
                                                         }// fim enquanto de dentro
@@ -187,7 +240,7 @@ function pegarDataAtual(){
       <?php
                       } // fim do se
                       else{
-                           $_SESSION['disable'] = 'disabled=""';
+                          
                           ?><br><br><br><br><br>
       <center><p><h3>N&atilde;o existe card&aacute;pio para esta data ou ainda n&atilde;o foi publicado</h3></p></center>
       <?php
@@ -199,37 +252,7 @@ function pegarDataAtual(){
          
           
             <!-- CARDAPIO  -->
-      </div>
-      <div class="col-xs-12 col-sm-12 col-md-6 ">
-            <!-- formulario  -->
-       <br>
-          <div class="row linhaPersonalizada dropdown">
-              
-              <button class="btn btn-primary btn-calendario"  <?php echo  $_SESSION['disable']; ?>  onclick="mostrar()">Agendar</button>
-              <br>
-              <br>
-              <div id="oculto" style="display:none;" class="row">
-                  <form method="post" action="" id="agenda_form">
-                      <input type="hidden" name="cardapio" id="cd_card" value="<?php echo $cd_cardapio; ?>">
-                      <div class="form-group col-md-5">
-                          <label for="codigo">C&oacute;digo do Crach&aacute;</label>
-                          <input type="text" name="codigo" id="cracha" class="form-control" onfocusout="buscar()"> 
-                      </div>
-                      <div class="col-md-7"></div>
-                      <div class="form-group col-md-10">
-                          <label for="nome">Nome</label>
-                          <input type="text" name="nome" id="nm_func" class="form-control"  > 
-                      </div>
-                      <div class="col-md-2"></div>
-                      <div class="col-md-10 btn-group">
-                          <button type="submit" id="btn-agendar" class="btn btn-success" disabled="" onclick="salvar();">Confirmar Agendamento</button>
-                          <button type="submit" id="btn-desagendar" class="btn btn-danger" disabled="" onclick="cancelar();">Cancelar Agendamento</button>
-                      </div>
-                      
-                  </form>
-             </div>
-          </div>
-       <!-- FORMULARIO  -->
+       
       </div>
       
       
